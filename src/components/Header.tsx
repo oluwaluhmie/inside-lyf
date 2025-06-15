@@ -1,75 +1,59 @@
 
-import { Button } from "./ui/button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Button } from "./ui/button";
+import AuthButton from "./AuthButton";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-slate-900 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
-              alt="Logo" 
-              className="h-6 sm:h-8 w-auto"
+              alt="Insidelyf Logo" 
+              className="h-6 w-auto"
             />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link to="/stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</Link>
-            <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
-            <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
-            <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-4">
-            <Link to="/signin">
-              <Button variant="ghost" className="text-slate-300 hover:text-blue-400 hover:bg-slate-800">
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 lg:px-6 py-2 rounded-full font-semibold transition-all duration-200">
-                Join Community
-              </Button>
-            </Link>
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Insidelyf
+            </span>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-white hover:text-blue-400"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <a href="#stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</a>
+            <a href="#communities" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Communities</a>
+            <a href="#podcast" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Podcast</a>
+            <a href="#premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</a>
+            <AuthButton />
+          </nav>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-slate-700">
-            <nav className="flex flex-col gap-4 pt-4">
-              <Link to="/stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</Link>
-              <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
-              <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
-              <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
-              <div className="flex flex-col gap-2 pt-2">
-                <Link to="/signin">
-                  <Button variant="ghost" className="text-slate-300 hover:text-blue-400 hover:bg-slate-800 justify-start">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full font-semibold">
-                    Join Community
-                  </Button>
-                </Link>
+          <div className="md:hidden py-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-4">
+              <a href="#stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</a>
+              <a href="#communities" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Communities</a>
+              <a href="#podcast" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Podcast</a>
+              <a href="#premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</a>
+              <div className="pt-2">
+                <AuthButton />
               </div>
             </nav>
           </div>

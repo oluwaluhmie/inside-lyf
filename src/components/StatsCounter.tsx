@@ -1,7 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Share2, Facebook, Twitter, Linkedin, Settings } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserRole } from "@/hooks/useUserRole";
 import { useAdminPermissions } from "@/hooks/useAdminPermissions";
 import { AdminRole } from "@/types/adminRoles";
 
@@ -15,14 +16,12 @@ const STATS = [
 export default function StatsCounter() {
   const [counts, setCounts] = useState(STATS.map(() => 0));
   const [showShareOptions, setShowShareOptions] = useState(false);
-  
-  // For demo purposes, setting as super_admin. In real app, this would come from auth
-  const userRole: AdminRole = "super_admin";
-  const assignedSegments = ["general", "tech", "wellness"];
+  const { user } = useAuth();
+  const { role } = useUserRole();
   
   const permissions = useAdminPermissions({ 
-    role: userRole, 
-    assignedSegments 
+    role: role as AdminRole, 
+    assignedSegments: ["general", "tech", "wellness"]
   });
 
   useEffect(() => {
@@ -130,7 +129,7 @@ export default function StatsCounter() {
           )}
         </div>
 
-        {permissions.canManageSettings && (
+        {user && permissions.canManageSettings && (
           <Button
             className="bg-white/20 hover:bg-white/30 text-white border border-white/30"
             onClick={() => window.location.href = '/admin'}

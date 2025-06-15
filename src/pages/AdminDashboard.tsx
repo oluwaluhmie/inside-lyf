@@ -1,6 +1,9 @@
 
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserRole } from "@/hooks/useUserRole";
 import AdminHeader from "@/components/admin/AdminHeader";
 import StatsOverview from "@/components/admin/StatsOverview";
 import PostManagement from "@/components/admin/PostManagement";
@@ -19,42 +22,71 @@ import SEOTools from "@/components/admin/SEOTools";
 import IntegrationsHub from "@/components/admin/IntegrationsHub";
 import CustomizationPanel from "@/components/admin/CustomizationPanel";
 import { useAdminPermissions } from "@/hooks/useAdminPermissions";
-import { AdminRole } from "@/types/adminRoles";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
+  const { user, loading: authLoading } = useAuth();
+  const { role, loading: roleLoading } = useUserRole();
   
-  // For demo purposes, setting as super_admin. In real app, this would come from auth
-  const userRole: AdminRole = "super_admin";
   const assignedSegments = ["general", "tech", "wellness"];
   
   const permissions = useAdminPermissions({ 
-    role: userRole, 
+    role, 
     assignedSegments 
   });
 
+  // Show loading while checking authentication
+  if (authLoading || roleLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Redirect to auth if not logged in
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
+
+  // Check if user has admin permissions
+  if (!['moderator', 'admin', 'super_admin'].includes(role)) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+          <p className="text-gray-600 mb-4">You don't have permission to access the admin dashboard.</p>
+          <a href="/" className="text-blue-600 hover:text-blue-700">Return to Home</a>
+        </div>
+      </div>
+    );
+  }
+
   const availableTabs = [
     { key: 'overview', label: 'Overview', component: <StatsOverview /> },
-    { key: 'posts', label: 'Posts', component: <PostManagement userRole={userRole} /> },
-    { key: 'comments', label: 'Comments', component: <CommentManagement /> },
-    { key: 'circles', label: 'Circles', component: <CircleManagement userRole={userRole} /> },
+    { key: 'posts', label: 'Posts', component: <PostManagement userRole={role} /> },
+    { key: 'comments', label: 'Comments', component: <CommentManagement userRole={role} assignedSegments={assignedSegments} /> },
+    { key: 'circles', label: 'Circles', component: <CircleManagement userRole={role} /> },
     { key: 'users', label: 'Users', component: <UserManagement /> },
     { key: 'profiles', label: 'Profiles', component: <UserProfileManagement /> },
     { key: 'analytics', label: 'Analytics', component: <Analytics /> },
     { key: 'premium', label: 'Premium', component: <PremiumManagement /> },
-    { key: 'database', label: 'Database', component: <DatabaseManagement /> },
-    { key: 'security', label: 'Security', component: <Security /> },
-    { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={userRole} /> },
-    { key: 'notifications', label: 'Notifications', component: <NotificationSystem userRole={userRole} /> },
-    { key: 'content', label: 'Content', component: <ContentEditor userRole={userRole} /> },
-    { key: 'seo', label: 'SEO', component: <SEOTools userRole={userRole} /> },
-    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub userRole={userRole} /> },
-    { key: 'customization', label: 'Customization', component: <CustomizationPanel userRole={userRole} /> },
+    { key: 'database', label: 'Database', component: <DatabaseManagement userRole={role} /> },
+    { key: 'security', label: 'Security', component: <Security userRole={role} /> },
+    { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={role} /> },
+    { key: 'notifications', label: 'Notifications', component: <NotificationSystem userRole={role} /> },
+    { key: 'content', label: 'Content', component: <ContentEditor userRole={role} /> },
+    { key: 'seo', label: 'SEO', component: <SEOTools userRole={role} /> },
+    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub userRole={role} /> },
+    { key: 'customization', label: 'Customization', component: <CustomizationPanel userRole={role} /> },
   ].filter(tab => permissions.canAccessTab(tab.key));
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <AdminHeader userRole={userRole} roleLabel={permissions.roleLabel} />
+      <AdminHeader userRole={role} roleLabel={permissions.roleLabel} />
       
       <div className="max-w-7xl mx-auto p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
