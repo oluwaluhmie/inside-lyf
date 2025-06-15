@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Heart, MessageCircle, Share, Send, Users, TrendingUp } from "lucide-react";
+import { ArrowLeft, Heart, MessageCircle, Share, Send, Users, TrendingUp, Star, Trophy } from "lucide-react";
 
 interface ThreadViewProps {
   threadId: string;
@@ -17,14 +17,26 @@ const THREAD_DATA: Record<string, any> = {
     description: "Navigate the beautiful chaos of raising children, share wins and struggles",
     members: "2.1k",
     color: "text-pink-600",
-    bgColor: "bg-pink-50"
+    bgColor: "bg-pink-50",
+    topStory: {
+      title: "How I learned to embrace imperfect parenting",
+      excerpt: "After years of trying to be the 'perfect parent', I discovered that showing my vulnerabilities actually made me a better mom...",
+      contributions: 127,
+      lastContribution: "3 hours ago"
+    }
   },
   "mens-cave": {
     title: "Men's Cave", 
     description: "A brotherhood for authentic conversations about masculinity and mental health",
     members: "1.8k",
     color: "text-blue-600",
-    bgColor: "bg-blue-50"
+    bgColor: "bg-blue-50",
+    topStory: {
+      title: "Breaking the silence: Men and mental health",
+      excerpt: "It took me 35 years to admit I needed help. Here's what I wish someone had told me earlier about vulnerability and strength...",
+      contributions: 89,
+      lastContribution: "1 hour ago"
+    }
   }
 };
 
@@ -63,6 +75,7 @@ const SAMPLE_POSTS = [
 
 export default function ThreadView({ threadId, onBack }: ThreadViewProps) {
   const [newPost, setNewPost] = useState("");
+  const [topStoryContribution, setTopStoryContribution] = useState("");
   const [posts, setPosts] = useState(SAMPLE_POSTS);
   
   const threadData = THREAD_DATA[threadId] || {
@@ -70,7 +83,13 @@ export default function ThreadView({ threadId, onBack }: ThreadViewProps) {
     description: "Join the conversation",
     members: "1k",
     color: "text-blue-600",
-    bgColor: "bg-blue-50"
+    bgColor: "bg-blue-50",
+    topStory: {
+      title: "Share your story with the community",
+      excerpt: "This is where community members come together to build a collective story...",
+      contributions: 0,
+      lastContribution: "Never"
+    }
   };
 
   const handleLike = (postId: number) => {
@@ -95,6 +114,14 @@ export default function ThreadView({ threadId, onBack }: ThreadViewProps) {
       };
       setPosts([post, ...posts]);
       setNewPost("");
+    }
+  };
+
+  const handleTopStoryContribution = () => {
+    if (topStoryContribution.trim()) {
+      // In a real app, this would submit to the top story
+      setTopStoryContribution("");
+      // Show success feedback
     }
   };
 
@@ -131,6 +158,60 @@ export default function ThreadView({ threadId, onBack }: ThreadViewProps) {
           </Button>
         </div>
       </div>
+
+      {/* Top Story Section */}
+      <Card className="border-2 border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50">
+        <div className="p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="p-2 rounded-full bg-amber-100">
+              <Trophy className="w-5 h-5 text-amber-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-amber-800">Community Top Story</h3>
+              <p className="text-sm text-amber-700">Everyone contributes to build this story together</p>
+            </div>
+            <Badge className="ml-auto bg-amber-100 text-amber-800 border-amber-200">
+              <Star className="w-3 h-3 mr-1" />
+              Featured
+            </Badge>
+          </div>
+          
+          <div className="mb-4">
+            <h4 className="font-semibold text-lg text-slate-800 mb-2">{threadData.topStory.title}</h4>
+            <p className="text-slate-700 leading-relaxed mb-3">{threadData.topStory.excerpt}</p>
+            <div className="flex items-center gap-4 text-sm text-slate-600">
+              <span className="flex items-center gap-1">
+                <MessageCircle className="w-4 h-4" />
+                {threadData.topStory.contributions} contributions
+              </span>
+              <span>Last contribution: {threadData.topStory.lastContribution}</span>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <Textarea
+              placeholder="Add your part to this community story..."
+              value={topStoryContribution}
+              onChange={(e) => setTopStoryContribution(e.target.value)}
+              className="bg-white border-amber-200 focus:border-amber-400"
+              rows={3}
+            />
+            <div className="flex justify-between items-center">
+              <Button variant="outline" className="border-amber-200 text-amber-700 hover:bg-amber-50">
+                View Full Story
+              </Button>
+              <Button 
+                onClick={handleTopStoryContribution}
+                disabled={!topStoryContribution.trim()}
+                className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white"
+              >
+                <Send className="w-4 h-4 mr-2" />
+                Contribute
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Card>
 
       {/* New Post Section */}
       <Card className="p-6">
