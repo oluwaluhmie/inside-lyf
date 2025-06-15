@@ -2,6 +2,8 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useState, useRef } from "react";
 import { Upload, X, Image } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +17,7 @@ export default function SubmitStoryModal({
 }) {
   const [name, setName] = useState("");
   const [story, setStory] = useState("");
+  const [stayAnonymous, setStayAnonymous] = useState(false);
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
@@ -51,7 +54,12 @@ export default function SubmitStoryModal({
     e.preventDefault();
     
     // Here you would normally upload the images and story to your backend
-    console.log('Submitting story:', { name, story, images: uploadedImages });
+    console.log('Submitting story:', { 
+      name: stayAnonymous ? "Anonymous" : name, 
+      story, 
+      stayAnonymous,
+      images: uploadedImages 
+    });
     
     toast({
       title: "Story Submitted!",
@@ -61,6 +69,7 @@ export default function SubmitStoryModal({
     // Reset form
     setName("");
     setStory("");
+    setStayAnonymous(false);
     setUploadedImages([]);
     setOpen(false);
   }
@@ -71,16 +80,33 @@ export default function SubmitStoryModal({
         <DialogHeader>
           <DialogTitle>Share Your Story</DialogTitle>
           <DialogDescription>
-            Your words could comfort someone else. You can share anonymously or with a name.
+            Your words could comfort someone else. Share your experience with the community.
           </DialogDescription>
         </DialogHeader>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <Input
-            placeholder="Your name (optional or Anonymous)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            maxLength={48}
-          />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="anonymous"
+                checked={stayAnonymous}
+                onCheckedChange={setStayAnonymous}
+              />
+              <Label htmlFor="anonymous" className="text-sm font-medium">
+                Stay anonymous
+              </Label>
+            </div>
+          </div>
+
+          {!stayAnonymous && (
+            <Input
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              maxLength={48}
+              required={!stayAnonymous}
+            />
+          )}
+
           <textarea
             placeholder="Your story..."
             className="border rounded-lg px-3 py-2 min-h-[100px] text-base"

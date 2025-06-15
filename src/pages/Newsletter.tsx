@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -35,21 +34,23 @@ const NEWSLETTER_BENEFITS = [
 export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
+    if (!email || !name || !username) return;
 
     setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
-      console.log("Newsletter signup:", { email, name });
+      console.log("Newsletter signup:", { email, name, username });
       setIsSubscribed(true);
       setIsLoading(false);
       setEmail("");
       setName("");
+      setUsername("");
     }, 1500);
   };
 
@@ -134,6 +135,19 @@ export default function Newsletter() {
                     placeholder="Enter your full name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
+                    className="bg-white"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="username">Username</Label>
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="Choose a username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                     className="bg-white"
                   />
