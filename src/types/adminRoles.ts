@@ -13,6 +13,12 @@ export interface AdminPermissions {
   canManageDatabase: boolean;
   canManageSecurity: boolean;
   canManageSettings: boolean;
+  canViewLogs: boolean;
+  canManageNotifications: boolean;
+  canEditContent: boolean;
+  canManageSEO: boolean;
+  canManageIntegrations: boolean;
+  canCustomizeUI: boolean;
 }
 
 export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
@@ -28,6 +34,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: true,
     canManageSecurity: true,
     canManageSettings: true,
+    canViewLogs: true,
+    canManageNotifications: true,
+    canEditContent: true,
+    canManageSEO: true,
+    canManageIntegrations: true,
+    canCustomizeUI: true,
   },
   content_admin: {
     canViewOverview: true,
@@ -41,6 +53,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: false,
     canManageSecurity: false,
     canManageSettings: false,
+    canViewLogs: true,
+    canManageNotifications: true,
+    canEditContent: true,
+    canManageSEO: true,
+    canManageIntegrations: false,
+    canCustomizeUI: true,
   },
   circle_admin: {
     canViewOverview: true,
@@ -54,6 +72,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: false,
     canManageSecurity: false,
     canManageSettings: false,
+    canViewLogs: true,
+    canManageNotifications: false,
+    canEditContent: false,
+    canManageSEO: false,
+    canManageIntegrations: false,
+    canCustomizeUI: false,
   },
   user_admin: {
     canViewOverview: true,
@@ -67,6 +91,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: false,
     canManageSecurity: false,
     canManageSettings: false,
+    canViewLogs: true,
+    canManageNotifications: true,
+    canEditContent: false,
+    canManageSEO: false,
+    canManageIntegrations: false,
+    canCustomizeUI: false,
   },
   analytics_admin: {
     canViewOverview: true,
@@ -80,6 +110,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: true,
     canManageSecurity: false,
     canManageSettings: false,
+    canViewLogs: true,
+    canManageNotifications: false,
+    canEditContent: false,
+    canManageSEO: false,
+    canManageIntegrations: true,
+    canCustomizeUI: false,
   },
   moderator: {
     canViewOverview: true,
@@ -93,6 +129,12 @@ export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
     canManageDatabase: false,
     canManageSecurity: false,
     canManageSettings: false,
+    canViewLogs: false,
+    canManageNotifications: false,
+    canEditContent: true,
+    canManageSEO: false,
+    canManageIntegrations: false,
+    canCustomizeUI: false,
   },
 };
 

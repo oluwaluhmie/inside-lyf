@@ -40,6 +40,18 @@ export function useAdminPermissions({ role, assignedSegments = [] }: UseAdminPer
         return permissions.canManageSecurity;
       case 'settings':
         return permissions.canManageSettings;
+      case 'logs':
+        return permissions.canViewLogs;
+      case 'notifications':
+        return permissions.canManageNotifications;
+      case 'content':
+        return permissions.canEditContent;
+      case 'seo':
+        return permissions.canManageSEO;
+      case 'integrations':
+        return permissions.canManageIntegrations;
+      case 'customization':
+        return permissions.canCustomizeUI;
       default:
         return false;
     }

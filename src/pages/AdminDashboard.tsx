@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, MessageSquare, Crown, BarChart3, Settings, MessageCircle, Database, Shield, TrendingUp, Lock, UserSearch, CircleDot } from "lucide-react";
+import { Users, MessageSquare, Crown, BarChart3, Settings, MessageCircle, Database, Shield, TrendingUp, Lock, UserSearch, CircleDot, Bell, FileText, Globe, Monitor, Palette, Edit3 } from "lucide-react";
 import { AdminRole } from "@/types/adminRoles";
 import { useAdminPermissions } from "@/hooks/useAdminPermissions";
 import AdminHeader from "@/components/admin/AdminHeader";
@@ -15,6 +15,12 @@ import Analytics from "@/components/admin/Analytics";
 import Security from "@/components/admin/Security";
 import CircleManagement from "@/components/admin/CircleManagement";
 import UserProfileManagement from "@/components/admin/UserProfileManagement";
+import LogsMonitoring from "@/components/admin/LogsMonitoring";
+import NotificationSystem from "@/components/admin/NotificationSystem";
+import ContentEditor from "@/components/admin/ContentEditor";
+import SEOTools from "@/components/admin/SEOTools";
+import IntegrationsHub from "@/components/admin/IntegrationsHub";
+import CustomizationPanel from "@/components/admin/CustomizationPanel";
 
 // Mock user role - in real app this would come from authentication
 const CURRENT_USER_ROLE: AdminRole = 'super_admin'; // Change this to test different roles
@@ -46,6 +52,12 @@ export default function AdminDashboard() {
     { key: 'premium', label: 'Premium', icon: Crown },
     { key: 'database', label: 'Database', icon: Database },
     { key: 'security', label: 'Security', icon: Lock },
+    { key: 'logs', label: 'Logs', icon: Monitor },
+    { key: 'notifications', label: 'Notifications', icon: Bell },
+    { key: 'content', label: 'Content Editor', icon: Edit3 },
+    { key: 'seo', label: 'SEO Tools', icon: Globe },
+    { key: 'integrations', label: 'Integrations', icon: FileText },
+    { key: 'customization', label: 'Customization', icon: Palette },
     { key: 'settings', label: 'Settings', icon: Settings },
   ].filter(tab => canAccessTab(tab.key));
 
@@ -55,13 +67,13 @@ export default function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className={`grid w-full grid-cols-${availableTabs.length} mb-8`}>
+          <TabsList className="grid w-full grid-cols-8 lg:grid-cols-12 mb-8 overflow-x-auto">
             {availableTabs.map(tab => {
               const IconComponent = tab.icon;
               return (
-                <TabsTrigger key={tab.key} value={tab.key} className="flex items-center gap-2">
+                <TabsTrigger key={tab.key} value={tab.key} className="flex items-center gap-2 min-w-0">
                   <IconComponent className="w-4 h-4" />
-                  {tab.label}
+                  <span className="hidden sm:inline">{tab.label}</span>
                 </TabsTrigger>
               );
             })}
@@ -69,7 +81,7 @@ export default function AdminDashboard() {
 
           {canAccessTab('overview') && (
             <TabsContent value="overview">
-              <StatsOverview userRole={CURRENT_USER_ROLE} />
+              <StatsOverview />
               <div className="mt-8">
                 <PostManagement userRole={CURRENT_USER_ROLE} assignedSegments={assignedSegments} />
               </div>
@@ -127,6 +139,42 @@ export default function AdminDashboard() {
           {canAccessTab('security') && (
             <TabsContent value="security">
               <Security userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('logs') && (
+            <TabsContent value="logs">
+              <LogsMonitoring userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('notifications') && (
+            <TabsContent value="notifications">
+              <NotificationSystem userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('content') && (
+            <TabsContent value="content">
+              <ContentEditor userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('seo') && (
+            <TabsContent value="seo">
+              <SEOTools userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('integrations') && (
+            <TabsContent value="integrations">
+              <IntegrationsHub userRole={CURRENT_USER_ROLE} />
+            </TabsContent>
+          )}
+
+          {canAccessTab('customization') && (
+            <TabsContent value="customization">
+              <CustomizationPanel userRole={CURRENT_USER_ROLE} />
             </TabsContent>
           )}
 
