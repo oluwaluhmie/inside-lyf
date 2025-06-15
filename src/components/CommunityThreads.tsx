@@ -1,10 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const COMMUNITY_THREADS = [
   {
-    id: 1,
+    id: "parenting",
     title: "Parenting",
     description: "Navigate the beautiful chaos of raising children, share wins and struggles",
     icon: Baby,
@@ -13,7 +14,7 @@ const COMMUNITY_THREADS = [
     members: "2.1k"
   },
   {
-    id: 2,
+    id: "mens-cave",
     title: "Men's Cave",
     description: "A brotherhood for authentic conversations about masculinity and mental health",
     icon: Shield,
@@ -22,7 +23,7 @@ const COMMUNITY_THREADS = [
     members: "1.8k"
   },
   {
-    id: 3,
+    id: "broken-but-healed",
     title: "Broken but Healed",
     description: "Stories of resilience, recovery, and finding light in the darkest moments",
     icon: Heart,
@@ -31,7 +32,7 @@ const COMMUNITY_THREADS = [
     members: "3.2k"
   },
   {
-    id: 4,
+    id: "sexualities-and-sex",
     title: "Sexualities and Sex",
     description: "Open, honest discussions about intimacy, identity, and sexual wellness",
     icon: Sparkles,
@@ -40,7 +41,7 @@ const COMMUNITY_THREADS = [
     members: "1.9k"
   },
   {
-    id: 5,
+    id: "real-life-confessions",
     title: "Real Life Confessions",
     description: "Anonymous safe space to share your deepest secrets and truths",
     icon: MessageCircle,
@@ -49,7 +50,7 @@ const COMMUNITY_THREADS = [
     members: "2.7k"
   },
   {
-    id: 6,
+    id: "unspoken-marriages",
     title: "Unspoken Marriages",
     description: "The real talk about relationships, love, and partnership challenges",
     icon: Crown,
@@ -58,7 +59,7 @@ const COMMUNITY_THREADS = [
     members: "2.3k"
   },
   {
-    id: 7,
+    id: "womens-circle",
     title: "Women's Circle",
     description: "Sisterhood, empowerment, and support through all seasons of womanhood",
     icon: Users,
@@ -67,7 +68,7 @@ const COMMUNITY_THREADS = [
     members: "2.9k"
   },
   {
-    id: 8,
+    id: "family",
     title: "Family",
     description: "Complex family dynamics, generational healing, and creating new traditions",
     icon: Home,
@@ -83,29 +84,30 @@ export default function CommunityThreads() {
       {COMMUNITY_THREADS.map(thread => {
         const IconComponent = thread.icon;
         return (
-          <div
-            key={thread.id}
-            className={`${thread.color} rounded-2xl border transition-all duration-200 p-5 flex flex-col cursor-pointer transform hover:scale-105`}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className={`p-2 rounded-lg bg-white/80 ${thread.iconColor}`}>
-                <IconComponent className="w-5 h-5" />
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                {thread.members} members
-              </div>
-            </div>
-            <h3 className="font-semibold text-lg mb-2 text-primary">{thread.title}</h3>
-            <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">
-              {thread.description}
-            </p>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start px-0 text-primary hover:text-primary font-medium"
+          <Link key={thread.id} to={`/community/${thread.id}`}>
+            <div
+              className={`${thread.color} rounded-2xl border transition-all duration-200 p-5 flex flex-col cursor-pointer transform hover:scale-105`}
             >
-              Join Discussion →
-            </Button>
-          </div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`p-2 rounded-lg bg-white/80 ${thread.iconColor}`}>
+                  <IconComponent className="w-5 h-5" />
+                </div>
+                <div className="text-sm text-muted-foreground font-medium">
+                  {thread.members} members
+                </div>
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-primary">{thread.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">
+                {thread.description}
+              </p>
+              <Button 
+                variant="ghost" 
+                className="w-full justify-start px-0 text-primary hover:text-primary font-medium"
+              >
+                Join Discussion →
+              </Button>
+            </div>
+          </Link>
         );
       })}
     </div>
