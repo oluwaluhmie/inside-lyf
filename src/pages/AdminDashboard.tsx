@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, MessageSquare, Crown, BarChart3, Settings, MessageCircle, Database, Shield } from "lucide-react";
+import { Users, MessageSquare, Crown, BarChart3, Settings, MessageCircle, Database, Shield, TrendingUp, Lock } from "lucide-react";
 import AdminHeader from "@/components/admin/AdminHeader";
 import StatsOverview from "@/components/admin/StatsOverview";
 import PostManagement from "@/components/admin/PostManagement";
@@ -9,9 +9,11 @@ import CommentManagement from "@/components/admin/CommentManagement";
 import UserManagement from "@/components/admin/UserManagement";
 import PremiumManagement from "@/components/admin/PremiumManagement";
 import DatabaseManagement from "@/components/admin/DatabaseManagement";
+import Analytics from "@/components/admin/Analytics";
+import Security from "@/components/admin/Security";
 
 // Mock user role - in real app this would come from authentication
-const CURRENT_USER_ROLE = 'admin'; // or 'moderator'
+const CURRENT_USER_ROLE: 'admin' | 'moderator' = 'admin'; // Fixed type annotation
 const MODERATOR_SEGMENTS = ['Parenting', 'Family']; // segments assigned to moderator
 
 export default function AdminDashboard() {
@@ -23,7 +25,7 @@ export default function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className={`grid w-full ${CURRENT_USER_ROLE === 'admin' ? 'grid-cols-7' : 'grid-cols-4'} mb-8`}>
+          <TabsList className={`grid w-full ${CURRENT_USER_ROLE === 'admin' ? 'grid-cols-9' : 'grid-cols-4'} mb-8`}>
             <TabsTrigger value="overview" className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
               Overview
@@ -42,6 +44,10 @@ export default function AdminDashboard() {
                   <Users className="w-4 h-4" />
                   Users
                 </TabsTrigger>
+                <TabsTrigger value="analytics" className="flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4" />
+                  Analytics
+                </TabsTrigger>
                 <TabsTrigger value="premium" className="flex items-center gap-2">
                   <Crown className="w-4 h-4" />
                   Premium
@@ -49,6 +55,10 @@ export default function AdminDashboard() {
                 <TabsTrigger value="database" className="flex items-center gap-2">
                   <Database className="w-4 h-4" />
                   Database
+                </TabsTrigger>
+                <TabsTrigger value="security" className="flex items-center gap-2">
+                  <Lock className="w-4 h-4" />
+                  Security
                 </TabsTrigger>
                 <TabsTrigger value="settings" className="flex items-center gap-2">
                   <Settings className="w-4 h-4" />
@@ -83,12 +93,20 @@ export default function AdminDashboard() {
                 <UserManagement userRole={CURRENT_USER_ROLE} />
               </TabsContent>
 
+              <TabsContent value="analytics">
+                <Analytics userRole={CURRENT_USER_ROLE} />
+              </TabsContent>
+
               <TabsContent value="premium">
                 <PremiumManagement userRole={CURRENT_USER_ROLE} />
               </TabsContent>
 
               <TabsContent value="database">
                 <DatabaseManagement userRole={CURRENT_USER_ROLE} />
+              </TabsContent>
+
+              <TabsContent value="security">
+                <Security userRole={CURRENT_USER_ROLE} />
               </TabsContent>
 
               <TabsContent value="settings">
