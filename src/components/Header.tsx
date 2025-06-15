@@ -22,7 +22,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</a>
+            <Link to="/stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</Link>
             <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
             <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
             <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
@@ -55,7 +55,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-slate-700">
             <nav className="flex flex-col gap-4 pt-4">
-              <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</a>
+              <Link to="/stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</Link>
               <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
               <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
               <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>

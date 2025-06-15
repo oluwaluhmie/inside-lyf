@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +12,8 @@ import Newsletter from "./pages/Newsletter";
 import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import NotFound from "./pages/NotFound";
+import Stories from "./pages/Stories";
+import Premium from "./pages/Premium";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,8 @@ const App = () => (
           <Route path="/community/:threadId" element={<CommunityDiscussion />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/about" element={<About />} />
+          <Route path="/stories" element={<Stories />} />
+          <Route path="/premium" element={<Premium />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />

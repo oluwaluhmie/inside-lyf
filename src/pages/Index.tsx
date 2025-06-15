@@ -1,6 +1,5 @@
 
 import Header from "../components/Header";
-import FeaturedStories from "../components/FeaturedStories";
 import StoriesGrid from "../components/StoriesGrid";
 import PodcastPromo from "../components/PodcastPromo";
 import CommunityThreads from "../components/CommunityThreads";
@@ -11,6 +10,7 @@ import StatsCounter from "../components/StatsCounter";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
+import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
 
 const Index = () => {
   return (
@@ -22,6 +22,8 @@ const Index = () => {
         
         <StatsCounter />
         
+        <FeaturedStoryWeek />
+        
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           <div className="flex-1 space-y-6 lg:space-y-8">
             <PodcastPromo />
@@ -29,11 +31,9 @@ const Index = () => {
             <TestimonialCarousel />
           </div>
           <div className="flex-1 lg:max-w-lg">
-            <FeaturedStories />
+            <PremiumSection />
           </div>
         </div>
-        
-        <PremiumSection />
         
         <section>
           <div className="text-center mb-6 sm:mb-8">
