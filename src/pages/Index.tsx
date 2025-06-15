@@ -25,6 +25,18 @@ const Index = () => {
         
         <FeaturedStoryWeek />
         
+        <section>
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Join Your Tribe
+            </h2>
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-4">
+              Find your people in specialized communities where vulnerability is celebrated and healing happens together.
+            </p>
+          </div>
+          <CommunityThreads />
+        </section>
+        
         <PremiumVideos />
         
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -37,18 +49,6 @@ const Index = () => {
             <PremiumSection />
           </div>
         </div>
-        
-        <section>
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Join Your Tribe
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-4">
-              Find your people in specialized communities where vulnerability is celebrated and healing happens together.
-            </p>
-          </div>
-          <CommunityThreads />
-        </section>
         
         <section>
           <div className="text-center mb-6 sm:mb-8">
