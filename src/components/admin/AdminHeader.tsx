@@ -13,7 +13,7 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
   const displayRoleLabel = roleLabel || ROLE_LABELS[userRole];
   
   return (
-    <header className="border-b bg-white px-6 py-4">
+    <header className="border-b bg-slate-900 px-6 py-4">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
@@ -22,13 +22,13 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
               alt="Insidelyf Logo" 
               className="h-6 w-auto"
             />
-            <h1 className="text-2xl font-bold text-green-600">Insidelyf Admin Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-white">Insidelyf Admin Dashboard</h1>
           </div>
-          <Badge variant={userRole === 'super_admin' ? 'default' : 'secondary'} className="bg-green-100 text-green-800">
+          <Badge variant={userRole === 'super_admin' ? 'default' : 'secondary'} className="bg-blue-100 text-blue-800">
             {displayRoleLabel}
           </Badge>
         </div>
-        <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+        <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-50">
           <Settings className="w-4 h-4 mr-2" />
           Settings
         </Button>
