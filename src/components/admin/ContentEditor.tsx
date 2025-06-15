@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit, Eye, Save, Calendar, Image, FileText, Globe, Clock, Bold, Italic, Align, Type } from "lucide-react";
+import { Plus, Edit, Eye, Save, Calendar, Image, FileText, Globe, Clock, Bold, Italic, AlignCenter, Type } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { AdminRole } from "@/types/adminRoles";
 
@@ -221,7 +221,7 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
                       <Type className="w-4 h-4" />
                     </Button>
                     <Button size="sm" variant="outline">
-                      <Align className="w-4 h-4" />
+                      <AlignCenter className="w-4 h-4" />
                     </Button>
                     <Button size="sm" variant="outline">
                       <Image className="w-4 h-4" />
