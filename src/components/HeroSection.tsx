@@ -2,6 +2,7 @@
 import { Button } from "./ui/button";
 import { ArrowRight, Heart, Users, Shield } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SubmitStoryModal from "./SubmitStoryModal";
 
 export default function HeroSection() {
@@ -54,13 +55,15 @@ export default function HeroSection() {
               Share Your Story Now
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-green-600 text-green-600 px-8 py-4 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-white/50 hover:bg-green-50"
-            >
-              Browse Stories First
-            </Button>
+            <Link to="/stories">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-green-600 text-green-600 px-8 py-4 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-white/50 hover:bg-green-50"
+              >
+                Browse Stories First
+              </Button>
+            </Link>
           </div>
 
           {/* Trust indicators */}
