@@ -21,8 +21,6 @@ const Index = () => {
       <main className="flex flex-col gap-8 sm:gap-12 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <HeroSection />
         
-        <StatsCounter />
-        
         <FeaturedStoryWeek />
         
         <section>
@@ -49,6 +47,8 @@ const Index = () => {
             <PremiumSection />
           </div>
         </div>
+        
+        <StatsCounter />
         
         <section>
           <div className="text-center mb-6 sm:mb-8">
