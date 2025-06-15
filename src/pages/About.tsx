@@ -1,0 +1,246 @@
+
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { ArrowLeft, Heart, Users, Shield, Sparkles, Target, MessageCircle, BookOpen } from "lucide-react";
+
+const MISSION_POINTS = [
+  {
+    icon: Heart,
+    title: "Authentic Connection",
+    description: "We believe healing happens through genuine human connection and shared experiences."
+  },
+  {
+    icon: Shield,
+    title: "Safe Space",
+    description: "Creating judgment-free environments where vulnerability is welcomed and protected."
+  },
+  {
+    icon: Users,
+    title: "Community Support",
+    description: "Building supportive communities where every story matters and every voice is heard."
+  },
+  {
+    icon: Sparkles,
+    title: "Personal Growth",
+    description: "Empowering individuals to transform their experiences into sources of strength and wisdom."
+  }
+];
+
+const TEAM_MEMBERS = [
+  {
+    name: "Sarah Chen",
+    role: "Founder & CEO",
+    bio: "A trauma-informed therapist turned entrepreneur, Sarah founded Insidelyf after witnessing the power of peer support in healing.",
+    image: "bg-gradient-to-br from-blue-400 to-purple-500"
+  },
+  {
+    name: "Marcus Rodriguez",
+    role: "Head of Community",
+    bio: "With 10+ years in community building, Marcus ensures our spaces remain safe, inclusive, and supportive for all members.",
+    image: "bg-gradient-to-br from-green-400 to-teal-500"
+  },
+  {
+    name: "Dr. Amira Patel",
+    role: "Clinical Advisor",
+    bio: "A licensed psychologist specializing in trauma recovery, Dr. Patel guides our approach to mental health resources.",
+    image: "bg-gradient-to-br from-orange-400 to-red-500"
+  },
+  {
+    name: "Jordan Kim",
+    role: "Technology Lead",
+    bio: "Passionate about building technology that serves humanity, Jordan leads our efforts to create accessible, secure platforms.",
+    image: "bg-gradient-to-br from-purple-400 to-pink-500"
+  }
+];
+
+const STATS = [
+  { number: "50K+", label: "Stories Shared" },
+  { number: "25K+", label: "Community Members" },
+  { number: "150+", label: "Support Groups" },
+  { number: "98%", label: "Feel More Connected" }
+];
+
+export default function About() {
+  return (
+    <div className="min-h-screen w-full flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40">
+      <Header />
+      
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="mb-6">
+          <Link to="/">
+            <Button variant="ghost" className="mb-4">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+
+        {/* Hero Section */}
+        <section className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            Your Story Matters
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+            Insidelyf is more than a platform—it's a movement. We're building a world where sharing your truth 
+            creates connection, where vulnerability becomes strength, and where healing happens together.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              Join Our Community
+            </Button>
+            <Button size="lg" variant="outline">
+              Share Your Story
+            </Button>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {STATS.map((stat, index) => (
+              <Card key={index} className="text-center border-none bg-white/60 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">{stat.number}</div>
+                  <div className="text-slate-600">{stat.label}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Our Story Section */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">Our Story</h2>
+            <div className="prose prose-lg max-w-none text-slate-600">
+              <p className="text-xl leading-relaxed mb-6">
+                Insidelyf was born from a simple yet powerful realization: <strong>healing happens in community</strong>. 
+                Our founder, Sarah Chen, witnessed firsthand how sharing personal struggles in safe, supportive environments 
+                could transform pain into purpose, isolation into connection.
+              </p>
+              <p className="text-lg leading-relaxed mb-6">
+                After years of working as a trauma-informed therapist, Sarah noticed that some of the most profound 
+                breakthroughs happened not in individual therapy sessions, but in group settings where people shared 
+                their stories with others who truly understood.
+              </p>
+              <p className="text-lg leading-relaxed mb-6">
+                In 2022, she decided to create a digital space that could replicate this healing power of community—but 
+                on a global scale. Insidelyf launched with a mission to break down the barriers that keep people isolated 
+                in their struggles and to prove that no one has to face their challenges alone.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Today, we're proud to be home to thousands of individuals who have found their voice, their community, 
+                and their path to healing through the simple act of sharing their truth.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission & Values */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Our Mission & Values</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            {MISSION_POINTS.map((point, index) => {
+              const IconComponent = point.icon;
+              return (
+                <Card key={index} className="border-none bg-white/60 backdrop-blur-sm hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="p-3 rounded-xl bg-blue-100">
+                        <IconComponent className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <CardTitle className="text-xl">{point.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600">{point.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Meet Our Team</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {TEAM_MEMBERS.map((member, index) => (
+              <Card key={index} className="text-center border-none bg-white/60 backdrop-blur-sm hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className={`w-24 h-24 rounded-full ${member.image} mx-auto mb-4`} />
+                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-blue-600 font-medium mb-3">{member.role}</p>
+                  <p className="text-sm text-slate-600">{member.bio}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Our Approach Section */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">Our Approach</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+                <CardHeader>
+                  <Target className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                  <CardTitle className="text-lg">Trauma-Informed</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-600">Every feature and interaction is designed with trauma-informed principles at its core.</p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+                <CardHeader>
+                  <MessageCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle className="text-lg">Peer Support</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-600">We facilitate meaningful connections between people with shared experiences.</p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+                <CardHeader>
+                  <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                  <CardTitle className="text-lg">Evidence-Based</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-600">Our resources and guidance are rooted in proven therapeutic practices and research.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="text-center">
+          <Card className="border-none bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <CardContent className="py-12">
+              <h2 className="text-3xl font-bold mb-4">Ready to Share Your Story?</h2>
+              <p className="text-xl mb-8 text-blue-100">
+                Join thousands who have found healing, connection, and hope through sharing their truth.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="secondary">
+                  Join Community
+                </Button>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                  Browse Stories
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}

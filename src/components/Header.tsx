@@ -25,8 +25,8 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Stories</a>
             <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
-            <a href="#resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</a>
-            <a href="#about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</a>
+            <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
+            <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -54,8 +54,8 @@ export default function Header() {
             <nav className="flex flex-col gap-4 pt-4">
               <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Stories</a>
               <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
-              <a href="#resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</a>
-              <a href="#about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</a>
+              <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
+              <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
               <div className="flex flex-col gap-2 pt-2">
                 <Button variant="ghost" className="text-slate-300 hover:text-blue-400 hover:bg-slate-800 justify-start">
                   Sign In
