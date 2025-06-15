@@ -1,7 +1,9 @@
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PremiumSection from "../components/PremiumSection";
+import PremiumSupportGroups from "../components/premium/PremiumSupportGroups";
+import TherapyChat from "../components/premium/TherapyChat";
+import PaymentLinks from "../components/premium/PaymentLinks";
 import { Button } from "@/components/ui/button";
 import { Crown, CheckCircle, Star, Video, BookOpen, Lock, Users, Heart, Play } from "lucide-react";
 
@@ -120,8 +122,19 @@ export default function Premium() {
           </p>
         </div>
 
+        {/* Payment Links Section */}
         <div className="mb-12">
-          <PremiumSection />
+          <PaymentLinks />
+        </div>
+
+        {/* Premium Support Groups */}
+        <div className="mb-12">
+          <PremiumSupportGroups />
+        </div>
+
+        {/* One-on-One Therapy */}
+        <div className="mb-12">
+          <TherapyChat />
         </div>
 
         {/* Exclusive Videos Section */}
