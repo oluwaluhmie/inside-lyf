@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Eye, Edit, Trash2, Search, Filter, Ban, UserX, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { AdminRole } from "@/types/adminRoles";
 
 const MOCK_USERS = [
   { 
@@ -69,10 +69,10 @@ const MOCK_USERS = [
 ];
 
 interface UserManagementProps {
-  userRole?: 'admin' | 'moderator';
+  userRole?: AdminRole;
 }
 
-export default function UserManagement({ userRole = 'admin' }: UserManagementProps) {
+export default function UserManagement({ userRole = 'super_admin' }: UserManagementProps) {
   const [users, setUsers] = useState(MOCK_USERS);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRole, setFilterRole] = useState("all");
@@ -82,13 +82,13 @@ export default function UserManagement({ userRole = 'admin' }: UserManagementPro
   const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
   const { toast } = useToast();
 
-  // Only admins can see all users, moderators have limited access
-  if (userRole === 'moderator') {
+  // Only super admins and user admins can see all users
+  if (userRole === 'moderator' || (userRole !== 'super_admin' && userRole !== 'user_admin')) {
     return (
       <div className="bg-white rounded-xl border p-6">
-        <h3 className="text-lg font-semibold mb-4">Limited Access</h3>
+        <h3 className="text-lg font-semibold mb-4">Access Restricted</h3>
         <p className="text-muted-foreground">
-          As a moderator, you don't have access to user management. Contact an administrator for user-related issues.
+          You don't have permission to access user management. Contact a Super Admin or User Admin for assistance.
         </p>
       </div>
     );

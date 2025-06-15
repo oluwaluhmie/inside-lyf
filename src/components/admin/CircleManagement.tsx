@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { Plus, Edit, Trash2, Users, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { AdminRole } from "@/types/adminRoles";
 
 const MOCK_CIRCLES = [
   { 
@@ -54,11 +54,11 @@ const MOCK_CIRCLES = [
 ];
 
 interface CircleManagementProps {
-  userRole?: 'admin' | 'moderator';
+  userRole?: AdminRole;
   assignedSegments?: string[];
 }
 
-export default function CircleManagement({ userRole = 'admin', assignedSegments = [] }: CircleManagementProps) {
+export default function CircleManagement({ userRole = 'super_admin', assignedSegments = [] }: CircleManagementProps) {
   const [circles, setCircles] = useState(MOCK_CIRCLES);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newCircle, setNewCircle] = useState({
@@ -71,7 +71,7 @@ export default function CircleManagement({ userRole = 'admin', assignedSegments 
   });
   const { toast } = useToast();
 
-  // Filter circles for moderators
+  // Filter circles based on role
   const filteredCircles = userRole === 'moderator' 
     ? circles.filter(circle => assignedSegments.includes(circle.title))
     : circles;
@@ -119,7 +119,7 @@ export default function CircleManagement({ userRole = 'admin', assignedSegments 
           <h3 className="text-lg font-semibold">
             {userRole === 'moderator' ? 'My Assigned Circles' : 'Circle Management'}
           </h3>
-          {userRole === 'admin' && (
+          {userRole === 'super_admin' || userRole === 'circle_admin' && (
             <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
               <DialogTrigger asChild>
                 <Button>
