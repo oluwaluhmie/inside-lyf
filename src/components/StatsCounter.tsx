@@ -1,10 +1,10 @@
+
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Share2, Facebook, Twitter, Linkedin, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserRole } from "@/hooks/useUserRole";
 import { useAdminPermissions } from "@/hooks/useAdminPermissions";
-import { AdminRole } from "@/types/adminRoles";
 
 const STATS = [
   { label: "Stories Shared", value: 47832, suffix: "+" },
@@ -20,7 +20,7 @@ export default function StatsCounter() {
   const { role } = useUserRole();
   
   const permissions = useAdminPermissions({ 
-    role: role as AdminRole, 
+    role, 
     assignedSegments: ["general", "tech", "wellness"]
   });
 

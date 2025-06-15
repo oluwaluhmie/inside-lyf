@@ -67,26 +67,26 @@ export default function AdminDashboard() {
 
   const availableTabs = [
     { key: 'overview', label: 'Overview', component: <StatsOverview /> },
-    { key: 'posts', label: 'Posts', component: <PostManagement userRole={role} /> },
-    { key: 'comments', label: 'Comments', component: <CommentManagement userRole={role} assignedSegments={assignedSegments} /> },
-    { key: 'circles', label: 'Circles', component: <CircleManagement userRole={role} /> },
+    { key: 'posts', label: 'Posts', component: <PostManagement userRole={role as any} /> },
+    { key: 'comments', label: 'Comments', component: <CommentManagement userRole={role as any} assignedSegments={assignedSegments} /> },
+    { key: 'circles', label: 'Circles', component: <CircleManagement userRole={role as any} /> },
     { key: 'users', label: 'Users', component: <UserManagement /> },
     { key: 'profiles', label: 'Profiles', component: <UserProfileManagement /> },
     { key: 'analytics', label: 'Analytics', component: <Analytics /> },
     { key: 'premium', label: 'Premium', component: <PremiumManagement /> },
-    { key: 'database', label: 'Database', component: <DatabaseManagement userRole={role} /> },
-    { key: 'security', label: 'Security', component: <Security userRole={role} /> },
-    { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={role} /> },
-    { key: 'notifications', label: 'Notifications', component: <NotificationSystem userRole={role} /> },
-    { key: 'content', label: 'Content', component: <ContentEditor userRole={role} /> },
-    { key: 'seo', label: 'SEO', component: <SEOTools userRole={role} /> },
-    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub userRole={role} /> },
-    { key: 'customization', label: 'Customization', component: <CustomizationPanel userRole={role} /> },
+    { key: 'database', label: 'Database', component: <DatabaseManagement userRole={role as any} /> },
+    { key: 'security', label: 'Security', component: <Security userRole={role as any} /> },
+    { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={role as any} /> },
+    { key: 'notifications', label: 'Notifications', component: <NotificationSystem userRole={role as any} /> },
+    { key: 'content', label: 'Content', component: <ContentEditor userRole={role as any} /> },
+    { key: 'seo', label: 'SEO', component: <SEOTools userRole={role as any} /> },
+    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub userRole={role as any} /> },
+    { key: 'customization', label: 'Customization', component: <CustomizationPanel userRole={role as any} /> },
   ].filter(tab => permissions.canAccessTab(tab.key));
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <AdminHeader userRole={role} roleLabel={permissions.roleLabel} />
+      <AdminHeader userRole={role as any} roleLabel={permissions.roleLabel} />
       
       <div className="max-w-7xl mx-auto p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
