@@ -1,4 +1,5 @@
 
+export type UserRole = 'user' | 'moderator' | 'admin' | 'super_admin';
 export type AdminRole = 'super_admin' | 'content_admin' | 'circle_admin' | 'user_admin' | 'analytics_admin' | 'moderator';
 
 export interface AdminPermissions {
@@ -19,6 +20,20 @@ export interface AdminPermissions {
   canManageSEO: boolean;
   canManageIntegrations: boolean;
   canCustomizeUI: boolean;
+}
+
+// Map UserRole to AdminRole for compatibility
+export function mapUserRoleToAdminRole(userRole: UserRole): AdminRole | null {
+  switch (userRole) {
+    case 'super_admin':
+      return 'super_admin';
+    case 'admin':
+      return 'content_admin';
+    case 'moderator':
+      return 'moderator';
+    default:
+      return null;
+  }
 }
 
 export const ROLE_PERMISSIONS: Record<AdminRole, AdminPermissions> = {
