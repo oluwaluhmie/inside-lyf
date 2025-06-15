@@ -5,8 +5,8 @@ import { useState } from "react";
 import SubmitStoryModal from "./SubmitStoryModal";
 
 const PODCAST_LINK = "https://podcasters.spotify.com/podcast-link";
-const YOUTUBE_LINK = "https://www.youtube.com/@comfortcommunity";
-const SUBSCRIBE_LINK = "https://www.youtube.com/@comfortcommunity?sub_confirmation=1";
+const YOUTUBE_LINK = "https://www.youtube.com/@insidelyf";
+const SUBSCRIBE_LINK = "https://www.youtube.com/@insidelyf?sub_confirmation=1";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Header() {
     <header className="w-full bg-gradient-to-r from-blue-100/80 via-white/80 to-blue-50/60 border-b border-border shadow-sm sticky top-0 z-30 backdrop-blur">
       <nav className="flex items-center justify-between gap-2 max-w-6xl mx-auto px-6 py-5">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold text-primary">🤗 Comfort Community</span>
+          <span className="text-xl font-bold text-primary">🌟 Insidelyf</span>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="ghost" className="hover-scale px-4" asChild>
