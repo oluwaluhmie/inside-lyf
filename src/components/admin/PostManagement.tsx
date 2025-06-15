@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Eye, Edit, Trash2, CheckCircle, XCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { AdminRole } from "@/types/adminRoles";
 
 const MOCK_POSTS = [
   { id: 1, title: "Finding strength after loss", author: "Sarah M.", thread: "Broken but Healed", status: "Published", comments: 12 },
@@ -13,11 +14,11 @@ const MOCK_POSTS = [
 ];
 
 interface PostManagementProps {
-  userRole?: 'admin' | 'moderator';
+  userRole: AdminRole;
   assignedSegments?: string[];
 }
 
-export default function PostManagement({ userRole = 'admin', assignedSegments = [] }: PostManagementProps) {
+export default function PostManagement({ userRole, assignedSegments = [] }: PostManagementProps) {
   const [posts, setPosts] = useState(MOCK_POSTS);
   const { toast } = useToast();
 
@@ -67,7 +68,7 @@ export default function PostManagement({ userRole = 'admin', assignedSegments = 
             </p>
           )}
         </div>
-        {userRole === 'admin' && (
+        {(userRole === 'super_admin' || userRole === 'content_admin') && (
           <Button>
             <Plus className="w-4 h-4 mr-2" />
             Add Featured Story

@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit, Eye, Save, Calendar, Image, FileText, Globe, Clock } from "lucide-react";
+import { Plus, Edit, Eye, Save, Calendar, Image, FileText, Globe, Clock, Bold, Italic, Align, Type } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { AdminRole } from "@/types/adminRoles";
 
@@ -38,6 +38,7 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
   const [content, setContent] = useState(CONTENT_ITEMS);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("content");
+  const [isRichTextMode, setIsRichTextMode] = useState(true);
   const [newContent, setNewContent] = useState({
     title: "",
     type: "page",
@@ -121,7 +122,7 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
               Create Content
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
+          <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Create New Content</DialogTitle>
               <DialogDescription>
@@ -195,14 +196,46 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
                 />
               </div>
               
+              {/* Rich Text Editor Controls */}
               <div className="space-y-2">
-                <Label htmlFor="content">Content</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="content">Content</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Rich Text</span>
+                    <Switch
+                      checked={isRichTextMode}
+                      onCheckedChange={setIsRichTextMode}
+                    />
+                  </div>
+                </div>
+                
+                {isRichTextMode && (
+                  <div className="flex gap-2 p-2 border border-input rounded-md">
+                    <Button size="sm" variant="outline">
+                      <Bold className="w-4 h-4" />
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Italic className="w-4 h-4" />
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Type className="w-4 h-4" />
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Align className="w-4 h-4" />
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Image className="w-4 h-4" />
+                    </Button>
+                  </div>
+                )}
+                
                 <Textarea
                   id="content"
                   value={newContent.content}
                   onChange={(e) => setNewContent({ ...newContent, content: e.target.value })}
-                  placeholder="Write your content here..."
-                  rows={10}
+                  placeholder={isRichTextMode ? "Start typing your content..." : "Write your content here..."}
+                  rows={12}
+                  className={isRichTextMode ? "font-serif" : "font-mono"}
                 />
               </div>
               
@@ -230,6 +263,7 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
           <TabsTrigger value="content">Content Library</TabsTrigger>
           <TabsTrigger value="templates">Templates</TabsTrigger>
           <TabsTrigger value="media">Media Library</TabsTrigger>
+          <TabsTrigger value="ads">Advertisement Spaces</TabsTrigger>
           <TabsTrigger value="settings">Editor Settings</TabsTrigger>
         </TabsList>
 
@@ -391,6 +425,72 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
           </Card>
         </TabsContent>
 
+        <TabsContent value="ads" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Advertisement Spaces</CardTitle>
+              <CardDescription>Manage advertisement placements throughout the site</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Header Banner</CardTitle>
+                    <CardDescription>Top of page banner advertisement</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="h-20 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+                        <span className="text-gray-500">728 x 90</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline">Configure</Button>
+                        <Button size="sm">Upload Ad</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Sidebar Banner</CardTitle>
+                    <CardDescription>Side panel advertisement space</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+                        <span className="text-gray-500">300 x 250</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline">Configure</Button>
+                        <Button size="sm">Upload Ad</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">In-Content Ad</CardTitle>
+                    <CardDescription>Advertisement within content areas</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="h-20 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+                        <span className="text-gray-500">728 x 90</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline">Configure</Button>
+                        <Button size="sm">Upload Ad</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         <TabsContent value="settings" className="space-y-6">
           <Card>
             <CardHeader>
@@ -409,7 +509,7 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
               <div className="flex items-center justify-between">
                 <div>
                   <Label>Rich text editor</Label>
-                  <p className="text-sm text-muted-foreground">Enable WYSIWYG editor</p>
+                  <p className="text-sm text-muted-foreground">Enable WYSIWYG editor by default</p>
                 </div>
                 <Switch defaultChecked />
               </div>
@@ -420,6 +520,14 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
                   <p className="text-sm text-muted-foreground">Require approval before publishing</p>
                 </div>
                 <Switch />
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>Grammar check</Label>
+                  <p className="text-sm text-muted-foreground">Enable automatic grammar checking</p>
+                </div>
+                <Switch defaultChecked />
               </div>
             </CardContent>
           </Card>
