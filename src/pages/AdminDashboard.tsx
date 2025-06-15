@@ -35,20 +35,20 @@ export default function AdminDashboard() {
 
   const availableTabs = [
     { key: 'overview', label: 'Overview', component: <StatsOverview /> },
-    { key: 'posts', label: 'Posts', component: <PostManagement /> },
+    { key: 'posts', label: 'Posts', component: <PostManagement userRole={userRole} /> },
     { key: 'comments', label: 'Comments', component: <CommentManagement /> },
-    { key: 'circles', label: 'Circles', component: <CircleManagement /> },
+    { key: 'circles', label: 'Circles', component: <CircleManagement userRole={userRole} /> },
     { key: 'users', label: 'Users', component: <UserManagement /> },
     { key: 'profiles', label: 'Profiles', component: <UserProfileManagement /> },
     { key: 'analytics', label: 'Analytics', component: <Analytics /> },
     { key: 'premium', label: 'Premium', component: <PremiumManagement /> },
     { key: 'database', label: 'Database', component: <DatabaseManagement /> },
     { key: 'security', label: 'Security', component: <Security /> },
-    { key: 'logs', label: 'Logs', component: <LogsMonitoring /> },
-    { key: 'notifications', label: 'Notifications', component: <NotificationSystem /> },
-    { key: 'content', label: 'Content', component: <ContentEditor /> },
-    { key: 'seo', label: 'SEO', component: <SEOTools /> },
-    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub /> },
+    { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={userRole} /> },
+    { key: 'notifications', label: 'Notifications', component: <NotificationSystem userRole={userRole} /> },
+    { key: 'content', label: 'Content', component: <ContentEditor userRole={userRole} /> },
+    { key: 'seo', label: 'SEO', component: <SEOTools userRole={userRole} /> },
+    { key: 'integrations', label: 'Integrations', component: <IntegrationsHub userRole={userRole} /> },
     { key: 'customization', label: 'Customization', component: <CustomizationPanel userRole={userRole} /> },
   ].filter(tab => permissions.canAccessTab(tab.key));
 
