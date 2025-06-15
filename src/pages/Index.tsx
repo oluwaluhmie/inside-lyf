@@ -10,6 +10,7 @@ import HeroSection from "../components/HeroSection";
 import StatsCounter from "../components/StatsCounter";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import UrgencyBanner from "../components/UrgencyBanner";
+import Footer from "../components/Footer";
 
 const Index = () => {
   return (
@@ -54,6 +55,7 @@ const Index = () => {
           <StoriesGrid />
         </section>
       </main>
+      <Footer />
     </div>
   );
 };

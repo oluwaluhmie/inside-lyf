@@ -1,0 +1,74 @@
+
+import { Button } from "./ui/button";
+
+export default function Footer() {
+  return (
+    <footer className="bg-gray-900 text-white py-12 mt-16">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo and Description */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
+                alt="Insidelyf Logo" 
+                className="h-8 w-auto"
+              />
+              <span className="text-xl font-bold">Insidelyf</span>
+            </div>
+            <p className="text-gray-300 mb-4 max-w-md">
+              A safe space where your story matters. Share your experiences, find your community, 
+              and discover healing through connection.
+            </p>
+            <div className="flex gap-4">
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800">
+                Share Your Story
+              </Button>
+            </div>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h3 className="font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li><a href="/privacy" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
+              <li><a href="/disclaimer" className="hover:text-green-400 transition-colors">Disclaimer</a></li>
+              <li><a href="/cookies" className="hover:text-green-400 transition-colors">Cookie Policy</a></li>
+            </ul>
+          </div>
+
+          {/* Support & Community */}
+          <div>
+            <h3 className="font-semibold mb-4">Support</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li><a href="/help" className="hover:text-green-400 transition-colors">Help Center</a></li>
+              <li><a href="/community-guidelines" className="hover:text-green-400 transition-colors">Community Guidelines</a></li>
+              <li><a href="/safety" className="hover:text-green-400 transition-colors">Safety Resources</a></li>
+              <li><a href="/contact" className="hover:text-green-400 transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-gray-400 text-sm">
+            © 2024 Insidelyf. All rights reserved.
+          </div>
+          <div className="text-gray-400 text-sm mt-4 md:mt-0">
+            <p>Made with ❤️ for healing and connection</p>
+          </div>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="mt-6 text-xs text-gray-500 border-t border-gray-700 pt-6">
+          <p>
+            <strong>Important:</strong> Insidelyf provides a platform for sharing experiences and peer support. 
+            This is not a substitute for professional mental health treatment. If you are experiencing a mental health crisis, 
+            please contact your local emergency services or a mental health professional immediately.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

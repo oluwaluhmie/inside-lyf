@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Palette, Type, Layout, Image, Save, RefreshCw, Eye } from "lucide-react";
+import { Palette, Type, Layout, Image, Save, RefreshCw, Eye, Upload, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { AdminRole } from "@/types/adminRoles";
 
@@ -65,12 +64,47 @@ export default function CustomizationPanel({ userRole }: CustomizationPanelProps
   
   const [brandingSettings, setBrandingSettings] = useState({
     siteName: "Insidelyf",
-    logoUrl: "",
+    logoUrl: "/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png",
     favicon: "",
     customCSS: "",
   });
+
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
   
   const { toast } = useToast();
+
+  const handleLogoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload an image file.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      setLogoFile(file);
+      const previewUrl = URL.createObjectURL(file);
+      setLogoPreview(previewUrl);
+      
+      toast({
+        title: "Logo uploaded!",
+        description: "Your logo has been uploaded successfully.",
+      });
+    }
+  };
+
+  const removeLogo = () => {
+    setLogoFile(null);
+    if (logoPreview) {
+      URL.revokeObjectURL(logoPreview);
+      setLogoPreview(null);
+    }
+    setBrandingSettings({ ...brandingSettings, logoUrl: "" });
+  };
 
   const applyTheme = () => {
     // Apply theme changes to CSS variables
@@ -469,54 +503,121 @@ export default function CustomizationPanel({ userRole }: CustomizationPanelProps
         </TabsContent>
 
         <TabsContent value="branding" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Branding & Identity</CardTitle>
-              <CardDescription>Customize your brand identity and assets</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="siteName">Site Name</Label>
-                <Input
-                  id="siteName"
-                  value={brandingSettings.siteName}
-                  onChange={(e) => setBrandingSettings({ ...brandingSettings, siteName: e.target.value })}
-                  placeholder="Enter your site name"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Logo Upload */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Logo Management</CardTitle>
+                <CardDescription>Upload and manage your brand logo</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                  className="hidden"
+                  id="logo-upload"
                 />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="logoUrl">Logo URL</Label>
-                <Input
-                  id="logoUrl"
-                  value={brandingSettings.logoUrl}
-                  onChange={(e) => setBrandingSettings({ ...brandingSettings, logoUrl: e.target.value })}
-                  placeholder="https://example.com/logo.png"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="favicon">Favicon URL</Label>
-                <Input
-                  id="favicon"
-                  value={brandingSettings.favicon}
-                  onChange={(e) => setBrandingSettings({ ...brandingSettings, favicon: e.target.value })}
-                  placeholder="https://example.com/favicon.ico"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="customCSS">Custom CSS</Label>
-                <textarea
-                  id="customCSS"
-                  value={brandingSettings.customCSS}
-                  onChange={(e) => setBrandingSettings({ ...brandingSettings, customCSS: e.target.value })}
-                  placeholder="/* Add your custom CSS here */"
-                  className="w-full h-32 p-3 border rounded-md font-mono text-sm"
-                />
-              </div>
-            </CardContent>
-          </Card>
+                
+                {!logoPreview && !brandingSettings.logoUrl ? (
+                  <div
+                    onClick={() => document.getElementById('logo-upload')?.click()}
+                    className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center cursor-pointer hover:border-muted-foreground/50 transition-colors"
+                  >
+                    <Image className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Click to upload your logo
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      PNG, JPG, GIF up to 10MB
+                    </p>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <div className="border rounded-lg p-4 bg-muted/10">
+                      <img
+                        src={logoPreview || brandingSettings.logoUrl}
+                        alt="Logo preview"
+                        className="w-full h-32 object-contain rounded"
+                      />
+                    </div>
+                    <button
+                      onClick={removeLogo}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
+                
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => document.getElementById('logo-upload')?.click()}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    {logoPreview || brandingSettings.logoUrl ? 'Change Logo' : 'Upload Logo'}
+                  </Button>
+                  {(logoPreview || brandingSettings.logoUrl) && (
+                    <Button onClick={removeLogo} variant="destructive">
+                      Remove
+                    </Button>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Branding Settings */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Brand Identity</CardTitle>
+                <CardDescription>Customize your brand identity and assets</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="siteName">Site Name</Label>
+                  <Input
+                    id="siteName"
+                    value={brandingSettings.siteName}
+                    onChange={(e) => setBrandingSettings({ ...brandingSettings, siteName: e.target.value })}
+                    placeholder="Enter your site name"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="logoUrl">Logo URL (Alternative)</Label>
+                  <Input
+                    id="logoUrl"
+                    value={brandingSettings.logoUrl}
+                    onChange={(e) => setBrandingSettings({ ...brandingSettings, logoUrl: e.target.value })}
+                    placeholder="https://example.com/logo.png"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="favicon">Favicon URL</Label>
+                  <Input
+                    id="favicon"
+                    value={brandingSettings.favicon}
+                    onChange={(e) => setBrandingSettings({ ...brandingSettings, favicon: e.target.value })}
+                    placeholder="https://example.com/favicon.ico"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="customCSS">Custom CSS</Label>
+                  <textarea
+                    id="customCSS"
+                    value={brandingSettings.customCSS}
+                    onChange={(e) => setBrandingSettings({ ...brandingSettings, customCSS: e.target.value })}
+                    placeholder="/* Add your custom CSS here */"
+                    className="w-full h-32 p-3 border rounded-md font-mono text-sm"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
       </Tabs>
     </div>
