@@ -23,9 +23,10 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Stories</a>
+            <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</a>
             <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
             <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
+            <Link to="/newsletter" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Newsletter</Link>
             <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
           </nav>
 
@@ -34,9 +35,11 @@ export default function Header() {
             <Button variant="ghost" className="text-slate-300 hover:text-blue-400 hover:bg-slate-800">
               Sign In
             </Button>
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 lg:px-6 py-2 rounded-full font-semibold transition-all duration-200">
-              Join Community
-            </Button>
+            <Link to="/signup">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 lg:px-6 py-2 rounded-full font-semibold transition-all duration-200">
+                Join Community
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -52,17 +55,20 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-slate-700">
             <nav className="flex flex-col gap-4 pt-4">
-              <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Stories</a>
+              <a href="#stories" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Real life stories</a>
               <Link to="/community" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Community</Link>
               <Link to="/resources" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Resources</Link>
+              <Link to="/newsletter" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">Newsletter</Link>
               <Link to="/about" className="text-slate-300 hover:text-blue-400 transition-colors font-medium">About</Link>
               <div className="flex flex-col gap-2 pt-2">
                 <Button variant="ghost" className="text-slate-300 hover:text-blue-400 hover:bg-slate-800 justify-start">
                   Sign In
                 </Button>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full font-semibold">
-                  Join Community
-                </Button>
+                <Link to="/signup">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full font-semibold">
+                    Join Community
+                  </Button>
+                </Link>
               </div>
             </nav>
           </div>

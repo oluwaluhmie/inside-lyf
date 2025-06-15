@@ -9,6 +9,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import CommunityDiscussion from "./pages/CommunityDiscussion";
 import Resources from "./pages/Resources";
 import About from "./pages/About";
+import Newsletter from "./pages/Newsletter";
+import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/community/:threadId" element={<CommunityDiscussion />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/about" element={<About />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/signup" element={<Signup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
