@@ -6,22 +6,26 @@ import PodcastPromo from "../components/PodcastPromo";
 import CommunityThreads from "../components/CommunityThreads";
 import NewsletterSignup from "../components/NewsletterSignup";
 import PremiumSection from "../components/PremiumSection";
+import HeroSection from "../components/HeroSection";
+import StatsCounter from "../components/StatsCounter";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import UrgencyBanner from "../components/UrgencyBanner";
 
 const Index = () => {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-background">
+    <div className="min-h-screen w-full flex flex-col bg-gradient-to-br from-blue-50/30 via-white to-purple-50/20">
+      <UrgencyBanner />
       <Header />
-      <main className="flex flex-col gap-8 max-w-6xl w-full mx-auto px-6 py-10">
+      <main className="flex flex-col gap-12 max-w-6xl w-full mx-auto px-6 py-8">
+        <HeroSection />
+        
+        <StatsCounter />
+        
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1">
-            <h1 className="text-3xl lg:text-5xl font-extrabold mb-2 text-primary animate-fade-in">
-              Insidelyf
-            </h1>
-            <p className="text-lg text-muted-foreground mb-4 max-w-xl animate-fade-in">
-              A safe, welcoming space to share life's raw truths, seek support, and heal together. Join specialized communities for deep conversations and authentic connections.
-            </p>
             <PodcastPromo />
             <NewsletterSignup />
+            <TestimonialCarousel />
           </div>
           <div className="flex-1 lg:max-w-lg">
             <FeaturedStories />
@@ -31,12 +35,22 @@ const Index = () => {
         <PremiumSection />
         
         <section>
-          <h2 className="text-2xl font-semibold mb-6 text-primary/90">Community Circles</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-primary bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Join Your Tribe
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Find your people in specialized communities where vulnerability is celebrated and healing happens together.
+            </p>
+          </div>
           <CommunityThreads />
         </section>
         
         <section>
-          <h2 className="text-2xl font-semibold mb-4 text-primary/90">Recent Stories</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-primary">Stories That Changed Lives</h2>
+            <p className="text-lg text-muted-foreground">Real experiences from people who found their voice and their community here.</p>
+          </div>
           <StoriesGrid />
         </section>
       </main>
