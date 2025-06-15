@@ -17,6 +17,8 @@ const MOCK_USER_PROFILES = [
     email: "sarah@email.com",
     avatar: "/placeholder.svg",
     role: "Premium User",
+    isPremium: true,
+    premiumId: "PM-2024-001",
     joinDate: "January 15, 2024",
     location: "San Francisco, CA",
     bio: "Mother of two, passionate about mindful parenting and community building.",
@@ -41,6 +43,7 @@ const MOCK_USER_PROFILES = [
     email: "mark@email.com",
     avatar: "/placeholder.svg",
     role: "Moderator",
+    isPremium: false,
     joinDate: "February 3, 2024",
     location: "Austin, TX",
     bio: "Advocate for men's mental health and authentic masculinity.",
@@ -105,13 +108,32 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
             <Card key={user.id} className="cursor-pointer hover:shadow-md transition-shadow">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                  </Avatar>
+                  <div className="relative">
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    {user.isPremium && (
+                      <div className="absolute -top-1 -right-1 bg-amber-600 rounded-full p-1">
+                        <Crown className="w-3 h-3 text-white" />
+                      </div>
+                    )}
+                  </div>
                   <div className="flex-1">
-                    <CardTitle className="text-base">{user.name}</CardTitle>
+                    <div className="flex items-center gap-2">
+                      <CardTitle className="text-base">{user.name}</CardTitle>
+                      {user.isPremium && (
+                        <Badge className="bg-amber-100 text-amber-800 text-xs">
+                          Premium
+                        </Badge>
+                      )}
+                    </div>
                     <CardDescription className="text-sm">{user.email}</CardDescription>
+                    {user.isPremium && user.premiumId && (
+                      <div className="text-xs text-amber-600 font-mono">
+                        ID: {user.premiumId}
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardHeader>
@@ -160,19 +182,39 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
               
               <TabsContent value="overview" className="space-y-4">
                 <div className="flex items-start gap-6">
-                  <Avatar className="h-24 w-24">
-                    <AvatarImage src={selectedUser.avatar} alt={selectedUser.name} />
-                    <AvatarFallback className="text-lg">
-                      {selectedUser.name.split(' ').map((n: string) => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
+                  <div className="relative">
+                    <Avatar className="h-24 w-24">
+                      <AvatarImage src={selectedUser.avatar} alt={selectedUser.name} />
+                      <AvatarFallback className="text-lg">
+                        {selectedUser.name.split(' ').map((n: string) => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    {selectedUser.isPremium && (
+                      <div className="absolute -top-2 -right-2 bg-amber-600 rounded-full p-2">
+                        <Crown className="w-4 h-4 text-white" />
+                      </div>
+                    )}
+                  </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h2 className="text-2xl font-bold">{selectedUser.name}</h2>
                       <Badge variant={selectedUser.role.includes('Moderator') ? 'default' : 'secondary'}>
                         {selectedUser.role}
                       </Badge>
+                      {selectedUser.isPremium && (
+                        <Badge className="bg-amber-100 text-amber-800">
+                          Premium Member
+                        </Badge>
+                      )}
                     </div>
+                    {selectedUser.isPremium && selectedUser.premiumId && (
+                      <div className="mb-2">
+                        <span className="text-sm text-muted-foreground">Premium ID: </span>
+                        <span className="font-mono text-sm bg-amber-50 px-2 py-1 rounded">
+                          {selectedUser.premiumId}
+                        </span>
+                      </div>
+                    )}
                     <div className="space-y-1 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <Mail className="w-4 h-4" />

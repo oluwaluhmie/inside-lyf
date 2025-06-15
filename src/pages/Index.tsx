@@ -11,6 +11,7 @@ import TestimonialCarousel from "../components/TestimonialCarousel";
 import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
 import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
+import PremiumVideos from "../components/PremiumVideos";
 
 const Index = () => {
   return (
@@ -23,6 +24,8 @@ const Index = () => {
         <StatsCounter />
         
         <FeaturedStoryWeek />
+        
+        <PremiumVideos />
         
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           <div className="flex-1 space-y-6 lg:space-y-8">

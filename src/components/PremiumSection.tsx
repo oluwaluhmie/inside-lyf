@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Crown, Video, BookOpen, Star, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PREMIUM_FEATURES = [
   {
@@ -33,7 +34,7 @@ export default function PremiumSection() {
           <Crown className="w-6 h-6 text-amber-600" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-primary">Insidelyf Premium</h2>
+          <h2 className="text-2xl font-bold text-primary">Premium Membership</h2>
           <p className="text-muted-foreground">Unlock deeper connections and exclusive content</p>
         </div>
       </div>
@@ -57,9 +58,11 @@ export default function PremiumSection() {
           <div className="text-sm text-muted-foreground">Cancel anytime • 7-day free trial</div>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50">
-            Learn More
-          </Button>
+          <Link to="/premium">
+            <Button variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50">
+              Learn More
+            </Button>
+          </Link>
           <Button className="bg-amber-600 text-white hover:bg-amber-700 shadow-lg">
             Start Free Trial
           </Button>
