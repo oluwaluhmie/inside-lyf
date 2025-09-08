@@ -27,6 +27,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</a>
             <a href="#communities" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Communities</a>
+            <a href="/football" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Football</a>
             <a href="#podcast" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Podcast</a>
             <a href="#premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</a>
             <AuthButton />
@@ -50,6 +51,7 @@ export default function Header() {
             <nav className="flex flex-col space-y-4">
               <a href="#stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</a>
               <a href="#communities" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Communities</a>
+              <a href="/football" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Football</a>
               <a href="#podcast" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Podcast</a>
               <a href="#premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</a>
               <div className="pt-2">

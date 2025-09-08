@@ -17,6 +17,7 @@ import Help from "./pages/Help";
 import CommunityGuidelines from "./pages/CommunityGuidelines";
 import Safety from "./pages/Safety";
 import Contact from "./pages/Contact";
+import Football from "./pages/Football";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/community-guidelines" element={<CommunityGuidelines />} />
             <Route path="/safety" element={<Safety />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/football" element={<Football />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
