@@ -1,9 +1,19 @@
 
 import { Button } from "@/components/ui/button";
-import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles } from "lucide-react";
+import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles, Gamepad2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const COMMUNITY_THREADS = [
+  {
+    id: "football-banter",
+    title: "Football Banter",
+    description: "Match discussions, transfer gossip, and legendary banter with fellow fans",
+    icon: Gamepad2,
+    color: "bg-emerald-50 border-emerald-200 hover:bg-emerald-100",
+    iconColor: "text-emerald-600",
+    members: "4.5k",
+    whatsappLink: "https://chat.whatsapp.com/football-banter-group"
+  },
   {
     id: "parenting",
     title: "Parenting",
@@ -11,7 +21,8 @@ const COMMUNITY_THREADS = [
     icon: Baby,
     color: "bg-pink-50 border-pink-200 hover:bg-pink-100",
     iconColor: "text-pink-600",
-    members: "2.1k"
+    members: "2.1k",
+    whatsappLink: "https://chat.whatsapp.com/parenting-support-group"
   },
   {
     id: "mens-cave",
@@ -20,7 +31,8 @@ const COMMUNITY_THREADS = [
     icon: Shield,
     color: "bg-blue-50 border-blue-200 hover:bg-blue-100",
     iconColor: "text-blue-600",
-    members: "1.8k"
+    members: "1.8k",
+    whatsappLink: "https://chat.whatsapp.com/mens-mental-health-group"
   },
   {
     id: "broken-but-healed",
@@ -29,7 +41,8 @@ const COMMUNITY_THREADS = [
     icon: Heart,
     color: "bg-green-50 border-green-200 hover:bg-green-100",
     iconColor: "text-green-600",
-    members: "3.2k"
+    members: "3.2k",
+    whatsappLink: "https://chat.whatsapp.com/healing-journey-group"
   },
   {
     id: "sexualities-and-sex",
@@ -38,7 +51,8 @@ const COMMUNITY_THREADS = [
     icon: Sparkles,
     color: "bg-purple-50 border-purple-200 hover:bg-purple-100",
     iconColor: "text-purple-600",
-    members: "1.9k"
+    members: "1.9k",
+    whatsappLink: "https://chat.whatsapp.com/safe-space-group"
   },
   {
     id: "real-life-confessions",
@@ -47,7 +61,8 @@ const COMMUNITY_THREADS = [
     icon: MessageCircle,
     color: "bg-orange-50 border-orange-200 hover:bg-orange-100",
     iconColor: "text-orange-600",
-    members: "2.7k"
+    members: "2.7k",
+    whatsappLink: "https://chat.whatsapp.com/confessions-group"
   },
   {
     id: "unspoken-marriages",
@@ -56,7 +71,8 @@ const COMMUNITY_THREADS = [
     icon: Crown,
     color: "bg-red-50 border-red-200 hover:bg-red-100",
     iconColor: "text-red-600",
-    members: "2.3k"
+    members: "2.3k",
+    whatsappLink: "https://chat.whatsapp.com/marriage-talk-group"
   },
   {
     id: "womens-circle",
@@ -65,7 +81,8 @@ const COMMUNITY_THREADS = [
     icon: Users,
     color: "bg-teal-50 border-teal-200 hover:bg-teal-100",
     iconColor: "text-teal-600",
-    members: "2.9k"
+    members: "2.9k",
+    whatsappLink: "https://chat.whatsapp.com/womens-circle-group"
   },
   {
     id: "family",
@@ -74,40 +91,59 @@ const COMMUNITY_THREADS = [
     icon: Home,
     color: "bg-indigo-50 border-indigo-200 hover:bg-indigo-100",
     iconColor: "text-indigo-600",
-    members: "2.0k"
+    members: "2.0k",
+    whatsappLink: "https://chat.whatsapp.com/family-support-group"
   }
 ];
 
 export default function CommunityThreads() {
+  const handleWhatsAppClick = (e: React.MouseEvent, whatsappLink: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(whatsappLink, '_blank');
+  };
+
   return (
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 animate-fade-in">
       {COMMUNITY_THREADS.map(thread => {
         const IconComponent = thread.icon;
         return (
-          <Link key={thread.id} to={`/community/${thread.id}`}>
-            <div
-              className={`${thread.color} rounded-2xl border transition-all duration-200 p-5 flex flex-col cursor-pointer transform hover:scale-105`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2 rounded-lg bg-white/80 ${thread.iconColor}`}>
-                  <IconComponent className="w-5 h-5" />
+          <div key={thread.id} className="relative">
+            <Link to={`/community/${thread.id}`}>
+              <div
+                className={`${thread.color} rounded-2xl border transition-all duration-200 p-5 flex flex-col cursor-pointer transform hover:scale-105`}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`p-2 rounded-lg bg-white/80 ${thread.iconColor}`}>
+                    <IconComponent className="w-5 h-5" />
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    {thread.members} members
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground font-medium">
-                  {thread.members} members
+                <h3 className="font-semibold text-lg mb-2 text-primary">{thread.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">
+                  {thread.description}
+                </p>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="ghost" 
+                    className="flex-1 justify-start px-0 text-primary hover:text-primary font-medium"
+                  >
+                    Join Discussion →
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={(e) => handleWhatsAppClick(e, thread.whatsappLink)}
+                    className="text-green-600 border-green-200 hover:bg-green-50"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2 text-primary">{thread.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">
-                {thread.description}
-              </p>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start px-0 text-primary hover:text-primary font-medium"
-              >
-                Join Discussion →
-              </Button>
-            </div>
-          </Link>
+            </Link>
+          </div>
         );
       })}
     </div>
