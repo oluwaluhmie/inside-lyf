@@ -21,9 +21,11 @@ export default function Footer() {
               and discover healing through connection.
             </p>
             <div className="flex gap-4">
-              <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
-                Share Your Story
-              </Button>
+              <Link to="/write-story">
+                <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
+                  Share Your Story
+                </Button>
+              </Link>
             </div>
             <div className="flex gap-4 mt-6">
               <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
