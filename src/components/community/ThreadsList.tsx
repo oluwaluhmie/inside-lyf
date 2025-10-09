@@ -1,6 +1,11 @@
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles, Clock, TrendingUp, Gamepad2 } from "lucide-react";
 
 const COMMUNITY_THREADS = [
@@ -119,6 +124,31 @@ interface ThreadsListProps {
 }
 
 export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [threadTitle, setThreadTitle] = useState("");
+  const [threadDescription, setThreadDescription] = useState("");
+  const { toast } = useToast();
+
+  const handleCreateThread = () => {
+    if (!threadTitle.trim() || !threadDescription.trim()) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in both title and description",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Thread created!",
+      description: "Your new community thread has been submitted for review.",
+    });
+
+    setThreadTitle("");
+    setThreadDescription("");
+    setIsDialogOpen(false);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -126,9 +156,53 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
           <h2 className="text-xl font-semibold text-slate-800">All Communities</h2>
           <p className="text-slate-600">Choose a community to join the conversation</p>
         </div>
-        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-          Create New Thread
-        </Button>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              Create New Thread
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Create New Community Thread</DialogTitle>
+              <DialogDescription>
+                Share your idea for a new community discussion thread.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Thread Title</Label>
+                <Input
+                  id="title"
+                  placeholder="e.g., Tech Enthusiasts"
+                  value={threadTitle}
+                  onChange={(e) => setThreadTitle(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="description">Description</Label>
+                <Textarea
+                  id="description"
+                  placeholder="Describe what this community thread is about..."
+                  value={threadDescription}
+                  onChange={(e) => setThreadDescription(e.target.value)}
+                  rows={4}
+                />
+              </div>
+            </div>
+            <div className="flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button 
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                onClick={handleCreateThread}
+              >
+                Submit Thread
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 animate-fade-in">
