@@ -27,6 +27,8 @@ import Resources from "./pages/Resources";
 import Premium from "./pages/Premium";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import DailyReflection from "./pages/DailyReflection";
 import NotFound from "./pages/NotFound";
 import FootballBanter from "./pages/community/FootballBanter";
 
@@ -54,6 +56,8 @@ const App = () => (
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/premium" element={<Premium />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/reflect" element={<DailyReflection />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/privacy" element={<Privacy />} />

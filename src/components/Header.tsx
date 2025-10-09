@@ -26,10 +26,11 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</Link>
+            <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</Link>
+            <Link to="/stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Read</Link>
+            <Link to="/write" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Write</Link>
             <Link to="/community" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Community</Link>
-            <Link to="/write" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Share Story</Link>
-            <Link to="/premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</Link>
+            <Link to="/profile" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Profile</Link>
             <AuthButton />
           </nav>
 
@@ -49,10 +50,11 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <Link to="/stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Stories</Link>
+              <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</Link>
+              <Link to="/stories" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Read</Link>
+              <Link to="/write" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Write</Link>
               <Link to="/community" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Community</Link>
-              <Link to="/write" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Share Story</Link>
-              <Link to="/premium" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Premium</Link>
+              <Link to="/profile" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Profile</Link>
               <div className="pt-2">
                 <AuthButton />
               </div>

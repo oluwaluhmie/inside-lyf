@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
 import { Heart, MessageCircle, Bookmark, ArrowLeft } from "lucide-react";
@@ -194,6 +195,7 @@ export default function Story() {
         </article>
       </main>
       
+      <ScrollToTop />
       <Footer />
     </div>
   );

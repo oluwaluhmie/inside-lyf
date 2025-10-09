@@ -1,0 +1,223 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
+import MobileNav from "../components/MobileNav";
+import { Button } from "../components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Heart, MessageCircle, Bookmark, Edit, Calendar, Feather, Sparkles, Award } from "lucide-react";
+import StoriesGrid from "../components/StoriesGrid";
+
+const MOCK_USER = {
+  name: "Sarah Morgan",
+  quote: "Every story shared is a step towards healing",
+  avatar: "SM",
+  stats: {
+    storiesShared: 12,
+    relates: 342,
+    reflections: 87,
+    followers: 156,
+  },
+  badges: [
+    { icon: Feather, label: "Storyteller", color: "text-primary" },
+    { icon: Sparkles, label: "Empath", color: "text-secondary" },
+    { icon: Award, label: "Uplifter", color: "text-primary" },
+  ],
+};
+
+export default function Profile() {
+  const [activeTab, setActiveTab] = useState("stories");
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header />
+      
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+        {/* Profile Header Card */}
+        <div className="bg-card rounded-3xl shadow-lg border border-border p-6 sm:p-8 mb-8 animate-fade-in">
+          <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
+            {/* Avatar */}
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl font-bold text-primary-foreground shadow-lg">
+              {MOCK_USER.avatar}
+            </div>
+            
+            {/* User Info */}
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="mb-2">{MOCK_USER.name}</h1>
+              <p className="text-lg text-muted-foreground italic mb-4">
+                "{MOCK_USER.quote}"
+              </p>
+              <Button variant="outline" className="gap-2">
+                <Edit className="w-4 h-4" />
+                Edit Profile
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+            <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
+              <div className="text-3xl font-bold text-primary mb-1">
+                {MOCK_USER.stats.storiesShared}
+              </div>
+              <div className="text-sm text-muted-foreground">Stories Shared</div>
+            </div>
+            <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
+              <div className="text-3xl font-bold text-primary mb-1">
+                {MOCK_USER.stats.relates}
+              </div>
+              <div className="text-sm text-muted-foreground">Relates</div>
+            </div>
+            <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
+              <div className="text-3xl font-bold text-primary mb-1">
+                {MOCK_USER.stats.reflections}
+              </div>
+              <div className="text-sm text-muted-foreground">Reflections</div>
+            </div>
+            <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
+              <div className="text-3xl font-bold text-primary mb-1">
+                {MOCK_USER.stats.followers}
+              </div>
+              <div className="text-sm text-muted-foreground">Followers</div>
+            </div>
+          </div>
+
+          {/* Badge Display Row */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-4">
+            {MOCK_USER.badges.map((badge, index) => {
+              const Icon = badge.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all"
+                >
+                  <Icon className={`w-5 h-5 ${badge.color}`} />
+                  <span className="font-medium text-foreground">{badge.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Tabs Section */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="w-full justify-start mb-8 bg-card rounded-2xl p-2 shadow-md">
+            <TabsTrigger value="stories" className="rounded-xl">
+              My Stories
+            </TabsTrigger>
+            <TabsTrigger value="reflections" className="rounded-xl">
+              My Reflections
+            </TabsTrigger>
+            <TabsTrigger value="saved" className="rounded-xl">
+              Saved
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="stories" className="animate-fade-in">
+            <div className="mb-6 flex justify-between items-center">
+              <h2>My Stories</h2>
+              <Link to="/write">
+                <Button className="gap-2">
+                  <Edit className="w-4 h-4" />
+                  Write New Story
+                </Button>
+              </Link>
+            </div>
+            <StoriesGrid />
+          </TabsContent>
+
+          <TabsContent value="reflections" className="animate-fade-in">
+            <div className="grid lg:grid-cols-[1fr_300px] gap-8">
+              {/* Reflections List */}
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <h2>My Reflections</h2>
+                  <Link to="/reflect">
+                    <Button className="gap-2">
+                      <Calendar className="w-4 h-4" />
+                      New Reflection
+                    </Button>
+                  </Link>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    { date: "Today", prompt: "What moment made you grateful?", text: "Connecting with old friends reminded me how important community is..." },
+                    { date: "Yesterday", prompt: "Who would you thank?", text: "I'd thank my mentor for believing in me when I didn't believe in myself..." },
+                    { date: "2 days ago", prompt: "What did you learn today?", text: "I learned that vulnerability isn't weakness, it's courage..." },
+                  ].map((reflection, index) => (
+                    <div
+                      key={index}
+                      className="bg-card rounded-3xl p-6 border border-border hover:shadow-lg transition-all"
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm text-muted-foreground">{reflection.date}</span>
+                        <Button variant="ghost" size="sm">
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{reflection.prompt}</h3>
+                      <p className="text-foreground/80">{reflection.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Calendar Streak Sidebar */}
+              <div className="space-y-6">
+                <div className="bg-card rounded-3xl p-6 border border-border shadow-md">
+                  <h3 className="font-semibold mb-4">Reflection Streak</h3>
+                  <div className="text-center mb-4">
+                    <div className="text-5xl font-bold text-primary mb-2">7</div>
+                    <div className="text-sm text-muted-foreground">Days in a row</div>
+                  </div>
+                  {/* Mini Calendar */}
+                  <div className="grid grid-cols-7 gap-2 text-center text-xs">
+                    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
+                      <div key={i} className="font-semibold text-muted-foreground">{day}</div>
+                    ))}
+                    {Array.from({ length: 28 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-lg flex items-center justify-center ${
+                          i < 7 ? 'bg-primary text-primary-foreground' : 'bg-secondary/30'
+                        }`}
+                      >
+                        {i + 1}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* AI Suggestions */}
+                <div className="bg-card rounded-3xl p-6 border border-border shadow-md">
+                  <h3 className="font-semibold mb-4">For You</h3>
+                  <div className="space-y-4">
+                    <div className="p-3 bg-secondary/20 rounded-xl">
+                      <p className="text-sm font-medium mb-1">Stories you might relate to</p>
+                      <p className="text-xs text-muted-foreground">Based on your reflections</p>
+                    </div>
+                    <div className="p-3 bg-secondary/20 rounded-xl">
+                      <p className="text-sm font-medium mb-1">12 readers found comfort</p>
+                      <p className="text-xs text-muted-foreground">In your latest post</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="saved" className="animate-fade-in">
+            <h2 className="mb-6">Saved Stories</h2>
+            <StoriesGrid />
+          </TabsContent>
+        </Tabs>
+      </main>
+      
+      <ScrollToTop />
+      <Footer />
+      <MobileNav />
+    </div>
+  );
+}

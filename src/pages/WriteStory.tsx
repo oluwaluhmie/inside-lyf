@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
+import MobileNav from "../components/MobileNav";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
@@ -251,7 +253,9 @@ export default function WriteStory() {
         </div>
       </main>
       
+      <ScrollToTop />
       <Footer />
+      <MobileNav />
     </div>
   );
 }

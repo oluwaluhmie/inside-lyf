@@ -139,4 +139,32 @@
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
+  
+  /* Hover scale animation */
+  .hover-scale {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+  
+  /* Card rise animation */
+  .card-rise {
+    @apply transition-all duration-400 hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  /* Button bloom effect */
+  .btn-bloom {
+    @apply transition-all duration-300 hover:brightness-110;
+  }
+  
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Large tap targets for mobile */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
 }

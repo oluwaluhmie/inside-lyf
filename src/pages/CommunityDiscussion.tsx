@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
+import MobileNav from "../components/MobileNav";
 import ThreadView from "../components/community/ThreadView";
 import ThreadsList from "../components/community/ThreadsList";
 import { Button } from "../components/ui/button";
@@ -116,7 +118,9 @@ export default function CommunityDiscussion() {
         )}
       </main>
       
+      <ScrollToTop />
       <Footer />
+      <MobileNav />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
 import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
 import PremiumVideos from "../components/PremiumVideos";
+import MobileNav from "../components/MobileNav";
 
 const Index = () => {
   return (
@@ -74,6 +75,7 @@ const Index = () => {
         <StatsCounter />
       </main>
       <Footer />
+      <MobileNav />
     </div>
   );
 };
