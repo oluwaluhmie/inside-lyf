@@ -104,7 +104,7 @@ export default function CommunityThreads() {
   };
 
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 animate-fade-in">
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in">
       {COMMUNITY_THREADS.map(thread => {
         const IconComponent = thread.icon;
         return (
