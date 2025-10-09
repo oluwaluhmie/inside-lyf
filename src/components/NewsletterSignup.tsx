@@ -20,9 +20,9 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-5 mb-4 shadow-sm">
+    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-5 mb-4 shadow-sm">
       <div className="flex items-center gap-2 mb-2">
-        <Mail className="w-5 h-5 text-blue-600" />
+        <Mail className="w-5 h-5 text-primary" />
         <h3 className="font-semibold text-primary">Stay Connected</h3>
       </div>
       <p className="text-sm text-muted-foreground mb-4">

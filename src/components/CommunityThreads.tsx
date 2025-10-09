@@ -49,8 +49,8 @@ const COMMUNITY_THREADS = [
     title: "Sexualities and Sex",
     description: "Open, honest discussions about intimacy, identity, and sexual wellness",
     icon: Sparkles,
-    color: "bg-purple-50 border-purple-200 hover:bg-purple-100",
-    iconColor: "text-purple-600",
+    color: "bg-rose-50 border-rose-200 hover:bg-rose-100",
+    iconColor: "text-rose-600",
     members: "1.9k",
     whatsappLink: "https://chat.whatsapp.com/safe-space-group"
   },
