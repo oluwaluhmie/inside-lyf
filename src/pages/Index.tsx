@@ -11,6 +11,8 @@ import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
 import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
 import MobileNav from "../components/MobileNav";
+import { Button } from "@/components/ui/button";
+import { MessageCircle, ExternalLink } from "lucide-react";
 
 const Index = () => {
   return (
@@ -50,9 +52,17 @@ const Index = () => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
               Join Your Tribe
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Find your people in specialized communities where vulnerability is celebrated and healing happens together.
             </p>
+            <Button 
+              onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Join InsideLyf WhatsApp Community
+              <ExternalLink className="h-4 w-4" />
+            </Button>
           </div>
           <CommunityThreads />
         </section>
