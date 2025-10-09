@@ -15,20 +15,43 @@ import PremiumVideos from "../components/PremiumVideos";
 
 const Index = () => {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40">
+    <div className="min-h-screen w-full flex flex-col bg-background">
       <UrgencyBanner />
       <Header />
-      <main className="flex flex-col gap-8 sm:gap-12 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="flex flex-col gap-12 sm:gap-16 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        {/* Hero Section */}
         <HeroSection />
         
+        {/* Trending Stories Section */}
+        <section className="animate-fade-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+              Stories That Changed Lives
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real experiences from people who found their voice and their community here.
+            </p>
+          </div>
+          <StoriesGrid />
+        </section>
+        
+        {/* Category Carousel - Featured Story of the Week */}
         <FeaturedStoryWeek />
         
+        {/* Quote Banner */}
+        <div className="bg-primary text-primary-foreground rounded-3xl py-12 px-6 text-center shadow-lg">
+          <p className="text-2xl sm:text-3xl font-semibold italic max-w-3xl mx-auto">
+            "Someone, somewhere, is waiting for your story."
+          </p>
+        </div>
+        
+        {/* Community Section */}
         <section>
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
               Join Your Tribe
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-4">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Find your people in specialized communities where vulnerability is celebrated and healing happens together.
             </p>
           </div>
@@ -37,8 +60,8 @@ const Index = () => {
         
         <PremiumVideos />
         
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-          <div className="flex-1 space-y-6 lg:space-y-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex-1 space-y-8">
             <PodcastPromo />
             <NewsletterSignup />
             <TestimonialCarousel />
@@ -49,14 +72,6 @@ const Index = () => {
         </div>
         
         <StatsCounter />
-        
-        <section>
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">Stories That Changed Lives</h2>
-            <p className="text-base sm:text-lg text-slate-600 px-4">Real experiences from people who found their voice and their community here.</p>
-          </div>
-          <StoriesGrid />
-        </section>
       </main>
       <Footer />
     </div>

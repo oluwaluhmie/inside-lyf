@@ -1,3 +1,5 @@
+import { Heart } from "lucide-react";
+import { Button } from "./ui/button";
 
 const STORIES = [
   {
@@ -44,11 +46,26 @@ export default function StoriesGrid() {
       {STORIES.map(story => (
         <div
           key={story.id}
-          className="bg-card rounded-2xl shadow-sm border border-muted/50 hover:shadow-lg transition px-6 py-5 flex flex-col"
+          className="group bg-card rounded-3xl shadow-md border border-border hover:shadow-xl transition-all duration-300 px-6 py-6 flex flex-col hover:-translate-y-1"
         >
-          <div className="font-semibold text-lg mb-1">{story.title}</div>
-          <div className="text-sm text-muted-foreground mb-2">by {story.author}</div>
-          <div className="flex-1">{story.excerpt}</div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="inline-block bg-secondary text-primary px-3 py-1 rounded-full text-xs font-medium">
+              Featured
+            </span>
+            <Heart className="w-4 h-4 text-primary ml-auto" />
+          </div>
+          <h3 className="font-semibold text-xl mb-2 group-hover:text-primary transition-colors">{story.title}</h3>
+          <div className="text-sm text-muted-foreground mb-3">by {story.author}</div>
+          <p className="flex-1 text-foreground/80 line-clamp-3">{story.excerpt}</p>
+          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
+            <span className="text-sm text-muted-foreground flex items-center gap-1">
+              <Heart className="w-3 h-3" />
+              248 relate
+            </span>
+            <Button variant="ghost" size="sm" className="text-primary hover:bg-secondary">
+              Read more
+            </Button>
+          </div>
         </div>
       ))}
     </div>

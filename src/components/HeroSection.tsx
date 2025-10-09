@@ -9,67 +9,60 @@ export default function HeroSection() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-100/50 via-blue-50/30 to-purple-50/50 rounded-3xl -rotate-1 scale-105"></div>
+    <section className="relative overflow-hidden rounded-3xl mb-12">
+      {/* Background with warm overlay */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/30 to-background bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+          filter: 'blur(8px)',
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
       
-      <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl border border-white/50 shadow-2xl p-8 lg:p-12">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Attention-grabbing headline */}
-          <div className="mb-6">
-            <span className="inline-block bg-gradient-to-r from-green-600 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 animate-pulse">
-              🔥 Over 50,000 stories shared this month
-            </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight">
-              Your Story
-              <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"> Matters</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-6 leading-relaxed">
-              You're not alone in your struggles. Join thousands who found healing, hope, and their tribe by sharing their truth.
-            </p>
-          </div>
+      <div className="relative px-6 py-16 lg:py-24 text-center max-w-4xl mx-auto animate-fade-in">
+        {/* Main Headline */}
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground">
+          Real Stories. Real People. Real Growth.
+        </h1>
+        
+        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto">
+          Because every experience — joy, pain, or triumph — deserves to be heard.
+        </p>
 
-          {/* Social proof elements */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
-            <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full border border-green-200">
-              <Heart className="w-4 h-4 text-green-600" />
-              <span className="font-semibold text-green-700">98% feel better after sharing</span>
-            </div>
-            <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full border border-blue-200">
-              <Users className="w-4 h-4 text-blue-600" />
-              <span className="font-semibold text-blue-700">40K+ active members</span>
-            </div>
-            <div className="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full border border-purple-200">
-              <Shield className="w-4 h-4 text-purple-600" />
-              <span className="font-semibold text-purple-700">100% anonymous option</span>
-            </div>
-          </div>
-
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <Link to="/stories">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 text-lg font-bold rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl"
-              onClick={() => setOpen(true)}
+              className="bg-primary text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl"
             >
-              Share Your Story Now
-              <ArrowRight className="w-5 h-5 ml-2" />
+              Read Stories
             </Button>
-            <Link to="/stories">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 border-green-600 text-green-600 px-8 py-4 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-white/50 hover:bg-green-50"
-              >
-                Browse Stories First
-              </Button>
-            </Link>
-          </div>
+          </Link>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary"
+            onClick={() => setOpen(true)}
+          >
+            Share Yours
+          </Button>
+        </div>
 
-          {/* Trust indicators */}
-          <div className="text-center text-sm text-muted-foreground">
-            <p className="mb-2">✨ Featured in Mental Health Today • Recommended by 500+ Therapists</p>
-            <p>🔒 Your privacy is our priority • Share anonymously or with your name</p>
+        {/* Trust Indicators */}
+        <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <Heart className="w-4 h-4 text-primary" />
+            <span>Trusted by thousands</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-primary" />
+            <span>40K+ community members</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Shield className="w-4 h-4 text-primary" />
+            <span>100% anonymous option</span>
           </div>
         </div>
       </div>
