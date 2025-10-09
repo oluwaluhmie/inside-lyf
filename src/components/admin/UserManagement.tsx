@@ -16,7 +16,7 @@ const MOCK_USERS = [
     id: 1, 
     name: "Sarah Mitchell", 
     email: "sarah@email.com", 
-    status: "Premium", 
+    status: "Active", 
     joinDate: "2024-01-15", 
     role: "User",
     lastActive: "2024-01-20",
@@ -29,7 +29,7 @@ const MOCK_USERS = [
     id: 2, 
     name: "Mark Johnson", 
     email: "mark@email.com", 
-    status: "Free", 
+    status: "Active", 
     joinDate: "2024-02-03", 
     role: "Moderator", 
     assignedSegments: ["Parenting", "Family"],
@@ -43,7 +43,7 @@ const MOCK_USERS = [
     id: 3, 
     name: "Alex Parker", 
     email: "alex@email.com", 
-    status: "Premium", 
+    status: "Inactive", 
     joinDate: "2024-01-28", 
     role: "User",
     lastActive: "2024-01-18",
@@ -56,7 +56,7 @@ const MOCK_USERS = [
     id: 4, 
     name: "Emma Wilson", 
     email: "emma@email.com", 
-    status: "Free", 
+    status: "Active", 
     joinDate: "2024-02-10", 
     role: "Moderator", 
     assignedSegments: ["Womens Circle"],
@@ -191,8 +191,8 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="free">Free</SelectItem>
-              <SelectItem value="premium">Premium</SelectItem>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
 
@@ -254,7 +254,7 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
                 </Select>
               </TableCell>
               <TableCell>
-                <Badge variant={user.status === 'Premium' ? 'default' : 'secondary'}>
+                <Badge variant={user.status === 'Active' ? 'default' : 'secondary'}>
                   {user.status}
                 </Badge>
               </TableCell>
@@ -339,7 +339,7 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
                 </div>
                 <div>
                   <Label>Status</Label>
-                  <Badge variant={selectedUser.status === 'Premium' ? 'default' : 'secondary'}>
+                  <Badge variant={selectedUser.status === 'Active' ? 'default' : 'secondary'}>
                     {selectedUser.status}
                   </Badge>
                 </div>

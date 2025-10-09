@@ -12,7 +12,6 @@ import UserManagement from "@/components/admin/UserManagement";
 import UserProfileManagement from "@/components/admin/UserProfileManagement";
 import CircleManagement from "@/components/admin/CircleManagement";
 import Analytics from "@/components/admin/Analytics";
-import PremiumManagement from "@/components/admin/PremiumManagement";
 import DatabaseManagement from "@/components/admin/DatabaseManagement";
 import Security from "@/components/admin/Security";
 import LogsMonitoring from "@/components/admin/LogsMonitoring";
@@ -73,7 +72,6 @@ export default function AdminDashboard() {
     { key: 'users', label: 'Users', component: <UserManagement /> },
     { key: 'profiles', label: 'Profiles', component: <UserProfileManagement /> },
     { key: 'analytics', label: 'Analytics', component: <Analytics /> },
-    { key: 'premium', label: 'Premium', component: <PremiumManagement /> },
     { key: 'database', label: 'Database', component: <DatabaseManagement userRole={role as any} /> },
     { key: 'security', label: 'Security', component: <Security userRole={role as any} /> },
     { key: 'logs', label: 'Logs', component: <LogsMonitoring userRole={role as any} /> },

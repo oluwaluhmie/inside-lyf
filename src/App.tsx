@@ -24,7 +24,6 @@ import WriteStory from "./pages/WriteStory";
 import CommunityDiscussion from "./pages/CommunityDiscussion";
 import Newsletter from "./pages/Newsletter";
 import Resources from "./pages/Resources";
-import Premium from "./pages/Premium";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
@@ -55,7 +54,6 @@ const App = () => (
             <Route path="/community/football-banter" element={<FootballBanter />} />
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/premium" element={<Premium />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/reflect" element={<DailyReflection />} />
             <Route path="/signin" element={<SignIn />} />

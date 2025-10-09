@@ -11,8 +11,8 @@ export default function UrgencyBanner() {
     <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 relative">
       <div className="flex items-center justify-center gap-2 text-sm font-medium">
         <Clock className="w-4 h-4" />
-        <span>🔥 Limited Time: Free premium trial ending soon - Join 2,847 new members this week!</span>
-        <button 
+        <span>🔥 Join 2,847 new members this week sharing their stories and finding community!</span>
+        <button
           onClick={() => setIsVisible(false)}
           className="absolute right-4 hover:bg-white/20 rounded p-1"
         >

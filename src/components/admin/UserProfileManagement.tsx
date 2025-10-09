@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Crown, Shield, User } from "lucide-react";
+import { Shield, User } from "lucide-react";
 
 interface UserProfileManagementProps {
   userRole?: 'admin' | 'moderator';
@@ -13,10 +13,8 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
       id: 1,
       name: "Sarah Johnson",
       email: "sarah@example.com",
-      role: "premium",
+      role: "user",
       joinDate: "2024-01-15",
-      premiumId: "PRM-2024-001",
-      subscription: "Premium Monthly"
     },
     {
       id: 2,
@@ -24,17 +22,13 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
       email: "michael@example.com",
       role: "user",
       joinDate: "2024-02-20",
-      premiumId: null,
-      subscription: null
     },
     {
       id: 3,
       name: "Emily Rodriguez",
       email: "emily@example.com",
-      role: "premium",
+      role: "user",
       joinDate: "2023-12-10",
-      premiumId: "PRM-2023-087",
-      subscription: "Premium Annual"
     },
     {
       id: 4,
@@ -42,8 +36,6 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
       email: "david@example.com",
       role: "moderator",
       joinDate: "2024-01-05",
-      premiumId: null,
-      subscription: null
     }
   ];
 
@@ -64,12 +56,6 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
                 <div>
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium">{user.name}</h4>
-                    {user.role === 'premium' && (
-                      <div className="flex items-center gap-1 bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs">
-                        <Crown className="w-3 h-3" />
-                        <span>Premium</span>
-                      </div>
-                    )}
                     {user.role === 'moderator' && (
                       <div className="flex items-center gap-1 bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
                         <Shield className="w-3 h-3" />
@@ -89,7 +75,7 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
               )}
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-gray-500">Join Date:</span>
                 <p className="font-medium">{user.joinDate}</p>
@@ -98,21 +84,6 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
                 <span className="text-gray-500">Role:</span>
                 <p className="font-medium capitalize">{user.role}</p>
               </div>
-              {user.premiumId && (
-                <>
-                  <div>
-                    <span className="text-gray-500">Premium ID:</span>
-                    <p className="font-medium flex items-center gap-1">
-                      <Crown className="w-3 h-3 text-amber-600" />
-                      {user.premiumId}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">Subscription:</span>
-                    <p className="font-medium">{user.subscription}</p>
-                  </div>
-                </>
-              )}
             </div>
           </div>
         ))}

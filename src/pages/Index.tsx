@@ -4,14 +4,12 @@ import StoriesGrid from "../components/StoriesGrid";
 import PodcastPromo from "../components/PodcastPromo";
 import CommunityThreads from "../components/CommunityThreads";
 import NewsletterSignup from "../components/NewsletterSignup";
-import PremiumSection from "../components/PremiumSection";
 import HeroSection from "../components/HeroSection";
 import StatsCounter from "../components/StatsCounter";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
 import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
-import PremiumVideos from "../components/PremiumVideos";
 import MobileNav from "../components/MobileNav";
 
 const Index = () => {
@@ -59,18 +57,13 @@ const Index = () => {
           <CommunityThreads />
         </section>
         
-        <PremiumVideos />
-        
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1 space-y-8">
-            <PodcastPromo />
-            <NewsletterSignup />
-            <TestimonialCarousel />
-          </div>
-          <div className="flex-1 lg:max-w-lg">
-            <PremiumSection />
-          </div>
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          <PodcastPromo />
+          <NewsletterSignup />
         </div>
+        
+        <TestimonialCarousel />
         
         <StatsCounter />
       </main>

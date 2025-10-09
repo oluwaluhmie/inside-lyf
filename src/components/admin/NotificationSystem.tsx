@@ -24,7 +24,7 @@ const NOTIFICATION_TEMPLATES = [
 
 const RECENT_NOTIFICATIONS = [
   { id: 1, recipient: "All Users", type: "Announcement", message: "Platform maintenance scheduled", sent: "2024-01-21 10:00", status: "delivered", opens: 1850 },
-  { id: 2, recipient: "Premium Users", type: "Feature Update", message: "New premium features available", sent: "2024-01-20 15:30", status: "delivered", opens: 450 },
+  { id: 2, recipient: "Active Users", type: "Feature Update", message: "New features available", sent: "2024-01-20 15:30", status: "delivered", opens: 450 },
   { id: 3, recipient: "Moderators", type: "System Alert", message: "High activity in Parenting circle", sent: "2024-01-20 09:15", status: "delivered", opens: 12 },
   { id: 4, recipient: "New Users", type: "Welcome", message: "Welcome to the Insidelyf community", sent: "2024-01-19 18:45", status: "failed", opens: 0 },
 ];
@@ -156,7 +156,6 @@ export default function NotificationSystem({ userRole }: NotificationSystemProps
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Users</SelectItem>
-                      <SelectItem value="premium">Premium Users</SelectItem>
                       <SelectItem value="moderators">Moderators</SelectItem>
                       <SelectItem value="new_users">New Users</SelectItem>
                       <SelectItem value="active_users">Active Users</SelectItem>

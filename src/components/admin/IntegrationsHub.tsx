@@ -52,7 +52,7 @@ const AVAILABLE_INTEGRATIONS = [
   {
     id: 5,
     name: "Stripe",
-    description: "Payment processing for premium features",
+    description: "Payment processing and donations",
     category: "Payments",
     icon: <CreditCard className="w-8 h-8" />,
     status: "available",

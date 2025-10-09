@@ -1,11 +1,11 @@
 
-import { Users, MessageSquare, Crown, BarChart3 } from "lucide-react";
+import { Users, MessageSquare, BarChart3 } from "lucide-react";
 
 const MOCK_STATS = {
   totalUsers: 12847,
   activeUsers: 3421,
   totalPosts: 8934,
-  premiumSubscribers: 1205
+  totalComments: 15623
 };
 
 export default function StatsOverview() {
@@ -41,10 +41,10 @@ export default function StatsOverview() {
       <div className="bg-white rounded-xl border p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-muted-foreground">Premium Users</p>
-            <p className="text-2xl font-bold">{MOCK_STATS.premiumSubscribers.toLocaleString()}</p>
+            <p className="text-sm text-muted-foreground">Total Comments</p>
+            <p className="text-2xl font-bold">{MOCK_STATS.totalComments.toLocaleString()}</p>
           </div>
-          <Crown className="w-8 h-8 text-amber-500" />
+          <BarChart3 className="w-8 h-8 text-purple-500" />
         </div>
       </div>
     </div>
