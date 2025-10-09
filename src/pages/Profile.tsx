@@ -84,6 +84,29 @@ export default function Profile() {
     };
 
     fetchUserStories();
+
+    if (!user) return;
+
+    // Set up real-time subscription for posts
+    const channel = supabase
+      .channel('posts-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'posts',
+          filter: `user_id=eq.${user.id}`
+        },
+        () => {
+          fetchUserStories();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [user]);
 
   useEffect(() => {
@@ -104,6 +127,29 @@ export default function Profile() {
     };
 
     fetchCommentsCount();
+
+    if (!user) return;
+
+    // Set up real-time subscription for comments
+    const channel = supabase
+      .channel('comments-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'comments',
+          filter: `user_id=eq.${user.id}`
+        },
+        () => {
+          fetchCommentsCount();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [user]);
 
   if (loading) {
