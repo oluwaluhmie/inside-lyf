@@ -16,6 +16,8 @@ export default function Profile() {
   const { user } = useAuth();
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [userStories, setUserStories] = useState<any[]>([]);
+  const [loadingStories, setLoadingStories] = useState(true);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -38,6 +40,29 @@ export default function Profile() {
     };
 
     fetchProfile();
+  }, [user]);
+
+  useEffect(() => {
+    const fetchUserStories = async () => {
+      if (!user) return;
+      
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        setUserStories(data || []);
+      } catch (error) {
+        console.error('Error fetching user stories:', error);
+      } finally {
+        setLoadingStories(false);
+      }
+    };
+
+    fetchUserStories();
   }, [user]);
 
   if (loading) {
@@ -73,8 +98,8 @@ export default function Profile() {
   const initials = displayName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
   
   const userStats = {
-    storiesShared: 0,
-    relates: 0,
+    storiesShared: userStories.length,
+    relates: userStories.reduce((sum, story) => sum + (story.like_count || 0), 0),
     reflections: 0,
     followers: 0,
   };
@@ -186,7 +211,53 @@ export default function Profile() {
                 </Button>
               </Link>
             </div>
-            <StoriesGrid />
+            
+            {loadingStories ? (
+              <div className="flex justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              </div>
+            ) : userStories.length === 0 ? (
+              <div className="text-center py-12 bg-card rounded-3xl border border-border">
+                <p className="text-muted-foreground mb-4">You haven't shared any stories yet</p>
+                <Link to="/write">
+                  <Button>Share Your First Story</Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {userStories.map((story) => (
+                  <Link
+                    key={story.id}
+                    to={`/story/${story.id}`}
+                    className="bg-card rounded-3xl p-6 border border-border hover:shadow-xl transition-all hover:scale-105"
+                  >
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">
+                      {story.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 line-clamp-3">
+                      {story.content}
+                    </p>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Heart className="w-4 h-4" />
+                        {story.like_count || 0}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MessageCircle className="w-4 h-4" />
+                        {story.view_count || 0} views
+                      </span>
+                      <span className={`ml-auto px-2 py-1 rounded-full text-xs ${
+                        story.status === 'published' 
+                          ? 'bg-primary/20 text-primary' 
+                          : 'bg-muted text-muted-foreground'
+                      }`}>
+                        {story.status}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="reflections" className="animate-fade-in">
