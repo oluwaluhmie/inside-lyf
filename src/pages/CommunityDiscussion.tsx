@@ -7,6 +7,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import MobileNav from "../components/MobileNav";
 import ThreadView from "../components/community/ThreadView";
 import ThreadsList from "../components/community/ThreadsList";
+import CommunityThreads from "../components/CommunityThreads";
 import { Button } from "../components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
@@ -40,6 +41,12 @@ export default function CommunityDiscussion() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Join conversations that matter. Share your experiences and connect with others on similar journeys.
             </p>
+          </div>
+
+          {/* Community Threads */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6">Community Circles</h2>
+            <CommunityThreads />
           </div>
 
           {/* Filter Tabs */}
