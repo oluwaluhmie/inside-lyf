@@ -8,13 +8,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="mb-4">
               <img 
-                src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
+                src="/images/logo.png" 
                 alt="Insidelyf Logo" 
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
-              <span className="text-xl font-bold">Insidelyf</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               A safe space where your story matters. Share your experiences, find your community, 
