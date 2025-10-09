@@ -29,8 +29,8 @@ const COMMUNITY_THREADS = [
     title: "Men's Cave",
     description: "A brotherhood for authentic conversations about masculinity and mental health",
     icon: Shield,
-    color: "bg-blue-50 border-blue-200 hover:bg-blue-100",
-    iconColor: "text-blue-600",
+    color: "bg-gray-50 border-gray-200 hover:bg-gray-100",
+    iconColor: "text-gray-600",
     members: "1.8k",
     whatsappLink: "https://chat.whatsapp.com/mens-mental-health-group"
   },
@@ -89,8 +89,8 @@ const COMMUNITY_THREADS = [
     title: "Family",
     description: "Complex family dynamics, generational healing, and creating new traditions",
     icon: Home,
-    color: "bg-indigo-50 border-indigo-200 hover:bg-indigo-100",
-    iconColor: "text-indigo-600",
+    color: "bg-amber-50 border-amber-200 hover:bg-amber-100",
+    iconColor: "text-amber-600",
     members: "2.0k",
     whatsappLink: "https://chat.whatsapp.com/family-support-group"
   }
