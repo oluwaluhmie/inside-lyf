@@ -23,7 +23,7 @@ export default function HeroSection() {
         </h1>
         
         <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto">
-          Because every experience — joy, pain, or triumph — deserves to be heard.
+          Because every experience - joy, pain, or triumph deserves to be heard.
         </p>
 
         {/* CTA Buttons */}
