@@ -21,7 +21,7 @@ export default function Footer() {
               and discover healing through connection.
             </p>
             <div className="flex gap-4">
-              <Link to="/write-story">
+              <Link to="/write">
                 <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
                   Share Your Story
                 </Button>
