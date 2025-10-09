@@ -51,9 +51,9 @@ export default function Auth() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <img 
-            src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
+            src="/images/logo.png" 
             alt="Insidelyf Logo" 
-            className="h-8 w-auto mx-auto mb-4"
+            className="h-12 w-auto mx-auto mb-4"
           />
           <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Welcome to Insidelyf

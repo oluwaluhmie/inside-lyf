@@ -15,13 +15,10 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <img 
-              src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
+              src="/images/logo.png" 
               alt="Insidelyf Logo" 
-              className="h-6 w-auto"
+              className="h-8 w-auto"
             />
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Insidelyf
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

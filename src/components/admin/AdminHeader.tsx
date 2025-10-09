@@ -18,9 +18,9 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
             <img 
-              src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
+              src="/images/logo.png" 
               alt="Insidelyf Logo" 
-              className="h-6 w-auto"
+              className="h-8 w-auto"
             />
             <h1 className="text-xl sm:text-2xl font-bold text-white">Insidelyf Admin Dashboard</h1>
           </div>
