@@ -172,7 +172,7 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
                     onThreadSelect(thread.id);
                   }}
                 >
-                  Join Discussion
+                  Join Discussion →
                 </Button>
               </div>
             </div>

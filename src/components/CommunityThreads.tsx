@@ -125,22 +125,12 @@ export default function CommunityThreads() {
                 <p className="text-sm text-muted-foreground mb-4 flex-1 leading-relaxed">
                   {thread.description}
                 </p>
-                <div className="flex flex-col gap-2">
-                  <Button 
-                    variant="ghost" 
-                    className="w-full text-primary hover:text-white font-medium"
-                  >
-                    Join Discussion
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={(e) => handleWhatsAppClick(e, thread.whatsappLink)}
-                    className="w-full text-green-600 border-green-200 hover:bg-green-50 hover:text-secondary"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                  </Button>
-                </div>
+                <Button 
+                  variant="ghost" 
+                  className="w-full text-primary hover:text-white font-medium"
+                >
+                  Join Discussion →
+                </Button>
               </div>
             </Link>
           </div>
