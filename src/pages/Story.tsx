@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
-import { Heart, MessageCircle, Bookmark, ArrowLeft } from "lucide-react";
+import { Heart, MessageCircle, Bookmark, ArrowLeft, Share2, Twitter, Facebook, Linkedin, Link as LinkIcon } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import StoriesGrid from "../components/StoriesGrid";
 
 // Mock story data - in real app, fetch based on storyId
@@ -31,9 +32,13 @@ Today, I'm in a better place. Not because everything is perfect, but because I l
 
 export default function Story() {
   const { id } = useParams();
+  const { toast } = useToast();
   const [reflection, setReflection] = useState("");
   const [hasRelated, setHasRelated] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
+
+  const shareUrl = window.location.href;
+  const shareText = `${STORY_DATA.title} by ${STORY_DATA.author}`;
 
   const handleRelate = () => {
     setHasRelated(!hasRelated);
@@ -46,6 +51,33 @@ export default function Story() {
   const handleReflectionSubmit = () => {
     console.log("Reflection:", reflection);
     setReflection("");
+  };
+
+  const handleShare = (platform: string) => {
+    let url = "";
+    
+    switch(platform) {
+      case "twitter":
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+        break;
+      case "facebook":
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        break;
+      case "linkedin":
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+        break;
+      case "copy":
+        navigator.clipboard.writeText(shareUrl);
+        toast({
+          title: "Link copied!",
+          description: "Story link copied to clipboard",
+        });
+        return;
+    }
+    
+    if (url) {
+      window.open(url, '_blank', 'width=600,height=400');
+    }
   };
 
   return (
@@ -104,7 +136,7 @@ export default function Story() {
           </div>
 
           {/* Reaction Row */}
-          <div className="flex items-center gap-4 mb-12 pb-8 border-b border-border">
+          <div className="flex flex-wrap items-center gap-4 mb-12 pb-8 border-b border-border">
             <Button
               variant={hasRelated ? "default" : "outline"}
               size="lg"
@@ -127,6 +159,43 @@ export default function Story() {
               <Bookmark className={`w-5 h-5 ${hasSaved ? 'fill-current' : ''}`} />
               {hasSaved ? 'Saved' : 'Save'}
             </Button>
+            
+            {/* Share Buttons */}
+            <div className="flex items-center gap-2 ml-auto">
+              <span className="text-sm text-muted-foreground mr-2 hidden sm:inline">Share:</span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleShare("twitter")}
+                title="Share on Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleShare("facebook")}
+                title="Share on Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleShare("linkedin")}
+                title="Share on LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleShare("copy")}
+                title="Copy link"
+              >
+                <LinkIcon className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
 
           {/* AI Reflection Block */}
