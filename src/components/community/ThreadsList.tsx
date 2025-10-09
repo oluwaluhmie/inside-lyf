@@ -159,20 +159,20 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
                 {thread.description}
               </p>
 
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-1 text-sm text-slate-500">
                   <Clock className="w-4 h-4" />
                   Active {thread.lastActive}
                 </div>
                 <Button 
                   variant="ghost" 
-                  className="text-primary hover:text-primary font-medium"
+                  className="text-primary hover:text-primary font-medium w-full"
                   onClick={(e) => {
                     e.stopPropagation();
                     onThreadSelect(thread.id);
                   }}
                 >
-                  Join Discussion →
+                  Join Discussion
                 </Button>
               </div>
             </div>
