@@ -18,7 +18,7 @@ export default function HeroSection() {
       
       <div className="relative px-6 py-16 lg:py-24 text-center max-w-4xl mx-auto animate-fade-in">
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-foreground">
           Real Stories. Real People. Real Growth.
         </h1>
         
