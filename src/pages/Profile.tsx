@@ -8,8 +8,13 @@ import ScrollToTop from "../components/ScrollToTop";
 import MobileNav from "../components/MobileNav";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Label } from "../components/ui/label";
 import { Heart, MessageCircle, Bookmark, Edit, Calendar, Feather, Sparkles, Award, Loader2 } from "lucide-react";
 import StoriesGrid from "../components/StoriesGrid";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("stories");
@@ -18,6 +23,14 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [userStories, setUserStories] = useState<any[]>([]);
   const [loadingStories, setLoadingStories] = useState(true);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editForm, setEditForm] = useState({
+    full_name: "",
+    bio: "",
+    avatar_url: ""
+  });
+  const [isSaving, setIsSaving] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -32,6 +45,11 @@ export default function Profile() {
 
         if (error) throw error;
         setProfile(data);
+        setEditForm({
+          full_name: data?.full_name || "",
+          bio: data?.bio || "",
+          avatar_url: data?.avatar_url || ""
+        });
       } catch (error) {
         console.error('Error fetching profile:', error);
       } finally {
@@ -110,6 +128,53 @@ export default function Profile() {
     { icon: Award, label: "Uplifter", color: "text-primary" },
   ];
 
+  const handleEditProfile = () => {
+    setIsEditDialogOpen(true);
+  };
+
+  const handleSaveProfile = async () => {
+    if (!user) return;
+    
+    setIsSaving(true);
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          full_name: editForm.full_name,
+          bio: editForm.bio,
+          avatar_url: editForm.avatar_url,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', user.id);
+
+      if (error) throw error;
+
+      // Update local state
+      setProfile({
+        ...profile,
+        full_name: editForm.full_name,
+        bio: editForm.bio,
+        avatar_url: editForm.avatar_url
+      });
+
+      toast({
+        title: "Profile updated",
+        description: "Your profile has been successfully updated.",
+      });
+      
+      setIsEditDialogOpen(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update profile. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -135,7 +200,7 @@ export default function Profile() {
                   "{profile.bio}"
                 </p>
               )}
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className="gap-2" onClick={handleEditProfile}>
                 <Edit className="w-4 h-4" />
                 Edit Profile
               </Button>
@@ -346,6 +411,66 @@ export default function Profile() {
             <StoriesGrid />
           </TabsContent>
         </Tabs>
+
+        {/* Edit Profile Dialog */}
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Edit Profile</DialogTitle>
+              <DialogDescription>
+                Update your profile information. Changes will be visible to other community members.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="full_name">Full Name</Label>
+                <Input
+                  id="full_name"
+                  value={editForm.full_name}
+                  onChange={(e) => setEditForm({ ...editForm, full_name: e.target.value })}
+                  placeholder="Your full name"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="bio">Bio</Label>
+                <Textarea
+                  id="bio"
+                  value={editForm.bio}
+                  onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
+                  placeholder="Tell us about yourself..."
+                  rows={4}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="avatar_url">Avatar URL</Label>
+                <Input
+                  id="avatar_url"
+                  value={editForm.avatar_url}
+                  onChange={(e) => setEditForm({ ...editForm, avatar_url: e.target.value })}
+                  placeholder="https://example.com/avatar.jpg"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Paste a URL to an image you'd like to use as your profile picture
+                </p>
+              </div>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleSaveProfile} disabled={isSaving}>
+                {isSaving ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  "Save Changes"
+                )}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </main>
       
       <ScrollToTop />
