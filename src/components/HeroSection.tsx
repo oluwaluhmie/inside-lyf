@@ -1,13 +1,9 @@
 
 import { Button } from "./ui/button";
-import { ArrowRight, Heart, Users, Shield } from "lucide-react";
-import { useState } from "react";
+import { Heart, Users, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import SubmitStoryModal from "./SubmitStoryModal";
 
 export default function HeroSection() {
-  const [open, setOpen] = useState(false);
-
   return (
     <section className="relative overflow-hidden rounded-3xl mb-12">
       {/* Background with warm overlay */}
@@ -40,14 +36,15 @@ export default function HeroSection() {
               Read Stories
             </Button>
           </Link>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary"
-            onClick={() => setOpen(true)}
-          >
-            Share Yours
-          </Button>
+          <Link to="/write">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary"
+            >
+              Share Yours
+            </Button>
+          </Link>
         </div>
 
         {/* Trust Indicators */}
@@ -66,8 +63,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      
-      <SubmitStoryModal open={open} setOpen={setOpen} />
     </section>
   );
 }

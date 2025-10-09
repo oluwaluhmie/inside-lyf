@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const STORIES = [
@@ -44,8 +45,9 @@ export default function StoriesGrid() {
   return (
     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in">
       {STORIES.map(story => (
-        <div
+        <Link
           key={story.id}
+          to={`/story/${story.id}`}
           className="group bg-card rounded-3xl shadow-md border border-border hover:shadow-xl transition-all duration-300 px-6 py-6 flex flex-col hover:-translate-y-1"
         >
           <div className="flex items-center gap-2 mb-3">
@@ -66,7 +68,7 @@ export default function StoriesGrid() {
               Read more
             </Button>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

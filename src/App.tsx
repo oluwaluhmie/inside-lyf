@@ -17,6 +17,17 @@ import Help from "./pages/Help";
 import CommunityGuidelines from "./pages/CommunityGuidelines";
 import Safety from "./pages/Safety";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Stories from "./pages/Stories";
+import Story from "./pages/Story";
+import WriteStory from "./pages/WriteStory";
+import CommunityDiscussion from "./pages/CommunityDiscussion";
+import Newsletter from "./pages/Newsletter";
+import Resources from "./pages/Resources";
+import Premium from "./pages/Premium";
+import SignIn from "./pages/SignIn";
+import Signup from "./pages/Signup";
+import NotFound from "./pages/NotFound";
 import FootballBanter from "./pages/community/FootballBanter";
 
 const queryClient = new QueryClient();
@@ -33,6 +44,18 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/stories" element={<Stories />} />
+            <Route path="/story/:id" element={<Story />} />
+            <Route path="/write" element={<WriteStory />} />
+            <Route path="/community" element={<CommunityDiscussion />} />
+            <Route path="/community/:threadId" element={<CommunityDiscussion />} />
+            <Route path="/community/football-banter" element={<FootballBanter />} />
+            <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/premium" element={<Premium />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
@@ -41,7 +64,7 @@ const App = () => (
             <Route path="/community-guidelines" element={<CommunityGuidelines />} />
             <Route path="/safety" element={<Safety />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/community/football-banter" element={<FootballBanter />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
