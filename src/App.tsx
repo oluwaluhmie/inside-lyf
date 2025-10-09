@@ -15,7 +15,6 @@ import Disclaimer from "./pages/Disclaimer";
 import Cookies from "./pages/Cookies";
 import Help from "./pages/Help";
 import CommunityGuidelines from "./pages/CommunityGuidelines";
-import Safety from "./pages/Safety";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Stories from "./pages/Stories";
@@ -64,7 +63,6 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/help" element={<Help />} />
             <Route path="/community-guidelines" element={<CommunityGuidelines />} />
-            <Route path="/safety" element={<Safety />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
