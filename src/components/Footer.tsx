@@ -1,5 +1,5 @@
-
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -8,13 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
-            <div className="mb-4">
+            <Link to="/" className="mb-4 inline-block hover:opacity-80 transition-opacity">
               <img 
-                src="/images/logo.png" 
+                src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
                 alt="Insidelyf Logo" 
                 className="h-10 w-auto"
               />
-            </div>
+            </Link>
             <p className="text-gray-300 mb-4 max-w-md">
               A safe space where your story matters. Share your experiences, find your community, 
               and discover healing through connection.
