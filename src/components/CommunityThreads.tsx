@@ -128,7 +128,7 @@ export default function CommunityThreads() {
                 <div className="flex gap-2">
                   <Button 
                     variant="ghost" 
-                    className="flex-1 justify-start px-0 text-primary hover:text-primary font-medium"
+                    className="flex-1 justify-start px-0 text-primary hover:text-white font-medium"
                   >
                     Join Discussion →
                   </Button>
