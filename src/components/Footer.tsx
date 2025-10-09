@@ -16,7 +16,8 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
-              Because every experience - joy, pain, or triumph deserves to be heard.
+              A safe space where your story matters. Share your experiences, find your community, 
+              and discover healing through connection.
             </p>
             <div className="flex gap-4">
               <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800">
