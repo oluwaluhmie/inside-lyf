@@ -1,33 +1,89 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import MobileNav from "../components/MobileNav";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import { Heart, MessageCircle, Bookmark, Edit, Calendar, Feather, Sparkles, Award } from "lucide-react";
+import { Heart, MessageCircle, Bookmark, Edit, Calendar, Feather, Sparkles, Award, Loader2 } from "lucide-react";
 import StoriesGrid from "../components/StoriesGrid";
-
-const MOCK_USER = {
-  name: "Sarah Morgan",
-  quote: "Every story shared is a step towards healing",
-  avatar: "SM",
-  stats: {
-    storiesShared: 12,
-    relates: 342,
-    reflections: 87,
-    followers: 156,
-  },
-  badges: [
-    { icon: Feather, label: "Storyteller", color: "text-primary" },
-    { icon: Sparkles, label: "Empath", color: "text-secondary" },
-    { icon: Award, label: "Uplifter", color: "text-primary" },
-  ],
-};
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("stories");
+  const { user } = useAuth();
+  const [profile, setProfile] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user) return;
+      
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single();
+
+        if (error) throw error;
+        setProfile(data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!user || !profile) {
+    return (
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-lg text-muted-foreground mb-4">Please log in to view your profile</p>
+            <Link to="/auth">
+              <Button>Sign In</Button>
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const displayName = profile.full_name || profile.email || "User";
+  const initials = displayName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
+  
+  const userStats = {
+    storiesShared: 0,
+    relates: 0,
+    reflections: 0,
+    followers: 0,
+  };
+
+  const badges = [
+    { icon: Feather, label: "Storyteller", color: "text-primary" },
+    { icon: Sparkles, label: "Empath", color: "text-secondary" },
+    { icon: Award, label: "Uplifter", color: "text-primary" },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -39,15 +95,21 @@ export default function Profile() {
           <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
             {/* Avatar */}
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl font-bold text-primary-foreground shadow-lg">
-              {MOCK_USER.avatar}
+              {profile.avatar_url ? (
+                <img src={profile.avatar_url} alt={displayName} className="w-full h-full rounded-full object-cover" />
+              ) : (
+                initials
+              )}
             </div>
             
             {/* User Info */}
             <div className="flex-1 text-center md:text-left">
-              <h1 className="mb-2">{MOCK_USER.name}</h1>
-              <p className="text-lg text-muted-foreground italic mb-4">
-                "{MOCK_USER.quote}"
-              </p>
+              <h1 className="mb-2">{displayName}</h1>
+              {profile.bio && (
+                <p className="text-lg text-muted-foreground italic mb-4">
+                  "{profile.bio}"
+                </p>
+              )}
               <Button variant="outline" className="gap-2">
                 <Edit className="w-4 h-4" />
                 Edit Profile
@@ -59,25 +121,25 @@ export default function Profile() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {MOCK_USER.stats.storiesShared}
+                {userStats.storiesShared}
               </div>
               <div className="text-sm text-muted-foreground">Stories Shared</div>
             </div>
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {MOCK_USER.stats.relates}
+                {userStats.relates}
               </div>
               <div className="text-sm text-muted-foreground">Relates</div>
             </div>
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {MOCK_USER.stats.reflections}
+                {userStats.reflections}
               </div>
               <div className="text-sm text-muted-foreground">Reflections</div>
             </div>
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {MOCK_USER.stats.followers}
+                {userStats.followers}
               </div>
               <div className="text-sm text-muted-foreground">Followers</div>
             </div>
@@ -85,7 +147,7 @@ export default function Profile() {
 
           {/* Badge Display Row */}
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {MOCK_USER.badges.map((badge, index) => {
+            {badges.map((badge, index) => {
               const Icon = badge.icon;
               return (
                 <div
