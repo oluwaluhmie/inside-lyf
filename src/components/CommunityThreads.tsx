@@ -126,8 +126,8 @@ export default function CommunityThreads() {
                   {thread.description}
                 </p>
                 <Button 
-                  variant="ghost" 
-                  className="w-full text-primary hover:text-white font-medium"
+                  variant="outline" 
+                  className="w-full text-primary hover:text-white hover:bg-primary/10 font-medium border-2"
                 >
                   Join Discussion →
                 </Button>
