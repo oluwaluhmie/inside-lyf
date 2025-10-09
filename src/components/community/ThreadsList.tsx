@@ -6,7 +6,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
 import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles, Clock, TrendingUp, Gamepad2 } from "lucide-react";
+
+const suggestionSchema = z.object({
+  title: z.string()
+    .trim()
+    .min(3, { message: "Title must be at least 3 characters" })
+    .max(100, { message: "Title must be less than 100 characters" }),
+  description: z.string()
+    .trim()
+    .min(10, { message: "Description must be at least 10 characters" })
+    .max(500, { message: "Description must be less than 500 characters" })
+});
 
 const COMMUNITY_THREADS = [
   {
@@ -127,26 +140,68 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [threadTitle, setThreadTitle] = useState("");
   const [threadDescription, setThreadDescription] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleCreateThread = () => {
-    if (!threadTitle.trim() || !threadDescription.trim()) {
-      toast({
-        title: "Missing information",
-        description: "Please fill in both title and description",
-        variant: "destructive",
+  const handleCreateThread = async () => {
+    try {
+      // Validate input
+      const validated = suggestionSchema.parse({
+        title: threadTitle,
+        description: threadDescription
       });
-      return;
+
+      setIsSubmitting(true);
+
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        toast({
+          title: "Authentication required",
+          description: "Please sign in to suggest a community",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Insert suggestion into database
+      const { error } = await supabase
+        .from('community_suggestions')
+        .insert({
+          title: validated.title,
+          description: validated.description,
+          suggested_by: user.id
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: "Suggestion submitted!",
+        description: "Your community suggestion has been submitted for admin review. You'll be notified once it's reviewed.",
+      });
+
+      setThreadTitle("");
+      setThreadDescription("");
+      setIsDialogOpen(false);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        console.error("Error submitting suggestion:", error);
+        toast({
+          title: "Error",
+          description: "Failed to submit suggestion. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
-
-    toast({
-      title: "Thread created!",
-      description: "Your new community thread has been submitted for review.",
-    });
-
-    setThreadTitle("");
-    setThreadDescription("");
-    setIsDialogOpen(false);
   };
 
   return (
@@ -191,14 +246,19 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
               </div>
             </div>
             <div className="flex justify-end gap-3">
-              <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              <Button 
+                variant="outline" 
+                onClick={() => setIsDialogOpen(false)}
+                disabled={isSubmitting}
+              >
                 Cancel
               </Button>
               <Button 
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                 onClick={handleCreateThread}
+                disabled={isSubmitting}
               >
-                Submit Thread
+                {isSubmitting ? "Submitting..." : "Submit Suggestion"}
               </Button>
             </div>
           </DialogContent>

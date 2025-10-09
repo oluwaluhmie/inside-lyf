@@ -27,6 +27,7 @@ export function useAdminPermissions({ role, assignedSegments }: AdminPermissions
       case 'posts':
       case 'comments':
       case 'circles':
+      case 'suggestions':
         return canManageContent;
       case 'users':
       case 'profiles':

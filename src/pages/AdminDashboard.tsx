@@ -11,6 +11,7 @@ import CommentManagement from "@/components/admin/CommentManagement";
 import UserManagement from "@/components/admin/UserManagement";
 import UserProfileManagement from "@/components/admin/UserProfileManagement";
 import CircleManagement from "@/components/admin/CircleManagement";
+import CommunitySuggestions from "@/components/admin/CommunitySuggestions";
 import Analytics from "@/components/admin/Analytics";
 import DatabaseManagement from "@/components/admin/DatabaseManagement";
 import Security from "@/components/admin/Security";
@@ -69,6 +70,7 @@ export default function AdminDashboard() {
     { key: 'posts', label: 'Posts', component: <PostManagement userRole={role as any} /> },
     { key: 'comments', label: 'Comments', component: <CommentManagement userRole={role as any} assignedSegments={assignedSegments} /> },
     { key: 'circles', label: 'Circles', component: <CircleManagement userRole={role as any} /> },
+    { key: 'suggestions', label: 'Suggestions', component: <CommunitySuggestions /> },
     { key: 'users', label: 'Users', component: <UserManagement /> },
     { key: 'profiles', label: 'Profiles', component: <UserProfileManagement /> },
     { key: 'analytics', label: 'Analytics', component: <Analytics /> },

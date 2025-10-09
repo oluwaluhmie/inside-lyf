@@ -114,6 +114,42 @@ export type Database = {
           },
         ]
       }
+      community_suggestions: {
+        Row: {
+          admin_notes: string | null
+          created_at: string | null
+          description: string
+          id: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by: string
+          title: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string | null
+          description: string
+          id?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by: string
+          title: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string | null
+          description?: string
+          id?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by?: string
+          title?: string
+        }
+        Relationships: []
+      }
       posts: {
         Row: {
           community_id: string | null
@@ -222,6 +258,7 @@ export type Database = {
       }
     }
     Enums: {
+      suggestion_status: "pending" | "approved" | "rejected"
       user_role: "user" | "moderator" | "admin" | "super_admin"
     }
     CompositeTypes: {
@@ -350,6 +387,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      suggestion_status: ["pending", "approved", "rejected"],
       user_role: ["user", "moderator", "admin", "super_admin"],
     },
   },
