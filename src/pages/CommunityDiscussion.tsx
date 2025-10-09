@@ -42,25 +42,6 @@ export default function CommunityDiscussion() {
               Join conversations that matter. Share your experiences and connect with others on similar journeys.
             </p>
           </div>
-
-          {/* Community Threads */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Community Circles</h2>
-            <CommunityThreads />
-          </div>
-
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-2 justify-center mb-8">
-            {filters.map((filter) => (
-              <Button
-                key={filter.id}
-                variant={activeFilter === filter.id ? "default" : "outline"}
-                onClick={() => setActiveFilter(filter.id)}
-              >
-                {filter.label}
-              </Button>
-            ))}
-          </div>
         </div>
 
         {selectedThread ? (

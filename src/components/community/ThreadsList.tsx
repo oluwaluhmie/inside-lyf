@@ -1,9 +1,21 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles, Clock, TrendingUp } from "lucide-react";
+import { Users, Heart, Shield, MessageCircle, Baby, Home, Crown, Sparkles, Clock, TrendingUp, Gamepad2 } from "lucide-react";
 
 const COMMUNITY_THREADS = [
+  {
+    id: "football-banter",
+    title: "Football Banter",
+    description: "Match discussions, transfer gossip, and legendary banter with fellow fans",
+    icon: Gamepad2,
+    color: "bg-emerald-50 border-emerald-200 hover:bg-emerald-100",
+    iconColor: "text-emerald-600",
+    members: "4.5k",
+    posts: 312,
+    lastActive: "just now",
+    trending: true
+  },
   {
     id: "parenting",
     title: "Parenting",
