@@ -30,6 +30,7 @@ export default function Profile() {
     avatar_url: ""
   });
   const [isSaving, setIsSaving] = useState(false);
+  const [commentsCount, setCommentsCount] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -83,6 +84,26 @@ export default function Profile() {
     fetchUserStories();
   }, [user]);
 
+  useEffect(() => {
+    const fetchCommentsCount = async () => {
+      if (!user) return;
+      
+      try {
+        const { count, error } = await supabase
+          .from('comments')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id);
+
+        if (error) throw error;
+        setCommentsCount(count || 0);
+      } catch (error) {
+        console.error('Error fetching comments count:', error);
+      }
+    };
+
+    fetchCommentsCount();
+  }, [user]);
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
@@ -118,8 +139,8 @@ export default function Profile() {
   const userStats = {
     storiesShared: userStories.length,
     relates: userStories.reduce((sum, story) => sum + (story.like_count || 0), 0),
-    reflections: 0,
-    followers: 0,
+    comments: commentsCount,
+    totalViews: userStories.reduce((sum, story) => sum + (story.view_count || 0), 0),
   };
 
   const badges = [
@@ -223,15 +244,15 @@ export default function Profile() {
             </div>
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {userStats.reflections}
+                {userStats.comments}
               </div>
-              <div className="text-sm text-muted-foreground">Reflections</div>
+              <div className="text-sm text-muted-foreground">Comments</div>
             </div>
             <div className="text-center p-4 bg-secondary/20 rounded-2xl hover:scale-105 transition-transform">
               <div className="text-3xl font-bold text-primary mb-1">
-                {userStats.followers}
+                {userStats.totalViews}
               </div>
-              <div className="text-sm text-muted-foreground">Followers</div>
+              <div className="text-sm text-muted-foreground">Total Views</div>
             </div>
           </div>
 
