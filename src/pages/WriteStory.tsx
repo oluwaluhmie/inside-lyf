@@ -9,7 +9,7 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Switch } from "../components/ui/switch";
 import { Label } from "../components/ui/label";
-import { ArrowLeft, Upload, X, Bold, Italic, Link as LinkIcon, Image as ImageIcon, Quote } from "lucide-react";
+import { ArrowLeft, Upload, X, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const TONE_OPTIONS = [
@@ -112,24 +112,6 @@ export default function WriteStory() {
               />
             </div>
 
-            {/* Minimal Toolbar */}
-            <div className="flex items-center gap-2 mb-4 pb-4 border-b border-border">
-              <Button variant="ghost" size="sm" type="button">
-                <Bold className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" type="button">
-                <Italic className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" type="button">
-                <LinkIcon className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" type="button">
-                <ImageIcon className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" type="button">
-                <Quote className="w-4 h-4" />
-              </Button>
-            </div>
 
             {/* Content Textarea */}
             <div className="mb-6">

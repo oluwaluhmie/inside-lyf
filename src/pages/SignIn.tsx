@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
@@ -8,24 +8,49 @@ import { Label } from "../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { ArrowLeft, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const { signIn, user } = useAuth();
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) return;
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Sign in:", { email, password });
-      setIsLoading(false);
-      // Redirect to community or dashboard
-    }, 1500);
+    const { error } = await signIn(email, password);
+    
+    if (error) {
+      toast({
+        title: "Sign in failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      navigate("/");
+    }
+    
+    setIsLoading(false);
+  };
+
+  const handleForgotPassword = () => {
+    toast({
+      title: "Password Reset",
+      description: "Please contact support for password reset assistance.",
+    });
   };
 
   return (
@@ -82,7 +107,11 @@ export default function SignIn() {
               </div>
 
               <div className="flex items-center justify-between">
-                <button type="button" className="text-sm text-blue-600 hover:text-blue-700">
+                <button 
+                  type="button" 
+                  onClick={handleForgotPassword}
+                  className="text-sm text-blue-600 hover:text-blue-700"
+                >
                   Forgot password?
                 </button>
               </div>
