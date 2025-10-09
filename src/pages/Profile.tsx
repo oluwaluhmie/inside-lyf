@@ -31,6 +31,8 @@ export default function Profile() {
   });
   const [isSaving, setIsSaving] = useState(false);
   const [commentsCount, setCommentsCount] = useState(0);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string>("");
   const { toast } = useToast();
 
   useEffect(() => {
@@ -150,7 +152,21 @@ export default function Profile() {
   ];
 
   const handleEditProfile = () => {
+    setAvatarPreview(profile?.avatar_url || "");
+    setAvatarFile(null);
     setIsEditDialogOpen(true);
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSaveProfile = async () => {
@@ -158,12 +174,35 @@ export default function Profile() {
     
     setIsSaving(true);
     try {
+      let avatarUrl = editForm.avatar_url;
+
+      // Upload avatar if a new file was selected
+      if (avatarFile) {
+        const fileExt = avatarFile.name.split('.').pop();
+        const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(fileName, avatarFile, {
+            upsert: true
+          });
+
+        if (uploadError) throw uploadError;
+
+        // Get public URL
+        const { data: { publicUrl } } = supabase.storage
+          .from('avatars')
+          .getPublicUrl(fileName);
+
+        avatarUrl = publicUrl;
+      }
+
       const { error } = await supabase
         .from('profiles')
         .update({
           full_name: editForm.full_name,
           bio: editForm.bio,
-          avatar_url: editForm.avatar_url,
+          avatar_url: avatarUrl,
           updated_at: new Date().toISOString()
         })
         .eq('id', user.id);
@@ -175,7 +214,7 @@ export default function Profile() {
         ...profile,
         full_name: editForm.full_name,
         bio: editForm.bio,
-        avatar_url: editForm.avatar_url
+        avatar_url: avatarUrl
       });
 
       toast({
@@ -184,6 +223,8 @@ export default function Profile() {
       });
       
       setIsEditDialogOpen(false);
+      setAvatarFile(null);
+      setAvatarPreview("");
     } catch (error) {
       console.error('Error updating profile:', error);
       toast({
@@ -463,15 +504,24 @@ export default function Profile() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="avatar_url">Avatar URL</Label>
+                <Label htmlFor="avatar">Profile Picture</Label>
+                {avatarPreview && (
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src={avatarPreview} 
+                      alt="Avatar preview" 
+                      className="w-24 h-24 rounded-full object-cover border-2 border-border"
+                    />
+                  </div>
+                )}
                 <Input
-                  id="avatar_url"
-                  value={editForm.avatar_url}
-                  onChange={(e) => setEditForm({ ...editForm, avatar_url: e.target.value })}
-                  placeholder="https://example.com/avatar.jpg"
+                  id="avatar"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Paste a URL to an image you'd like to use as your profile picture
+                  Upload an image file to use as your profile picture
                 </p>
               </div>
             </div>
