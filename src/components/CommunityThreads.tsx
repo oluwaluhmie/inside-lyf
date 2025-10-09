@@ -136,7 +136,7 @@ export default function CommunityThreads() {
                     variant="outline"
                     size="sm"
                     onClick={(e) => handleWhatsAppClick(e, thread.whatsappLink)}
-                    className="text-green-600 border-green-200 hover:bg-green-50"
+                    className="text-green-600 border-green-200 hover:bg-green-50 hover:text-secondary"
                   >
                     <MessageCircle className="w-4 h-4" />
                   </Button>
