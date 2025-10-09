@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -33,7 +34,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="https://x.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <Twitter className="w-5 h-5" />
+                <X className="w-5 h-5" />
               </a>
               <a href="https://www.youtube.com/@realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
                 <Youtube className="w-5 h-5" />
