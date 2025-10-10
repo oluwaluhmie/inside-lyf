@@ -38,7 +38,7 @@ const Terms = () => {
             <p className="mb-4">Insidelyf provides peer support and is not a substitute for professional mental health services. We are not liable for any decisions made based on content shared on our platform.</p>
             
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Information</h2>
-            <p>For questions about these Terms of Service, contact us at legal@insidelyf.com</p>
+            <p>For questions about these Terms of Service, contact us at support@insidelyf.com</p>
           </div>
         </div>
       </main>
