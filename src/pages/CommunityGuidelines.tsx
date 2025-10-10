@@ -19,8 +19,8 @@ const CommunityGuidelines = () => {
               <p className="text-gray-600">Every person here is on their own healing journey. Approach all interactions with empathy and understanding.</p>
             </div>
             
-            <div className="bg-blue-50 rounded-lg p-6">
-              <Shield className="w-8 h-8 text-blue-600 mb-3" />
+            <div className="bg-primary/10 rounded-lg p-6">
+              <Shield className="w-8 h-8 text-primary mb-3" />
               <h3 className="text-lg font-semibold mb-2">Respect Privacy</h3>
               <p className="text-gray-600">What's shared in our community stays in our community. Protect others' stories and personal information.</p>
             </div>
