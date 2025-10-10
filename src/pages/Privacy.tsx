@@ -30,7 +30,7 @@ const Privacy = () => {
             <p className="mb-4">You have the right to access, update, or delete your personal information at any time. Contact us if you need assistance with your data.</p>
             
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Us</h2>
-            <p>If you have questions about this Privacy Policy, please contact us at privacy@insidelyf.com</p>
+            <p>If you have questions about this Privacy Policy, please contact us at support@insidelyf.com</p>
           </div>
         </div>
       </main>

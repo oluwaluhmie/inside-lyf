@@ -38,7 +38,7 @@ const Cookies = () => {
             <p className="mb-4">While you can disable cookies, please note that some features of our website may not function properly without them. Essential cookies are required for basic functionality like logging in and maintaining your session.</p>
             
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Us</h2>
-            <p>If you have questions about our use of cookies, please contact us at privacy@insidelyf.com</p>
+            <p>If you have questions about our use of cookies, please contact us at support@insidelyf.com</p>
           </div>
         </div>
       </main>
