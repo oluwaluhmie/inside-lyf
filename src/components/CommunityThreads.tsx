@@ -127,7 +127,7 @@ export default function CommunityThreads() {
                 </p>
                 <Button 
                   variant="outline" 
-                  className="w-full text-primary hover:text-white hover:bg-primary/10 font-medium border-2"
+                  className="w-full text-primary hover:text-primary-foreground hover:bg-primary font-medium border-2 transition-all duration-300"
                 >
                   Join Discussion →
                 </Button>

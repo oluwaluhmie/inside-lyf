@@ -312,7 +312,7 @@ export default function ThreadsList({ onThreadSelect }: ThreadsListProps) {
                 </div>
                 <Button 
                   variant="outline" 
-                  className="text-primary hover:text-primary hover:bg-accent font-medium w-full border-2"
+                  className="text-primary hover:text-primary-foreground hover:bg-primary font-medium w-full border-2 transition-all duration-300"
                   onClick={(e) => {
                     e.stopPropagation();
                     onThreadSelect(thread.id);
