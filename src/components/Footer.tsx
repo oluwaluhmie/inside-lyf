@@ -27,10 +27,12 @@ export default function Footer() {
                 </Button>
               </Link>
             </div>
-            <div className="flex gap-4 mt-6">
-              <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
+            <div className="mt-6">
+              <p className="text-gray-400 text-sm mb-3">Follow us on our social media accounts</p>
+              <div className="flex gap-4">
+                <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
               <a href="https://www.instagram.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
@@ -42,6 +44,7 @@ export default function Footer() {
               <a href="https://www.youtube.com/@realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
+              </div>
             </div>
           </div>
 
