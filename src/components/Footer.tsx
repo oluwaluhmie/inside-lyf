@@ -28,7 +28,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="mt-6">
-              <p className="text-gray-400 text-sm mb-3">Follow us on our social media accounts</p>
+              <p className="text-gray-400 text-sm mb-3">Follow us on social media</p>
               <div className="flex gap-4">
                 <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
                   <Facebook className="w-5 h-5" />
