@@ -75,7 +75,7 @@ export default function Footer() {
             © 2024 Insidelyf. All rights reserved.
           </div>
           <div className="text-gray-400 text-sm mt-4 md:mt-0">
-            <p>InsideLyf is affiliated with Realifesentry Communications</p>
+            <p>InsideLyf is a product of Realifesentry Communications</p>
           </div>
         </div>
 
