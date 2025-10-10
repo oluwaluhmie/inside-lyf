@@ -72,7 +72,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm">
-            © 2024 Insidelyf. All rights reserved.
+            © 2024 InsideLyf. All rights reserved.
           </div>
           <div className="text-gray-400 text-sm mt-4 md:mt-0">
             <p>InsideLyf is a product of Realifesentry Communications</p>
