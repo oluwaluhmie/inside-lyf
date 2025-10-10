@@ -27,7 +27,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending contact form email:", { name, email, subject });
 
     const emailResponse = await resend.emails.send({
-      from: "InsideLyf Contact <onboarding@resend.dev>",
+      from: "InsideLyf Contact <support@insidelyf.com>",
       to: ["support@insidelyf.com"],
       subject: `Contact Form: ${subject}`,
       html: `
