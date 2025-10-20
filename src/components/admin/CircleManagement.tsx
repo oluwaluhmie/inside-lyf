@@ -97,10 +97,10 @@ export default function CircleManagement({ userRole, assignedSegments = [] }: Ci
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Circle Management</h2>
-          <p className="text-muted-foreground">Manage community circles and their settings</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Circle Management</h2>
+          <p className="text-muted-foreground mt-1">Manage community circles and their settings</p>
           {userRole === 'moderator' && (
             <p className="text-sm text-blue-600 mt-1">
               Assigned segments: {assignedSegments.join(', ')}

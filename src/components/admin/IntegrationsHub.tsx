@@ -160,9 +160,9 @@ export default function IntegrationsHub({ userRole }: IntegrationsHubProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Integrations Hub</h2>
-        <p className="text-muted-foreground">Connect third-party services and manage data flows</p>
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold tracking-tight mb-2">Integrations Hub</h2>
+        <p className="text-muted-foreground mt-1">Connect third-party services and manage data flows</p>
       </div>
 
       <Tabs defaultValue="marketplace" className="space-y-6">

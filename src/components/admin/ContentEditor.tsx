@@ -109,10 +109,10 @@ export default function ContentEditor({ userRole }: ContentEditorProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Content Editor</h2>
-          <p className="text-muted-foreground">Create and manage website content, pages, and templates</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Content Editor</h2>
+          <p className="text-muted-foreground mt-1">Create and manage website content, pages, and templates</p>
         </div>
         
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>

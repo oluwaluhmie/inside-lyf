@@ -155,10 +155,10 @@ export default function CustomizationPanel({ userRole }: CustomizationPanelProps
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Customization Panel</h2>
-          <p className="text-muted-foreground">Customize the look and feel of your community</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Customization Panel</h2>
+          <p className="text-muted-foreground mt-1">Customize the look and feel of your community</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={previewChanges}>

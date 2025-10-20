@@ -110,10 +110,10 @@ export default function NotificationSystem({ userRole }: NotificationSystemProps
   return (
     <div className="space-y-6">
       {/* Quick Actions */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Notification System</h2>
-          <p className="text-muted-foreground">Manage notifications and communication templates</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Notification System</h2>
+          <p className="text-muted-foreground mt-1">Manage notifications and communication templates</p>
         </div>
         
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>

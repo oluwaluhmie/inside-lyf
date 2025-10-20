@@ -81,10 +81,10 @@ export default function SEOTools({ userRole }: SEOToolsProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">SEO Tools</h2>
-          <p className="text-muted-foreground">Optimize your site's search engine performance</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">SEO Tools</h2>
+          <p className="text-muted-foreground mt-1">Optimize your site's search engine performance</p>
         </div>
         
         <Dialog open={isAddPageOpen} onOpenChange={setIsAddPageOpen}>

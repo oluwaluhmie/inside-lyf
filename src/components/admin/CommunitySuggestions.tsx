@@ -199,9 +199,9 @@ export default function CommunitySuggestions() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold">Community Suggestions</h2>
-        <p className="text-muted-foreground">Review and manage community suggestions from users</p>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2">Community Suggestions</h2>
+        <p className="text-muted-foreground mt-1">Review and manage community suggestions from users</p>
       </div>
 
       <Tabs defaultValue="pending" className="w-full">
