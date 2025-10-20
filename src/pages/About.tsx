@@ -34,25 +34,25 @@ const TEAM_MEMBERS = [
     name: "Sarah Chen",
     role: "Founder & CEO",
     bio: "A trauma-informed therapist turned entrepreneur, Sarah founded Insidelyf after witnessing the power of peer support in healing.",
-    image: "bg-gradient-to-br from-blue-400 to-purple-500"
+    image: "bg-gradient-to-br from-primary/70 to-primary"
   },
   {
     name: "Marcus Rodriguez",
     role: "Head of Community",
     bio: "With 10+ years in community building, Marcus ensures our spaces remain safe, inclusive, and supportive for all members.",
-    image: "bg-gradient-to-br from-green-400 to-teal-500"
+    image: "bg-gradient-to-br from-secondary/70 to-secondary"
   },
   {
     name: "Dr. Amira Patel",
     role: "Clinical Advisor",
     bio: "A licensed psychologist specializing in trauma recovery, Dr. Patel guides our approach to mental health resources.",
-    image: "bg-gradient-to-br from-orange-400 to-red-500"
+    image: "bg-gradient-to-br from-primary to-secondary"
   },
   {
     name: "Jordan Kim",
     role: "Technology Lead",
     bio: "Passionate about building technology that serves humanity, Jordan leads our efforts to create accessible, secure platforms.",
-    image: "bg-gradient-to-br from-purple-400 to-pink-500"
+    image: "bg-gradient-to-br from-secondary to-primary"
   }
 ];
 
@@ -65,7 +65,7 @@ const STATS = [
 
 export default function About() {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40">
+    <div className="min-h-screen w-full flex flex-col bg-background">
       <Header />
       
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
@@ -80,15 +80,15 @@ export default function About() {
 
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
             Your Story Matters
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Insidelyf is more than a platform—it's a movement. We're building a world where sharing your truth 
             creates connection, where vulnerability becomes strength, and where healing happens together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
               Join Our Community
             </Button>
             <Button size="lg" variant="outline">
@@ -101,10 +101,10 @@ export default function About() {
         <section className="mb-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {STATS.map((stat, index) => (
-              <Card key={index} className="text-center border-none bg-white/60 backdrop-blur-sm">
+              <Card key={index} className="text-center border-none bg-card">
                 <CardContent className="pt-6">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">{stat.number}</div>
-                  <div className="text-slate-600">{stat.label}</div>
+                  <div className="text-3xl font-bold text-primary mb-2">{stat.number}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
                 </CardContent>
               </Card>
             ))}
@@ -114,8 +114,8 @@ export default function About() {
         {/* Our Story Section */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">Our Story</h2>
-            <div className="prose prose-lg max-w-none text-slate-600">
+            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Story</h2>
+            <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-xl leading-relaxed mb-6">
                 Insidelyf was born from a simple yet powerful realization: <strong>healing happens in community</strong>. 
                 Our founder, Sarah Chen, witnessed firsthand how sharing personal struggles in safe, supportive environments 
@@ -141,22 +141,22 @@ export default function About() {
 
         {/* Mission & Values */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Our Mission & Values</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Mission & Values</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {MISSION_POINTS.map((point, index) => {
               const IconComponent = point.icon;
               return (
-                <Card key={index} className="border-none bg-white/60 backdrop-blur-sm hover:shadow-lg transition-shadow">
+                <Card key={index} className="border-none bg-card hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="p-3 rounded-xl bg-blue-100">
-                        <IconComponent className="w-6 h-6 text-blue-600" />
+                      <div className="p-3 rounded-xl bg-primary/10">
+                        <IconComponent className="w-6 h-6 text-primary" />
                       </div>
                       <CardTitle className="text-xl">{point.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600">{point.description}</p>
+                    <p className="text-muted-foreground">{point.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -166,15 +166,15 @@ export default function About() {
 
         {/* Team Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Meet Our Team</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {TEAM_MEMBERS.map((member, index) => (
-              <Card key={index} className="text-center border-none bg-white/60 backdrop-blur-sm hover:shadow-lg transition-shadow">
+              <Card key={index} className="text-center border-none bg-card hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
                   <div className={`w-24 h-24 rounded-full ${member.image} mx-auto mb-4`} />
                   <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-blue-600 font-medium mb-3">{member.role}</p>
-                  <p className="text-sm text-slate-600">{member.bio}</p>
+                  <p className="text-primary font-medium mb-3">{member.role}</p>
+                  <p className="text-sm text-muted-foreground">{member.bio}</p>
                 </CardContent>
               </Card>
             ))}
@@ -184,35 +184,35 @@ export default function About() {
         {/* Our Approach Section */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">Our Approach</h2>
+            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Approach</h2>
             <div className="grid gap-6 md:grid-cols-3">
-              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+              <Card className="text-center border-none bg-card">
                 <CardHeader>
-                  <Target className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                  <Target className="w-12 h-12 text-secondary mx-auto mb-4" />
                   <CardTitle className="text-lg">Trauma-Informed</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-600">Every feature and interaction is designed with trauma-informed principles at its core.</p>
+                  <p className="text-muted-foreground">Every feature and interaction is designed with trauma-informed principles at its core.</p>
                 </CardContent>
               </Card>
               
-              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+              <Card className="text-center border-none bg-card">
                 <CardHeader>
-                  <MessageCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                  <MessageCircle className="w-12 h-12 text-primary mx-auto mb-4" />
                   <CardTitle className="text-lg">Peer Support</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-600">We facilitate meaningful connections between people with shared experiences.</p>
+                  <p className="text-muted-foreground">We facilitate meaningful connections between people with shared experiences.</p>
                 </CardContent>
               </Card>
               
-              <Card className="text-center border-none bg-white/60 backdrop-blur-sm">
+              <Card className="text-center border-none bg-card">
                 <CardHeader>
-                  <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                  <BookOpen className="w-12 h-12 text-primary mx-auto mb-4" />
                   <CardTitle className="text-lg">Evidence-Based</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-600">Our resources and guidance are rooted in proven therapeutic practices and research.</p>
+                  <p className="text-muted-foreground">Our resources and guidance are rooted in proven therapeutic practices and research.</p>
                 </CardContent>
               </Card>
             </div>
@@ -221,17 +221,17 @@ export default function About() {
 
         {/* Call to Action */}
         <section className="text-center">
-          <Card className="border-none bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+          <Card className="border-none bg-gradient-to-r from-primary to-secondary text-white">
             <CardContent className="py-12">
               <h2 className="text-3xl font-bold mb-4">Ready to Share Your Story?</h2>
-              <p className="text-xl mb-8 text-blue-100">
+              <p className="text-xl mb-8 text-white/90">
                 Join thousands who have found healing, connection, and hope through sharing their truth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary">
+                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
                   Browse Stories
                 </Button>
               </div>
