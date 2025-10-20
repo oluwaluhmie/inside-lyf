@@ -94,7 +94,7 @@ export default function About() {
             <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-xl leading-relaxed mb-6">
-                INSIDELYF was born from a simple truth - <strong>we rise stronger when we rise together.</strong>
+                InsideLyf was born from a simple truth - <strong>we rise stronger when we rise together.</strong>
               </p>
               <p className="text-lg leading-relaxed mb-6">
                 It started with honest conversations. Real people sharing real stories - about growth, loss, hustle, love and everything in between. Those moments showed us something powerful: when people open up, others lean in. And that connection changes everything.
@@ -103,7 +103,7 @@ export default function About() {
                 What began as a few voices soon became a movement. A safe space where people show up for one another, listen without judgment and remind each other that no one&apos;s journey is meant to be walked alone.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                INSIDELYF is more than a platform - it&apos;s a community built on shared experiences, trust and strength. Every story adds another brick to what we call <strong>The Sentry</strong>: a living reminder that vulnerability isn&apos;t weakness, it&apos;s how we build unshakable bonds.
+                InsideLyf is more than a platform - it&apos;s a community built on shared experiences, trust and strength. Every story adds another brick to what we call <strong>The Sentry</strong>: a living reminder that vulnerability isn&apos;t weakness, it&apos;s how we build unshakable bonds.
               </p>
               <p className="text-lg leading-relaxed">
                 Today, we stand as a growing family - thousands strong - proving every day that together, we can turn challenges into lessons and moments into meaning.
