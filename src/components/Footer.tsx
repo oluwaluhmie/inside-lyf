@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800">
+                <Button variant="outline" className="border-gray-600 text-gray-800 hover:bg-gray-800 hover:text-white">
                   About Us
                 </Button>
               </Link>
