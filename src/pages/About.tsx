@@ -61,11 +61,15 @@ export default function About() {
             creates connection, where vulnerability becomes strength and where healing happens together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90"
+              onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
+            >
               Join Our Community
             </Button>
-            <Button size="lg" variant="outline">
-              Share Your Story
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/write">Share Your Story</Link>
             </Button>
           </div>
         </section>
@@ -184,11 +188,16 @@ export default function About() {
                 Join thousands who have found healing, connection, and hope through sharing their truth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                <Button 
+                  size="lg" 
+                  variant="secondary" 
+                  className="bg-white text-primary hover:bg-white/90"
+                  onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
+                >
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90 hover:text-primary">
-                  Browse Stories
+                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90 hover:text-primary" asChild>
+                  <Link to="/stories">Browse Stories</Link>
                 </Button>
               </div>
             </CardContent>
