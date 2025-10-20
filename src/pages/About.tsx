@@ -94,23 +94,19 @@ export default function About() {
             <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-xl leading-relaxed mb-6">
-                Insidelyf was born from a simple yet powerful realization: <strong>healing happens in community</strong>. 
-                Our founder, Sarah Chen, witnessed firsthand how sharing personal struggles in safe, supportive environments 
-                could transform pain into purpose, isolation into connection.
+                INSIDELYF was born from a simple truth - <strong>we rise stronger when we rise together.</strong>
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                After years of working as a trauma-informed therapist, Sarah noticed that some of the most profound 
-                breakthroughs happened not in individual therapy sessions, but in group settings where people shared 
-                their stories with others who truly understood.
+                It started with honest conversations. Real people sharing real stories - about growth, loss, hustle, love and everything in between. Those moments showed us something powerful: when people open up, others lean in. And that connection changes everything.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                In 2022, she decided to create a digital space that could replicate this healing power of community—but 
-                on a global scale. Insidelyf launched with a mission to break down the barriers that keep people isolated 
-                in their struggles and to prove that no one has to face their challenges alone.
+                What began as a few voices soon became a movement. A safe space where people show up for one another, listen without judgment and remind each other that no one&apos;s journey is meant to be walked alone.
+              </p>
+              <p className="text-lg leading-relaxed mb-6">
+                INSIDELYF is more than a platform - it&apos;s a community built on shared experiences, trust and strength. Every story adds another brick to what we call <strong>The Sentry</strong>: a living reminder that vulnerability isn&apos;t weakness, it&apos;s how we build unshakable bonds.
               </p>
               <p className="text-lg leading-relaxed">
-                Today, we're proud to be home to thousands of individuals who have found their voice, their community, 
-                and their path to healing through the simple act of sharing their truth.
+                Today, we stand as a growing family - thousands strong - proving every day that together, we can turn challenges into lessons and moments into meaning.
               </p>
             </div>
           </div>
