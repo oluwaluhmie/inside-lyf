@@ -108,7 +108,7 @@ export default function NewsletterSignup() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-3">
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Input
               type="email"
               placeholder="Enter your email"
@@ -123,7 +123,7 @@ export default function NewsletterSignup() {
             />
             <Button 
               type="submit" 
-              className="bg-primary text-white hover:bg-primary/90"
+              className="bg-primary text-white hover:bg-primary/90 w-full sm:w-auto"
               disabled={isLoading || !email.trim()}
             >
               {isLoading ? "Subscribing..." : "Subscribe"}

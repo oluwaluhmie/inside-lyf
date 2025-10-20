@@ -63,12 +63,12 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90 w-full sm:w-auto"
               onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
             >
               Join Our Community
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
               <Link to="/write">Share Your Story</Link>
             </Button>
           </div>
@@ -91,7 +91,7 @@ export default function About() {
         {/* Our Story Section */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Story</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-foreground">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-xl leading-relaxed mb-6">
                 <strong>INSIDELYF</strong> was born from a simple truth - <strong>we rise stronger when we rise together.</strong>
@@ -114,7 +114,7 @@ export default function About() {
 
         {/* Mission & Values */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Mission & Values</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 text-foreground">Our Mission & Values</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {MISSION_POINTS.map((point, index) => {
               const IconComponent = point.icon;
@@ -140,7 +140,7 @@ export default function About() {
         {/* Our Approach Section */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Our Approach</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-foreground">Our Approach</h2>
             <div className="grid gap-6 md:grid-cols-3">
               <Card className="text-center border-none bg-card">
                 <CardHeader>
@@ -179,20 +179,20 @@ export default function About() {
         <section className="text-center">
           <Card className="border-none bg-gradient-to-r from-primary to-secondary text-white">
             <CardContent className="py-12">
-              <h2 className="text-3xl font-bold mb-4">Ready to Share Your Story?</h2>
-              <p className="text-xl mb-8 text-white/90">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Ready to Share Your Story?</h2>
+              <p className="text-lg sm:text-xl mb-8 text-white/90">
                 Join thousands who have found healing, connection, and hope through sharing their truth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400"
+                  className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400 w-full sm:w-auto"
                   onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
                 >
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-gray-800 hover:text-white" asChild>
+                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-gray-800 hover:text-white w-full sm:w-auto" asChild>
                   <Link to="/stories">Browse Stories</Link>
                 </Button>
               </div>

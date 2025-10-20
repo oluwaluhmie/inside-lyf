@@ -27,8 +27,8 @@ export default function CommunityDiscussion() {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
-        <div className="mb-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
           <Link to="/">
             <Button variant="ghost" className="mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -36,9 +36,9 @@ export default function CommunityDiscussion() {
             </Button>
           </Link>
           
-          <div className="text-center mb-8">
-            <h1 className="mb-4">Community Discussions</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl">Community Discussions</h1>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Join conversations that matter. Share your experiences and connect with others on similar journeys.
             </p>
           </div>
@@ -59,8 +59,8 @@ export default function CommunityDiscussion() {
             {/* Right: Sidebar Widgets */}
             <div className="space-y-6">
               {/* Top Empaths Leaderboard */}
-              <div className="bg-card rounded-3xl shadow-md border border-border p-6">
-                <h3 className="font-semibold mb-4">Top Empaths</h3>
+              <div className="bg-card rounded-3xl shadow-md border border-border p-4 sm:p-6">
+                <h3 className="font-semibold mb-4 text-base sm:text-lg">Top Empaths</h3>
                 <div className="space-y-3">
                   {[
                     { name: "Sarah M.", hearts: 342, rank: 1 },
@@ -87,8 +87,8 @@ export default function CommunityDiscussion() {
               </div>
 
               {/* Today's Reflections */}
-              <div className="bg-card rounded-3xl shadow-md border border-border p-6">
-                <h3 className="font-semibold mb-4">Today's Reflections</h3>
+              <div className="bg-card rounded-3xl shadow-md border border-border p-4 sm:p-6">
+                <h3 className="font-semibold mb-4 text-base sm:text-lg">Today's Reflections</h3>
                 <div className="space-y-4">
                   <blockquote className="border-l-4 border-primary pl-4 italic text-sm text-foreground/80">
                     "This community reminded me that vulnerability is strength, not weakness."

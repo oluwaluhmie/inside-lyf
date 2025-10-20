@@ -12,12 +12,12 @@ export default function Stories() {
     <div className="min-h-screen w-full flex flex-col bg-background">
       <Header />
       
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
-        <div className="text-center mb-8">
-          <h1 className="mb-4">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl">
             Real Life Stories
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             Discover authentic stories of hope, healing, and transformation from our community members.
           </p>
         </div>

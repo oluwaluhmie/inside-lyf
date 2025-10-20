@@ -28,19 +28,19 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Link to="/stories">
+          <Link to="/stories" className="w-full sm:w-auto">
             <Button 
               size="lg" 
-              className="bg-primary text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl"
+              className="bg-primary text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl w-full sm:w-auto"
             >
               Read Stories
             </Button>
           </Link>
-          <Link to="/write">
+          <Link to="/write" className="w-full sm:w-auto">
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary"
+              className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary w-full sm:w-auto"
             >
               Share Yours
             </Button>

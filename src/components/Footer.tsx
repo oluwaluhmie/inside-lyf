@@ -16,7 +16,7 @@ export default function Footer() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="text-gray-300 mb-4 max-w-md">
+            <p className="text-gray-300 mb-4 max-w-md text-sm sm:text-base">
               A safe space where your story matters. Share your experiences, find your community, 
               and discover healing through connection.{" "}
               <Link 
@@ -28,36 +28,38 @@ export default function Footer() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </p>
-            <div className="flex gap-4">
-              <Link to="/write" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
+            <div className="flex gap-4 mb-6">
+              <Link to="/write" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full sm:w-auto">
+                <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400 w-full sm:w-auto">
                   Share Your Story
                 </Button>
               </Link>
             </div>
-            <div className="flex items-center gap-4 mt-6">
-              <p className="text-gray-400 text-sm">Follow InsideLyf</p>
-              <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="https://www.instagram.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="https://x.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <a href="https://www.youtube.com/@realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
-                <Youtube className="w-5 h-5" />
-              </a>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6">
+              <p className="text-gray-400 text-sm w-full sm:w-auto">Follow InsideLyf</p>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="https://www.instagram.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="https://x.com/realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+                <a href="https://www.youtube.com/@realinsidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
+                  <Youtube className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Legal Links */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-gray-300">
+            <h3 className="font-semibold mb-4 text-sm sm:text-base">Legal</h3>
+            <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li><a href="/privacy" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
               <li><a href="/terms" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
               <li><a href="/disclaimer" className="hover:text-green-400 transition-colors">Disclaimer</a></li>
@@ -67,8 +69,8 @@ export default function Footer() {
 
           {/* Support & Community */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
-            <ul className="space-y-2 text-gray-300">
+            <h3 className="font-semibold mb-4 text-sm sm:text-base">Support</h3>
+            <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li><a href="/help" className="hover:text-green-400 transition-colors">Help Center</a></li>
               <li><a href="/community-guidelines" className="hover:text-green-400 transition-colors">Community Guidelines</a></li>
               <li><a href="/safety" className="hover:text-green-400 transition-colors">Safety Resources</a></li>

@@ -40,9 +40,9 @@ export default function TestimonialCarousel() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   return (
-    <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-6 border border-pink-200 mb-6">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
+    <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-4 sm:p-6 border border-pink-200 mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+        <h3 className="text-base sm:text-lg font-semibold text-primary flex items-center gap-2">
           <Quote className="w-5 h-5" />
           What Our Community Says
         </h3>
@@ -56,17 +56,17 @@ export default function TestimonialCarousel() {
         </div>
       </div>
       
-      <div className="relative min-h-[120px]">
+      <div className="relative min-h-[140px] sm:min-h-[120px]">
         <div className="absolute inset-0 flex items-center transition-all duration-500">
           <div className="w-full">
-            <blockquote className="text-gray-700 mb-3 italic text-lg leading-relaxed">
+            <blockquote className="text-gray-700 mb-3 italic text-base sm:text-lg leading-relaxed">
               "{TESTIMONIALS[currentIndex].text}"
             </blockquote>
-            <div className="flex items-center justify-between">
-              <cite className="font-semibold not-italic text-primary">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <cite className="font-semibold not-italic text-primary text-sm sm:text-base">
                 — {TESTIMONIALS[currentIndex].author}
               </cite>
-              <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                 {TESTIMONIALS[currentIndex].badge}
               </span>
             </div>

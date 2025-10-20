@@ -26,10 +26,10 @@ const Index = () => {
         {/* Trending Stories Section */}
         <section className="animate-fade-in">
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Stories That Changed Lives
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Real experiences from people who found their voice and their community here.
             </p>
           </div>
@@ -40,8 +40,8 @@ const Index = () => {
         <FeaturedStoryWeek />
         
         {/* Quote Banner */}
-        <div className="bg-primary text-primary-foreground rounded-3xl py-12 px-6 text-center shadow-lg">
-          <p className="text-2xl sm:text-3xl font-semibold italic max-w-3xl mx-auto">
+        <div className="bg-primary text-primary-foreground rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-4 sm:px-6 text-center shadow-lg">
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold italic max-w-3xl mx-auto">
             "Someone, somewhere, is waiting for your story."
           </p>
         </div>
@@ -49,15 +49,15 @@ const Index = () => {
         {/* Community Section */}
         <section>
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Join Your Tribe
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Find your people in specialized communities where vulnerability is celebrated and healing happens together.
             </p>
             <Button 
               onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" />
               Join InsideLyf WhatsApp Community
