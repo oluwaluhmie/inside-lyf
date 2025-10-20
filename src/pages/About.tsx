@@ -186,13 +186,13 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  variant="secondary" 
-                  className="bg-white text-primary hover:bg-white/90"
+                  variant="outline" 
+                  className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400"
                   onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
                 >
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90 hover:text-primary" asChild>
+                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-gray-800 hover:text-white" asChild>
                   <Link to="/stories">Browse Stories</Link>
                 </Button>
               </div>
