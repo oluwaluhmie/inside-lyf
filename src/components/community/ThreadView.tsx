@@ -136,26 +136,21 @@ export default function ThreadView({ threadId, onBack }: ThreadViewProps) {
 
       {/* Thread Header */}
       <div className={`${threadData.bgColor} rounded-2xl p-6 border`}>
-        <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-          <div>
-            <h1 className={`text-2xl sm:text-3xl font-bold ${threadData.color} mb-2`}>
-              {threadData.title}
-            </h1>
-            <p className="text-slate-700 mb-4">{threadData.description}</p>
-            <div className="flex items-center gap-4 text-sm text-slate-600">
-              <span className="flex items-center gap-1">
-                <Users className="w-4 h-4" />
-                {threadData.members} members
-              </span>
-              <span className="flex items-center gap-1">
-                <TrendingUp className="w-4 h-4" />
-                Very Active
-              </span>
-            </div>
+        <div>
+          <h1 className={`text-2xl sm:text-3xl font-bold ${threadData.color} mb-2`}>
+            {threadData.title}
+          </h1>
+          <p className="text-slate-700 mb-4">{threadData.description}</p>
+          <div className="flex items-center gap-4 text-sm text-slate-600">
+            <span className="flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              {threadData.members} members
+            </span>
+            <span className="flex items-center gap-1">
+              <TrendingUp className="w-4 h-4" />
+              Very Active
+            </span>
           </div>
-          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-            Join Community
-          </Button>
         </div>
       </div>
 

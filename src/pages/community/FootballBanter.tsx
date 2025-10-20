@@ -90,43 +90,21 @@ const FootballBanter = () => {
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Community Header */}
         <div className="bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl p-8 mb-8 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <Trophy className="h-8 w-8" />
-                <h1 className="text-3xl sm:text-4xl font-bold">Football Banter</h1>
-              </div>
-              <p className="text-lg opacity-90 mb-4">
-                Match discussions, transfer gossip, and legendary banter with fellow fans
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5" />
-                  <span>4.5k members</span>
-                </div>
-                <span className="text-emerald-200">•</span>
-                <span className="text-emerald-200">Active now</span>
-              </div>
-            </div>
-            <Button 
-              onClick={handleWhatsAppJoin}
-              className="bg-white text-emerald-600 hover:bg-gray-100 hidden sm:flex items-center gap-2"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Join WhatsApp
-              <ExternalLink className="h-4 w-4" />
-            </Button>
+          <div className="flex items-center gap-3 mb-4">
+            <Trophy className="h-8 w-8" />
+            <h1 className="text-3xl sm:text-4xl font-bold">Football Banter</h1>
           </div>
-          
-          {/* Mobile WhatsApp Button */}
-          <Button 
-            onClick={handleWhatsAppJoin}
-            className="bg-white text-emerald-600 hover:bg-gray-100 sm:hidden mt-4 w-full flex items-center justify-center gap-2"
-          >
-            <MessageCircle className="h-5 w-5" />
-            Join WhatsApp Group
-            <ExternalLink className="h-4 w-4" />
-          </Button>
+          <p className="text-lg opacity-90 mb-4">
+            Match discussions, transfer gossip, and legendary banter with fellow fans
+          </p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              <span>4.5k members</span>
+            </div>
+            <span className="text-emerald-200">•</span>
+            <span className="text-emerald-200">Active now</span>
+          </div>
         </div>
 
         {/* Post Input */}
