@@ -57,8 +57,8 @@ export default function About() {
             Your Story Matters
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Insidelyf is more than a platform—it's a movement. We're building a world where sharing your truth 
-            creates connection, where vulnerability becomes strength, and where healing happens together.
+            InsideLyf is more than a platform - it&apos;s a movement. We&apos;re building a world where sharing your truth 
+            creates connection, where vulnerability becomes strength and where healing happens together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-primary hover:bg-primary/90">
