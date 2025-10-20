@@ -187,7 +187,7 @@ export default function About() {
                 <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90">
+                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90 hover:text-primary">
                   Browse Stories
                 </Button>
               </div>
