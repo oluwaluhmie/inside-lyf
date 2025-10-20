@@ -152,8 +152,8 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
 
   return (
     <div className="bg-white rounded-xl border">
-      <div className="p-6 border-b">
-        <div className="flex justify-between items-center mb-4">
+      <div className="p-6 pb-8 border-b">
+        <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold">User Management</h3>
           <Button>
             <Plus className="w-4 h-4 mr-2" />

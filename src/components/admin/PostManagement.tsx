@@ -59,9 +59,9 @@ export default function PostManagement({ userRole, assignedSegments = [] }: Post
 
   return (
     <div className="bg-white rounded-xl border">
-      <div className="p-6 border-b flex justify-between items-center">
+      <div className="p-6 pb-8 border-b flex justify-between items-center">
         <div>
-          <h3 className="text-lg font-semibold">Post Management</h3>
+          <h3 className="text-lg font-semibold mb-2">Post Management</h3>
           {userRole === 'moderator' && (
             <p className="text-sm text-muted-foreground">
               Managing: {assignedSegments.join(', ')}

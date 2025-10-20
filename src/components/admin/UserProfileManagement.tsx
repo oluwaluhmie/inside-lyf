@@ -42,8 +42,8 @@ export default function UserProfileManagement({ userRole = 'admin' }: UserProfil
   const canModify = userRole === 'admin';
 
   return (
-    <div className="bg-white rounded-xl border p-6">
-      <h3 className="text-lg font-semibold mb-4">User Profile Management</h3>
+    <div className="bg-white rounded-xl border p-6 pb-8">
+      <h3 className="text-lg font-semibold mb-6">User Profile Management</h3>
       
       <div className="space-y-4">
         {users.map((user) => (

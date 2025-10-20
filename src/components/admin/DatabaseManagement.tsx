@@ -17,8 +17,8 @@ interface DatabaseManagementProps {
 export default function DatabaseManagement({ userRole = 'admin' }: DatabaseManagementProps) {
   if (userRole === 'moderator') {
     return (
-      <div className="bg-white rounded-xl border p-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-white rounded-xl border p-6 pb-8">
+        <div className="flex items-center gap-2 mb-6">
           <Database className="w-5 h-5" />
           <h3 className="text-lg font-semibold">Database Overview</h3>
         </div>
@@ -41,7 +41,7 @@ export default function DatabaseManagement({ userRole = 'admin' }: DatabaseManag
 
   return (
     <div className="bg-white rounded-xl border">
-      <div className="p-6 border-b">
+      <div className="p-6 pb-8 border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Database className="w-5 h-5" />

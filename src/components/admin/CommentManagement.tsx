@@ -47,8 +47,8 @@ export default function CommentManagement({ userRole = 'admin', assignedSegments
 
   return (
     <div className="bg-white rounded-xl border">
-      <div className="p-6 border-b">
-        <h3 className="text-lg font-semibold">Comment Management</h3>
+      <div className="p-6 pb-8 border-b">
+        <h3 className="text-lg font-semibold mb-2">Comment Management</h3>
         <p className="text-sm text-muted-foreground mt-1">
           {userRole === 'moderator' 
             ? `Managing comments for: ${assignedSegments.join(', ')}`
