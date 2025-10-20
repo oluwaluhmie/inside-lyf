@@ -18,16 +18,16 @@ export default function Footer() {
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
               A safe space where your story matters. Share your experiences, find your community, 
-              and discover healing through connection.
+              and discover healing through connection.{" "}
+              <Link 
+                to="/about" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors group font-medium"
+              >
+                <span>Read more about us</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </p>
-            <Link 
-              to="/about" 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-4 group"
-            >
-              <span className="font-medium">Read more about us</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
             <div className="flex gap-4">
               <Link to="/write" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
