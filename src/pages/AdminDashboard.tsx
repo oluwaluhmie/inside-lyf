@@ -88,14 +88,14 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50">
       <AdminHeader userRole={role as any} roleLabel={permissions.roleLabel} />
       
-      <div className="max-w-7xl mx-auto p-6">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-12">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 gap-2 mb-8 lg:mb-10">
+      <div className="max-w-7xl mx-auto px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 sm:space-y-8 lg:space-y-12">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-1.5 sm:gap-2 p-1 h-auto">
             {availableTabs.map((tab) => (
               <TabsTrigger 
                 key={tab.key} 
                 value={tab.key}
-                className="text-xs lg:text-sm"
+                className="text-xs sm:text-sm py-2 sm:py-2.5 px-2 sm:px-3 whitespace-nowrap"
               >
                 {tab.label}
               </TabsTrigger>
@@ -103,7 +103,7 @@ export default function AdminDashboard() {
           </TabsList>
 
           {availableTabs.map((tab) => (
-            <TabsContent key={tab.key} value={tab.key} className="mt-8 lg:mt-10">
+            <TabsContent key={tab.key} value={tab.key} className="mt-4 sm:mt-6 lg:mt-8">
               {tab.component}
             </TabsContent>
           ))}
