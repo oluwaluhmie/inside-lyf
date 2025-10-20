@@ -46,7 +46,7 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
               alt="Insidelyf Logo" 
               className="h-8 w-auto"
             />
-            <h1 className="text-xl sm:text-2xl font-bold text-white">Insidelyf Admin Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-white">Admin Dashboard</h1>
           </div>
           <Badge variant={userRole === 'super_admin' ? 'default' : 'secondary'} className="bg-blue-100 text-blue-800">
             {displayRoleLabel}
