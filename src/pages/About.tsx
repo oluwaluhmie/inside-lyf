@@ -29,33 +29,6 @@ const MISSION_POINTS = [
   }
 ];
 
-const TEAM_MEMBERS = [
-  {
-    name: "Sarah Chen",
-    role: "Founder & CEO",
-    bio: "A trauma-informed therapist turned entrepreneur, Sarah founded Insidelyf after witnessing the power of peer support in healing.",
-    image: "bg-gradient-to-br from-primary/70 to-primary"
-  },
-  {
-    name: "Marcus Rodriguez",
-    role: "Head of Community",
-    bio: "With 10+ years in community building, Marcus ensures our spaces remain safe, inclusive, and supportive for all members.",
-    image: "bg-gradient-to-br from-secondary/70 to-secondary"
-  },
-  {
-    name: "Dr. Amira Patel",
-    role: "Clinical Advisor",
-    bio: "A licensed psychologist specializing in trauma recovery, Dr. Patel guides our approach to mental health resources.",
-    image: "bg-gradient-to-br from-primary to-secondary"
-  },
-  {
-    name: "Jordan Kim",
-    role: "Technology Lead",
-    bio: "Passionate about building technology that serves humanity, Jordan leads our efforts to create accessible, secure platforms.",
-    image: "bg-gradient-to-br from-secondary to-primary"
-  }
-];
-
 const STATS = [
   { number: "50K+", label: "Stories Shared" },
   { number: "25K+", label: "Community Members" },
@@ -164,23 +137,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Meet Our Team</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {TEAM_MEMBERS.map((member, index) => (
-              <Card key={index} className="text-center border-none bg-card hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className={`w-24 h-24 rounded-full ${member.image} mx-auto mb-4`} />
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3">{member.role}</p>
-                  <p className="text-sm text-muted-foreground">{member.bio}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
         {/* Our Approach Section */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto">
@@ -231,7 +187,7 @@ export default function About() {
                 <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
                   Join Community
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="border-white text-foreground bg-white hover:bg-white/90">
                   Browse Stories
                 </Button>
               </div>
