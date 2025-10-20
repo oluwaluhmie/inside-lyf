@@ -30,6 +30,7 @@ import Profile from "./pages/Profile";
 import DailyReflection from "./pages/DailyReflection";
 import NotFound from "./pages/NotFound";
 import FootballBanter from "./pages/community/FootballBanter";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTopOnRouteChange />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/admin" element={<AdminDashboard />} />
