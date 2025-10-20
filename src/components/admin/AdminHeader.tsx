@@ -42,7 +42,7 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
             <img 
-              src="/images/logo.png" 
+              src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
               alt="Insidelyf Logo" 
               className="h-8 w-auto"
             />
