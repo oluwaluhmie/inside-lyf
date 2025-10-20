@@ -90,7 +90,7 @@ export default function AdminDashboard() {
       
       <div className="max-w-7xl mx-auto p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 gap-2">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
             {availableTabs.map((tab) => (
               <TabsTrigger 
                 key={tab.key} 
