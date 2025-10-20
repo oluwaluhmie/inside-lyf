@@ -5,8 +5,10 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { ArrowLeft, Mail, CheckCircle, Users, BookOpen, Heart, Sparkles } from "lucide-react";
+import { ArrowLeft, Mail, CheckCircle, Users, BookOpen, Heart, Sparkles, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const NEWSLETTER_BENEFITS = [
   {
@@ -33,25 +35,84 @@ const NEWSLETTER_BENEFITS = [
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name || !username) return;
+    if (!email) return;
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Newsletter signup:", { email, name, username });
+    setError(null);
+
+    try {
+      // Check if user is authenticated
+      const { data: { user } } = await supabase.auth.getUser();
+
+      // Insert newsletter subscription
+      const { data, error: insertError } = await supabase
+        .from('newsletter_subscriptions')
+        .insert([
+          {
+            email: email.trim().toLowerCase(),
+            user_id: user?.id || null,
+          }
+        ])
+        .select('unsubscribe_token')
+        .single();
+
+      if (insertError) {
+        // Check if it's a duplicate email error
+        if (insertError.code === '23505') {
+          setError("You're already subscribed!");
+          toast({
+            title: "Already Subscribed",
+            description: "This email is already on our newsletter list.",
+            variant: "default",
+          });
+          setIsLoading(false);
+          return;
+        }
+        throw insertError;
+      }
+
+      // Send confirmation email
+      if (data?.unsubscribe_token) {
+        const { error: emailError } = await supabase.functions.invoke(
+          'send-newsletter-confirmation',
+          {
+            body: {
+              email: email.trim().toLowerCase(),
+              unsubscribeToken: data.unsubscribe_token,
+            },
+          }
+        );
+
+        if (emailError) {
+          console.error("Error sending confirmation email:", emailError);
+          // Don't fail the subscription if email fails
+        }
+      }
+
       setIsSubscribed(true);
+      toast({
+        title: "Successfully Subscribed! 🎉",
+        description: "Check your email for a confirmation message.",
+      });
+
+    } catch (err: any) {
+      console.error("Newsletter subscription error:", err);
+      setError(err.message || "Failed to subscribe. Please try again.");
+      toast({
+        title: "Subscription Failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      setEmail("");
-      setName("");
-      setUsername("");
-    }, 1500);
+    }
   };
 
   if (isSubscribed) {
@@ -128,48 +189,33 @@ export default function Newsletter() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Your Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="bg-white"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="username">Username</Label>
-                  <Input
-                    id="username"
-                    type="text"
-                    placeholder="Choose a username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    className="bg-white"
-                  />
-                </div>
-                
-                <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email address"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError(null);
+                    }}
                     required
                     className="bg-white"
+                    disabled={isLoading}
                   />
                 </div>
+
+                {error && (
+                  <div className="flex items-center gap-2 text-red-600 text-sm">
+                    <AlertCircle className="w-4 h-4" />
+                    {error}
+                  </div>
+                )}
 
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3"
-                  disabled={isLoading}
+                  disabled={isLoading || !email.trim()}
                 >
                   {isLoading ? "Subscribing..." : "Subscribe to Newsletter"}
                 </Button>
