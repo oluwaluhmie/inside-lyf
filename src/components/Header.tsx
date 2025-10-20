@@ -28,16 +28,6 @@ export default function Header() {
             <Link to="/write" className="text-gray-700 hover:text-primary transition-colors font-medium">Write</Link>
             <Link to="/community" className="text-gray-700 hover:text-primary transition-colors font-medium">Community</Link>
             <Link to="/profile" className="text-gray-700 hover:text-primary transition-colors font-medium">Profile</Link>
-            <Link to="/about">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                About Us
-              </Button>
-            </Link>
-            <Link to="/write">
-              <Button className="bg-primary text-white hover:bg-primary/90">
-                Share Your Story
-              </Button>
-            </Link>
             <AuthButton />
           </nav>
 
@@ -92,18 +82,6 @@ export default function Header() {
               >
                 Profile
               </Link>
-              <div className="flex flex-col space-y-2 px-2 pt-2">
-                <Link to="/about" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
-                    About Us
-                  </Button>
-                </Link>
-                <Link to="/write" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-primary text-white hover:bg-primary/90">
-                    Share Your Story
-                  </Button>
-                </Link>
-              </div>
               <div className="pt-2 px-2">
                 <AuthButton />
               </div>

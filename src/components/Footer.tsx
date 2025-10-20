@@ -21,6 +21,11 @@ export default function Footer() {
               and discover healing through connection.
             </p>
             <div className="flex gap-4">
+              <Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800">
+                  About Us
+                </Button>
+              </Link>
               <Link to="/write" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <Button variant="outline" className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400">
                   Share Your Story
