@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Settings } from "lucide-react";
@@ -41,11 +42,13 @@ export default function AdminHeader({ userRole = 'super_admin', roleLabel }: Adm
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center gap-2 sm:gap-3">
-            <img 
-              src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
-              alt="Insidelyf Logo" 
-              className="h-6 sm:h-8 w-auto"
-            />
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/images/admin-logo.png" 
+                alt="ILYF Logo" 
+                className="h-6 sm:h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity"
+              />
+            </Link>
             <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Admin Dashboard</h1>
           </div>
           <Badge variant={userRole === 'super_admin' ? 'default' : 'secondary'} className="bg-blue-100 text-blue-800 text-xs sm:text-sm">
