@@ -45,14 +45,44 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
             <nav className="flex flex-col space-y-4">
-              <Link to="/" className="text-gray-700 hover:text-primary transition-colors font-medium">Home</Link>
-              <Link to="/stories" className="text-gray-700 hover:text-primary transition-colors font-medium">Read</Link>
-              <Link to="/write" className="text-gray-700 hover:text-primary transition-colors font-medium">Write</Link>
-              <Link to="/community" className="text-gray-700 hover:text-primary transition-colors font-medium">Community</Link>
-              <Link to="/profile" className="text-gray-700 hover:text-primary transition-colors font-medium">Profile</Link>
-              <div className="pt-2">
+              <Link 
+                to="/" 
+                className="text-gray-700 hover:text-primary transition-colors font-medium px-2 py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/stories" 
+                className="text-gray-700 hover:text-primary transition-colors font-medium px-2 py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Read
+              </Link>
+              <Link 
+                to="/write" 
+                className="text-gray-700 hover:text-primary transition-colors font-medium px-2 py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Write
+              </Link>
+              <Link 
+                to="/community" 
+                className="text-gray-700 hover:text-primary transition-colors font-medium px-2 py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Community
+              </Link>
+              <Link 
+                to="/profile" 
+                className="text-gray-700 hover:text-primary transition-colors font-medium px-2 py-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Profile
+              </Link>
+              <div className="pt-2 px-2">
                 <AuthButton />
               </div>
             </nav>
