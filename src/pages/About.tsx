@@ -68,7 +68,7 @@ export default function About() {
             >
               Join Our Community
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
+            <Button size="lg" variant="outline" className="border-primary w-full sm:w-auto" asChild>
               <Link to="/write">Share Your Story</Link>
             </Button>
           </div>
