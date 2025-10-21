@@ -123,7 +123,7 @@ export default function NewsletterSignup() {
             />
             <Button 
               type="submit" 
-              className="bg-primary text-white hover:bg-primary/90 w-full sm:w-auto"
+              className="bg-primary text-primary-foreground border border-primary hover:bg-white hover:text-primary w-full sm:w-auto"
               disabled={isLoading || !email.trim()}
             >
               {isLoading ? "Subscribing..." : "Subscribe"}

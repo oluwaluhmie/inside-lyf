@@ -43,13 +43,13 @@ export default function FeaturedStoryWeek() {
           
           <div className="flex flex-col sm:flex-row gap-3">
             <Link to="/stories">
-              <Button className="font-semibold">
+              <Button className="bg-primary text-primary-foreground border border-primary hover:bg-white hover:text-primary font-semibold">
                 Read Full Story
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
             <Link to="/stories">
-              <Button variant="outline">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                 Browse All Stories
               </Button>
             </Link>

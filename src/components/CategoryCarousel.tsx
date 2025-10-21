@@ -23,8 +23,8 @@ export default function CategoryCarousel() {
           className={`
             rounded-full px-6 py-3 whitespace-nowrap transition-all font-medium
             ${selected === category.id 
-              ? 'bg-primary text-primary-foreground shadow-lg scale-105' 
-              : 'bg-card hover:bg-secondary border-2 border-border'
+              ? 'bg-primary text-primary-foreground shadow-lg scale-105 border border-primary' 
+              : 'bg-card hover:bg-primary hover:text-primary-foreground border-2 border-primary'
             }
           `}
         >

@@ -57,7 +57,7 @@ export default function AuthButton() {
     return (
       <Button 
         onClick={() => navigate("/auth")}
-        className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white"
+        className="bg-primary text-primary-foreground border border-primary hover:bg-white hover:text-primary"
       >
         <User className="w-4 h-4 mr-2" />
         Sign In

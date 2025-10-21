@@ -14,7 +14,7 @@ export default function PodcastPromo() {
         </div>
       </div>
       <div className="w-full sm:w-auto">
-        <Button variant="outline" className="rounded-full bg-primary text-white px-6 py-2 shadow hover:scale-105 transition-transform w-full sm:w-auto" asChild>
+        <Button variant="outline" className="border-primary bg-primary text-primary-foreground hover:bg-white hover:text-primary rounded-full px-6 py-2 shadow hover:scale-105 transition-transform w-full sm:w-auto" asChild>
           <a href={PODCAST_LINK} target="_blank" rel="noopener">
             Listen Now
           </a>

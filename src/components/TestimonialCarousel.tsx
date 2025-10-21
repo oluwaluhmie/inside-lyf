@@ -47,10 +47,10 @@ export default function TestimonialCarousel() {
           What Our Community Says
         </h3>
         <div className="flex gap-2">
-          <Button size="sm" variant="outline" onClick={prev}>
+          <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" onClick={prev}>
             <ChevronLeft className="w-4 h-4" />
           </Button>
-          <Button size="sm" variant="outline" onClick={next}>
+          <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" onClick={next}>
             <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
