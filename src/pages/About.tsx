@@ -187,7 +187,7 @@ export default function About() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-gray-600 text-amber-500 hover:bg-gray-800 hover:text-amber-400 w-full sm:w-auto"
+                  className="border-white text-amber-500 hover:bg-gray-800 hover:text-amber-400 w-full sm:w-auto"
                   onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
                 >
                   Join Community
