@@ -57,7 +57,7 @@ const Index = () => {
             </p>
             <Button 
               onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white w-full sm:w-auto"
+              className="bg-primary text-primary-foreground border border-primary hover:bg-white hover:text-primary w-full sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" />
               Join InsideLyf WhatsApp Community

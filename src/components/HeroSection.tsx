@@ -40,7 +40,7 @@ export default function HeroSection() {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-secondary w-full sm:w-auto"
+              className="border-2 border-primary text-primary px-10 py-6 text-lg font-semibold rounded-full hover:scale-105 transition-all bg-card/50 hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
             >
               Share Yours
             </Button>

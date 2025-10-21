@@ -308,7 +308,7 @@ export default function Profile() {
                   "{profile.bio}"
                 </p>
               )}
-              <Button variant="outline" className="gap-2" onClick={handleEditProfile}>
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground gap-2" onClick={handleEditProfile}>
                 <Edit className="w-4 h-4" />
                 Edit Profile
               </Button>

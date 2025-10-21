@@ -197,7 +197,7 @@ const Safety = () => {
             <h3 className="text-lg font-semibold mb-2">Peer Support</h3>
             <p className="text-gray-600 text-sm mb-4">Connect with others who understand</p>
             <Link to="/community">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
                 Join Community
               </Button>
             </Link>
@@ -208,7 +208,7 @@ const Safety = () => {
             <h3 className="text-lg font-semibold mb-2">Educational Resources</h3>
             <p className="text-gray-600 text-sm mb-4">Learn about mental health</p>
             <Link to="/resources">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
                 Browse Resources
               </Button>
             </Link>
@@ -255,12 +255,12 @@ const Safety = () => {
           <p className="mb-6">If you see something that concerns you or violates our community guidelines, please report it immediately.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button variant="secondary" size="lg">
+              <Button variant="secondary" size="lg" className="border border-white">
                 Contact Support Team
               </Button>
             </Link>
             <Link to="/community-guidelines">
-              <Button variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 border-white text-white">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                 View Community Guidelines
               </Button>
             </Link>

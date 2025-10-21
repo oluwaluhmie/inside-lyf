@@ -31,7 +31,7 @@ export default function Stories() {
               className="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-card"
             />
           </div>
-          <Button variant="outline" className="flex items-center gap-2">
+          <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground flex items-center gap-2">
             <Filter className="w-4 h-4" />
             Filter
           </Button>

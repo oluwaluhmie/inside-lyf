@@ -146,7 +146,7 @@ export default function Story() {
               <Heart className={`w-5 h-5 ${hasRelated ? 'fill-current' : ''}`} />
               Relate ({STORY_DATA.relateCount + (hasRelated ? 1 : 0)})
             </Button>
-            <Button variant="outline" size="lg" className="gap-2">
+            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground gap-2">
               <MessageCircle className="w-5 h-5" />
               Comment ({STORY_DATA.commentCount})
             </Button>
