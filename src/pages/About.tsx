@@ -63,7 +63,7 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-white hover:text-primary w-full sm:w-auto"
+              className="bg-primary text-primary-foreground border border-primary hover:bg-white hover:text-primary w-full sm:w-auto"
               onClick={() => window.open("https://chat.whatsapp.com/CnlYJJKiMUM8yCxj7vTAo1?mode=wwt", "_blank")}
             >
               Join Our Community
