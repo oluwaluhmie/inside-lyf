@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
@@ -8,6 +8,8 @@ import { Label } from "../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { ArrowLeft, Users, Shield, Heart, CheckCircle, Mail, Lock, User } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 const COMMUNITY_BENEFITS = [
   {
@@ -28,6 +30,9 @@ const COMMUNITY_BENEFITS = [
 ];
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const { signUp, user } = useAuth();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,6 +41,12 @@ export default function Signup() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -47,17 +58,22 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      toast({
+        title: "Password Mismatch",
+        description: "Passwords don't match. Please try again.",
+        variant: "destructive",
+      });
       return;
     }
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Community signup:", formData);
+    const { error } = await signUp(formData.email, formData.password, formData.name);
+    
+    if (!error) {
       setIsSubmitted(true);
-      setIsLoading(false);
-    }, 1500);
+    }
+    
+    setIsLoading(false);
   };
 
   if (isSubmitted) {
@@ -217,9 +233,9 @@ export default function Signup() {
               <div className="mt-6 text-center">
                 <p className="text-slate-600">
                   Already have an account?{" "}
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link to="/signin" className="text-blue-600 hover:text-blue-700 font-medium">
                     Sign in here
-                  </button>
+                  </Link>
                 </p>
               </div>
             </CardContent>
