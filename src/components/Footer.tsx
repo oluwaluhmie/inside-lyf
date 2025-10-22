@@ -35,7 +35,7 @@ export default function Footer() {
                 </Button>
               </Link>
             </div>
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6 sm:justify-center">
               <p className="text-gray-400 text-sm w-full sm:w-auto">Follow InsideLyf</p>
               <div className="flex items-center gap-3 sm:gap-4">
                 <a href="https://web.facebook.com/insidelyf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#61B34F] transition-colors">
