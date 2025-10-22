@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -10,70 +10,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Plus, Eye, Edit, Trash2, Search, Filter, Ban, UserX, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { AdminRole } from "@/types/adminRoles";
-
-const MOCK_USERS = [
-  { 
-    id: 1, 
-    name: "Sarah Mitchell", 
-    email: "sarah@email.com", 
-    status: "Active", 
-    joinDate: "2024-01-15", 
-    role: "User",
-    lastActive: "2024-01-20",
-    postsCount: 12,
-    commentsCount: 45,
-    isActive: true,
-    activityLevel: "High"
-  },
-  { 
-    id: 2, 
-    name: "Mark Johnson", 
-    email: "mark@email.com", 
-    status: "Active", 
-    joinDate: "2024-02-03", 
-    role: "Moderator", 
-    assignedSegments: ["Parenting", "Family"],
-    lastActive: "2024-01-19",
-    postsCount: 8,
-    commentsCount: 23,
-    isActive: true,
-    activityLevel: "Medium"
-  },
-  { 
-    id: 3, 
-    name: "Alex Parker", 
-    email: "alex@email.com", 
-    status: "Inactive", 
-    joinDate: "2024-01-28", 
-    role: "User",
-    lastActive: "2024-01-18",
-    postsCount: 5,
-    commentsCount: 12,
-    isActive: false,
-    activityLevel: "Low"
-  },
-  { 
-    id: 4, 
-    name: "Emma Wilson", 
-    email: "emma@email.com", 
-    status: "Active", 
-    joinDate: "2024-02-10", 
-    role: "Moderator", 
-    assignedSegments: ["Womens Circle"],
-    lastActive: "2024-01-21",
-    postsCount: 15,
-    commentsCount: 67,
-    isActive: true,
-    activityLevel: "High"
-  }
-];
+import { supabase } from "@/integrations/supabase/client";
 
 interface UserManagementProps {
   userRole?: AdminRole;
 }
 
 export default function UserManagement({ userRole = 'super_admin' }: UserManagementProps) {
-  const [users, setUsers] = useState(MOCK_USERS);
+  const [users, setUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRole, setFilterRole] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -81,6 +26,49 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const { data: profiles, error } = await supabase
+        .from('profiles')
+        .select(`
+          *,
+          user_roles (role)
+        `)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const formattedUsers = profiles?.map((profile: any) => ({
+        id: profile.id,
+        name: profile.full_name || 'N/A',
+        email: profile.email || 'N/A',
+        status: 'Active',
+        joinDate: new Date(profile.created_at).toLocaleDateString(),
+        role: profile.user_roles?.[0]?.role || 'user',
+        lastActive: new Date(profile.updated_at).toLocaleDateString(),
+        postsCount: 0,
+        commentsCount: 0,
+        isActive: true,
+        activityLevel: 'Medium'
+      })) || [];
+
+      setUsers(formattedUsers);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load users.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Only super admins and user admins can see all users
   if (userRole === 'moderator' || (userRole !== 'super_admin' && userRole !== 'user_admin')) {
@@ -149,6 +137,14 @@ export default function UserManagement({ userRole = 'super_admin' }: UserManagem
     setSelectedUser(user);
     setIsProfileDialogOpen(true);
   };
+
+  if (loading) {
+    return (
+      <div className="bg-white rounded-xl border p-6">
+        <p>Loading users...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl border">
