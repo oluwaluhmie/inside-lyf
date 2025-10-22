@@ -7,7 +7,6 @@ import NewsletterSignup from "../components/NewsletterSignup";
 import HeroSection from "../components/HeroSection";
 import StatsCounter from "../components/StatsCounter";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import UrgencyBanner from "../components/UrgencyBanner";
 import Footer from "../components/Footer";
 import FeaturedStoryWeek from "../components/FeaturedStoryWeek";
 import MobileNav from "../components/MobileNav";
@@ -17,7 +16,6 @@ import { MessageCircle, ExternalLink } from "lucide-react";
 const Index = () => {
   return (
     <div className="min-h-screen w-full flex flex-col bg-background">
-      <UrgencyBanner />
       <Header />
       <main className="flex flex-col gap-12 sm:gap-16 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Hero Section */}
