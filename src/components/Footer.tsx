@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-full md:col-span-2">
             <Link to="/" className="mb-4 inline-block hover:opacity-80 transition-opacity">
               <img 
                 src="/lovable-uploads/908596b0-cf81-451c-a157-6b120721fea6.png" 
@@ -56,26 +56,29 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Legal Links */}
-          <div>
-            <h3 className="font-semibold mb-4 text-sm sm:text-base">Legal</h3>
+          {/* Legal & Support Container - Side by side on mobile */}
+          <div className="col-span-full md:col-span-2 grid grid-cols-2 gap-8">
+            {/* Legal Links */}
+            <div>
+              <h3 className="font-semibold mb-4 text-sm sm:text-base">Legal</h3>
             <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
               <li><a href="/privacy" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
               <li><a href="/terms" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
               <li><a href="/disclaimer" className="hover:text-green-400 transition-colors">Disclaimer</a></li>
               <li><a href="/cookies" className="hover:text-green-400 transition-colors">Cookie Policy</a></li>
             </ul>
-          </div>
+            </div>
 
-          {/* Support & Community */}
-          <div>
-            <h3 className="font-semibold mb-4 text-sm sm:text-base">Support</h3>
-            <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
-              <li><a href="/help" className="hover:text-green-400 transition-colors">Help Center</a></li>
-              <li><a href="/community-guidelines" className="hover:text-green-400 transition-colors">Community Guidelines</a></li>
-              <li><a href="/safety" className="hover:text-green-400 transition-colors">Safety Resources</a></li>
-              <li><a href="/contact" className="hover:text-green-400 transition-colors">Contact Us</a></li>
-            </ul>
+            {/* Support & Community */}
+            <div>
+              <h3 className="font-semibold mb-4 text-sm sm:text-base">Support</h3>
+              <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
+                <li><a href="/help" className="hover:text-green-400 transition-colors">Help Center</a></li>
+                <li><a href="/community-guidelines" className="hover:text-green-400 transition-colors">Community Guidelines</a></li>
+                <li><a href="/safety" className="hover:text-green-400 transition-colors">Safety Resources</a></li>
+                <li><a href="/contact" className="hover:text-green-400 transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
