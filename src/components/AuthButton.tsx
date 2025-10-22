@@ -31,9 +31,10 @@ export default function AuthButton() {
 
     fetchProfile();
 
-    // Set up real-time subscription for profile updates
+    // Set up real-time subscription for profile updates with unique channel name
+    const channelId = `profile-changes-${Math.random().toString(36).substring(7)}`;
     const channel = supabase
-      .channel('profile-changes')
+      .channel(channelId)
       .on(
         'postgres_changes',
         {
